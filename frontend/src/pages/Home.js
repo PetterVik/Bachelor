@@ -1,9 +1,14 @@
 import React from "react";
+import "../styles.css"; // Correct relative path
 
-// Define the Home component
+
 const Home = () => {
-  return <h1>Welcome to the Home Page</h1>;
+  return (
+    <div className="page-container">
+      <h1>Welcome to the Home Page</h1>
+      <p>This is the homepage of our website.</p>
+    </div>
+  );
 };
 
-// Export the Home component so it can be used in routing
 export default Home;

@@ -1,9 +1,13 @@
 import React from "react";
+import "../styles.css"; // Correct relative path
 
-// Define the About component
 const About = () => {
-  return <h1>About Us</h1>;
+  return (
+    <div className="page-container">
+      <h1>About Us</h1>
+      <p>Learn more about our company.</p>
+    </div>
+  );
 };
 
-// Export the About component so it can be used in routing
 export default About;

@@ -1,31 +1,24 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import React Router components
-import Navbar from "./components/Navbar"; // Import the Navbar component
-import Home from "./pages/Home"; // Import the Home page
-import About from "./pages/About"; // Import the About page
-import Contact from "./pages/Contact"; // Import the Contact page
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar"; 
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Karriere from "./pages/Karriere";  // Import Karriere component
+import "./styles.css"; 
 
-// Define the App component that will handle routing
-const App = () => {
+function App() {
   return (
     <Router>
-      {/* The Navbar will always be visible on all pages */}
       <Navbar />
-
-      {/* Define different routes */}
       <Routes>
-        {/* Route for the Home page */}
         <Route path="/" element={<Home />} />
-
-        {/* Route for the About page */}
         <Route path="/about" element={<About />} />
-
-        {/* Route for the Contact page */}
+        <Route path="/karriere" element={<Karriere />} />  {/* Added Karriere route */}
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );
-};
+}
 
-// Export the App component
 export default App;

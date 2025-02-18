@@ -1,42 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom for navigation
+import { Link } from "react-router-dom";
+import "../styles.css"; // Ensure correct relative path
 
-// Define a functional component for the navigation bar
 const Navbar = () => {
   return (
-    <nav style={styles.navbar}>
-      {/* Website logo/title */}
-      <h2 style={styles.logo}>My Website</h2>
-
-      {/* Navigation links */}
-      <ul style={styles.navLinks}>
-        <li>
-          <Link to="/" style={styles.link}>Home</Link>
-        </li>
-        <li>
-          <Link to="/about" style={styles.link}>About</Link>
-        </li>
-        <li>
-          <Link to="/contact" style={styles.link}>Contact</Link>
-        </li>
+    <nav className="navbar">
+      <h1>My Website</h1>
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/karriere">Karriere</Link></li>  {/* Fixed the Link path */}
+        <li><Link to="/contact">Contact</Link></li>
       </ul>
     </nav>
   );
 };
 
-// Define inline CSS styles as a JavaScript object
-const styles = {
-  navbar: { 
-    display: "flex", 
-    justifyContent: "space-between", 
-    padding: "15px", 
-    background: "#333", 
-    color: "white" 
-  },
-  logo: { margin: 0 }, // Style for the website logo/title
-  navLinks: { listStyle: "none", display: "flex", gap: "15px" }, // Style for navigation links
-  link: { color: "white", textDecoration: "none", fontSize: "18px" } // Style for link text
-};
-
-// Export the Navbar component to be used in other files
 export default Navbar;
