@@ -31,7 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection(); (Commented this part out)
 app.UseAuthorization();
 
 // Bruk API-kontrollere
