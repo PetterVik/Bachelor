@@ -1,0 +1,68 @@
+  
+  /* Hero Section */
+  .hero-image-section {
+    display: flex;
+    justify-content: flex-start; /* Plasserer innholdet til venstre */
+    align-items: center; /* Sentraliserer innholdet vertikalt */
+    height: auto; /* Full høyde på skjermen */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover; 
+    object-position: center; 
+    display: block;
+    margin: 0 auto;
+}
+
+.hero-content {
+    margin-top: 20px; 
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+  
+.hero-content p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+  
+  /* Services Section */
+.services {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+}
+  
+.service {
+    text-align: center;
+    width: 30%;
+}
+  
+.service img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+  
+.service h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+  
+.service p {
+    font-size: 16px;
+}
+  
