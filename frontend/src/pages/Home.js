@@ -37,8 +37,16 @@ const Home = () => {
           <p>Vi leverer et databasert beslutningsgrunnlag som dokumenterer bl.a. risiko og verdi assosiert med analyserte tiltak. Dette gjør det enkelt å kommunisere nytten av nødvendige tiltak og investeringer til beslutningstakere og interessenter.</p>
         </div>
       </section>
+      
+       {/* Footer */}
+       <footer className="footer">
+        <p>© 2025 Pure Logic</p>
+      </footer>
     </div>
   );
 };
+
+
+
 
 export default Home;
