@@ -59,3 +59,13 @@ swagger/                # Ignore Swagger documentation if generated
 # ---- SYSTEM FILES ----
 .DS_Store               # Ignore macOS metadata files
 Thumbs.db               # Ignore Windows thumbnail database files
+
+
+# Ignore build artifacts
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.nuget
+*.sourcelink

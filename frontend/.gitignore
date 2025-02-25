@@ -59,3 +59,9 @@ swagger/                # Ignore Swagger documentation if generated
 # ---- SYSTEM FILES ----
 .DS_Store               # Ignore macOS metadata files
 Thumbs.db               # Ignore Windows thumbnail database files
+
+# Ignore node_modules and build files
+node_modules/
+.next/
+dist/
+build/
