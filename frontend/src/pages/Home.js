@@ -5,6 +5,15 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="home-container">
+      {/* SVG definitions */}
+      <svg width="0" height="0" className="hidden">
+        <defs>
+          <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
+            <path d="M0,0.8 C0.25,0.9 0.75,0.7 1,0.8 L1,1 L0,1 Z" />
+          </clipPath>
+        </defs>
+      </svg>
+      
       <section className="hero-image-section">
         <img src="/images/2222.jpg" alt="Landskap" className="hero-image" />
       </section>
@@ -37,7 +46,7 @@ const Home = () => {
           <p>Vi leverer et databasert beslutningsgrunnlag som dokumenterer bl.a. risiko og verdi assosiert med analyserte tiltak. Dette gjør det enkelt å kommunisere nytten av nødvendige tiltak og investeringer til beslutningstakere og interessenter.</p>
         </div>
       </section>
-      
+
        {/* Footer */}
        <footer className="footer">
         <p>© 2025 Pure Logic</p>

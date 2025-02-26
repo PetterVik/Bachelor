@@ -14,11 +14,32 @@
 .hero-image {
     width: 100%;
     height: auto;
-    max-height: 600px;
+    max-height: 700px;
     object-fit: cover; 
     object-position: center; 
     display: block;
     margin: 0 auto;
+    z-index: 1;
+}
+
+.hero-image-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Juster høyden på overgangen */
+    background-color: #D5EAF9; /* Den blå bakgrunnsfargen */
+    clip-path: polygon(
+        0% 60%,    /* Venstre topp */
+        25% 35%,   /* Første topp */
+        50% 60%,   /* Midtpunkt på andre topp */
+        75% 35%,   /* Andre topp */
+        100% 80%,  /* Høyre topp */
+        100% 100%, /* Nedre høyre hjørne */
+        0% 100%    /* Nedre venstre hjørne */
+    );
+    z-index: 2; /* Plassere over bildet */
 }
 
 .hero-text-section {
