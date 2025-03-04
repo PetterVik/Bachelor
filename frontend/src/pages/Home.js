@@ -5,19 +5,12 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="home-container">
-      {/* SVG definitions */}
-      <svg width="0" height="0" className="hidden">
-        <defs>
-          <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
-            <path d="M0,0.8 C0.25,0.9 0.75,0.7 1,0.8 L1,1 L0,1 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-      
+      {/* Hero Image Section */}
       <section className="hero-image-section">
-        <img src="/2222.jpg" alt="Landskap" className="hero-image" />
+        <img src="/hero.jpg" alt="Landskap" className="hero-image" />
       </section>
-        {/* Hero Section - Text */}
+
+      {/* Hero Section - Text */}
       <section className="hero-text-section">
         <div className="hero-content">
           <h1>Veien til lønnsom bærekraft</h1>
@@ -47,15 +40,53 @@ const Home = () => {
         </div>
       </section>
 
-       {/* Footer */}
-       <footer className="footer">
+      {/* Hero Text Sections */}
+      <section className="main-text-section">
+        <div className="main-content">
+          <h1>Hva er ISY Decision Making?</h1>
+          <p>
+            ISY Decision Making er et digitalt verktøy for tverrfaglig
+            samhandling og bærekraftig beslutningstaking. Verktøyet er utviklet
+            for å bedre identifisere, sammenligne, og prioritere tiltak i
+            prosjekt, organisasjon og i verdikjeder med flere aktører. Med ISY
+            Decision Making får du et databasert beslutningsgrunnlag presentert på
+            et verdispåk som gir mening for deg, din bedrift, og ditt prosjekt.
+          </p>
+        </div>
+      </section>
+
+      <section className="main-text-section">
+        <div className="main-content">
+          <h1>Hvordan fungerer det?</h1>
+          <p>
+            ISY Decision Making digitaliserer den tilgjengelige informasjon om
+            din organisasjon i en digital tvilling – en simulering av det aktuelle
+            scenarioet. Løsninger blir så analysert- og kryssanalysert i
+            1000-talls simulajsoner. Resultatet av analysene leveres i en integrert
+            samhandlingsplattform som du bruker til å ta strategiske avgjørelser.
+          </p>
+        </div>
+      </section>
+
+      <section className="main-text-section">
+        <div className="main-content">
+          <h1>Hvorfor ISY Decision Making?</h1>
+          <p>
+            Med digital simulering og beslutningsorientert analyse* kan vi
+            eksponentielt øke antall analyserte tiltak og hendelser på kortere tid
+            enn ellers. Dette gjør at vi kan gi bedre svar, identifisere hvor det
+            finnes størst usikkerhet, og levere et grunnlag for bedre
+            beslutningstaking – med redusert bruk av ressurser.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
         <p>© 2025 Pure Logic</p>
       </footer>
     </div>
   );
 };
-
-
-
 
 export default Home;
