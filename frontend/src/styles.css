@@ -1,54 +1,67 @@
-/* Styles for the entire app */
+/* Global styling */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  /* Navigation bar styles */
-  .navbar {
-    background-color: #333;  /* Dark background */
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-  }
-  
-  .navbar h1 {
-    margin: 0;
-    font-size: 22px;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-  
-  .navbar ul li {
-    margin: 0 15px;
-  }
-  
-  .navbar ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-  }
-  
-  .navbar ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Page container */
-  .page-container {
-    padding: 20px;
-    text-align: center;
-    background-color: white;
-    margin: 20px auto;
-    width: 80%;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
+  background-color: #D5EAF9; /* Bakgrunnsfarge for body */
+  font-family: 'Glory', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 10px 20px;
+  height: 100px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Legger til skyggeeffekt */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 70px; /* Juster størrelsen på logoen */
+  height: auto;
+  margin-right: 5px; /* Avstand mellom logoen og teksten */
+}
+
+.navbar h1 {
+  font-size: 52px;
+  font-family: 'Lato', sans-serif; /* Bruker Lato for logoen */
+  font-weight: 300; /* Lato Light */
+  color: #2C3E50;
+  margin-top: 15px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* Make the list horizontal */
+}
+
+.nav-links li {
+  margin: 0 20px; /* Spacing between links */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  font-size: 22px;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.nav-links a:hover {
+  color: #1e90ff; /* Blå farge ved hover */
+}
+
+

@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj": {}
+    "/Users/malinskogeng/Documents/GitHub/Bachelor/Bachelor/backend/backend.csproj": {}
   },
   "projects": {
-    "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj": {
+    "/Users/malinskogeng/Documents/GitHub/Bachelor/Bachelor/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj",
+        "projectUniqueName": "/Users/malinskogeng/Documents/GitHub/Bachelor/Bachelor/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj",
-        "packagesPath": "/Users/75vikpet/.nuget/packages/",
-        "outputPath": "/Users/75vikpet/Documents/GitHub/Bachelor/backend/obj/",
+        "projectPath": "/Users/malinskogeng/Documents/GitHub/Bachelor/Bachelor/backend/backend.csproj",
+        "packagesPath": "/Users/malinskogeng/.nuget/packages/",
+        "outputPath": "/Users/malinskogeng/Documents/GitHub/Bachelor/Bachelor/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/75vikpet/.nuget/NuGet/NuGet.Config"
+          "/Users/malinskogeng/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -37,11 +37,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -71,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
