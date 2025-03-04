@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/malinskogeng/Documents/GitHub/Bachelor/backend/backend.csproj": {}
+    "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj": {}
   },
   "projects": {
-    "/Users/malinskogeng/Documents/GitHub/Bachelor/backend/backend.csproj": {
+    "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/malinskogeng/Documents/GitHub/Bachelor/backend/backend.csproj",
+        "projectUniqueName": "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "/Users/malinskogeng/Documents/GitHub/Bachelor/backend/backend.csproj",
-        "packagesPath": "/Users/malinskogeng/.nuget/packages/",
-        "outputPath": "/Users/malinskogeng/Documents/GitHub/Bachelor/backend/obj/",
+        "projectPath": "/Users/75vikpet/Documents/GitHub/Bachelor/backend/backend.csproj",
+        "packagesPath": "/Users/75vikpet/.nuget/packages/",
+        "outputPath": "/Users/75vikpet/Documents/GitHub/Bachelor/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/malinskogeng/.nuget/NuGet/NuGet.Config"
+          "/Users/75vikpet/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "/opt/homebrew/Cellar/dotnet/9.0.101/libexec/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +39,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -72,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/opt/homebrew/Cellar/dotnet/9.0.101/libexec/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
