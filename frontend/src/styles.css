@@ -1,11 +1,7 @@
 /* Global styling */
 body {
   background-color: #eef6fa; /* Bakgrunnsfarge for body */
-<<<<<<< HEAD
-  font-family: 'Glory', sans-serif;
-=======
   font-family: 'Glory';
->>>>>>> about-us
   margin: 0;
   padding: 0;
 }
@@ -16,10 +12,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.6);
-<<<<<<< HEAD
-=======
   transition: background-color 0.3s ease;
->>>>>>> about-us
   padding: 10px 20px;
   height: 100px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Legger til skyggeeffekt */
@@ -27,12 +20,9 @@ body {
   position: fixed; /* Fikser navbar på toppen av siden */
   width: 100%; /* Fyller hele bredden av siden */
 }
-<<<<<<< HEAD
-=======
 .navbar-scrolled {
   background-color: #eef6fa; /* Or any other solid color */
 }
->>>>>>> about-us
 
 .logo-container {
   display: flex;
@@ -47,11 +37,7 @@ body {
 
 .navbar h1 {
   font-size: 52px;
-<<<<<<< HEAD
-  font-family: 'Lato', sans-serif; /* Bruker Lato for logoen */
-=======
   font-family: 'Lato'; /* Bruker Lato for logoen */
->>>>>>> about-us
   font-weight: 300; /* Lato Light */
   color: #2C3E50;
   margin-top: 15px;
@@ -85,7 +71,3 @@ body {
   color: #1e90ff; /* Blå farge ved hover */
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> about-us
