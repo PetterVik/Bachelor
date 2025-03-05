@@ -1,6 +1,10 @@
   
  /* Hero Section */
+<<<<<<< HEAD
 .hero-image-section {
+=======
+ .hero-image-section {
+>>>>>>> about-us
     display: flex;
     justify-content: flex-start; 
     align-items: flex-start; 
