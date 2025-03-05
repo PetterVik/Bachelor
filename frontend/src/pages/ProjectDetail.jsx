@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import "../styles/ProjectsPage.css";
+import "./../styles/ProjectDetail.css";
+
 
 const dummyProjects = [
   {
