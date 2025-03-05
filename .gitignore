@@ -6,7 +6,7 @@
 *.vs
 /node_modules
 frontend/node_modules/
-
+frontend/node_modules/.cache/
 
 */AssemblyInfo.cs
 MyMapAppDb.db
@@ -17,6 +17,7 @@ Bachelor.pdb
 Bachelor.staticwebassets.runtime.json
 staticwebassets/
 .DS_Store
+
 
 
 
