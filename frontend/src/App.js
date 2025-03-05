@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Karriere from "./pages/Karriere";  // Import Karriere component
+import './fullpage.css';
 import "./styles.css"; 
 
 function App() {
