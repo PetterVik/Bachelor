@@ -1,9 +1,9 @@
   
-  /* Hero Section */
-  .hero-image-section {
+ /* Hero Section */
+.hero-image-section {
     display: flex;
     justify-content: flex-start; 
-    align-items: center; 
+    align-items: flex-start; 
     height: auto; 
     width: 100%;
     position: relative;
@@ -16,11 +16,13 @@
     height: auto;
     max-height: 700px;
     object-fit: cover; 
+    top: 0;
     object-position: center; 
     display: block;
     margin: 0 auto;
     z-index: 1;
 }
+
 
 .hero-image-section::after {
     content: "";
@@ -28,7 +30,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 170px; 
+    height: 220px; 
     background-color: #eef6fa; 
     clip-path: polygon(
         0% 60%,    
@@ -42,30 +44,35 @@
     z-index: 2; 
 }
 
+
 .hero-text-section {
     display: flex;
     flex-direction: column;  
     align-items: center;     
-    justify-content: center; 
+    justify-content: flex-start; /* Changed to flex-start */
     text-align: center;     
+    padding-top: 0; 
+    margin-top: -70px;
+    z-index: 5;  
+    position: relative;;
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
+    margin-top: 15px;
 }
 
 .hero-content h1 {
     font-size: 48px;
     font-weight: bold;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
   
 .hero-content p {
     font-size: 20px;
     line-height: 1.6;
-    margin-top: 20px;
 }
   
   /* Services Section */
@@ -103,40 +110,67 @@
 }
 
 /* Boks-stil for hovedtekstseksjonene */
+/* Boks-stil for hovedtekstseksjonene */
 .main-text-section {
-    background-color: #ffffff; /* Hvit bakgrunn for boksene */
-    border: 1px solid #ddd; /* Lys grå kantlinje */
-    padding: 40px 20px; /* Padding rundt innholdet i boksen */
-    margin-bottom: 30px; /* Avstand mellom boksene */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Lett skygge for å gi boksene dybde */
-    transition: transform 0.3s ease; /* Legger til en smidig overgang for hover-effekt */
+    background-color: #2C3E50; /* Light background */
+    padding: 60px 40px; /* Increased padding for better spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+    display: flex;              /* Enable flexbox */
+    justify-content: center;  /* Horizontally center items */
+    align-items: center;      /* Vertically center items */
+    min-height: 100vh;       /* Ensure a minimum height to center within */
+    text-align: center;   
 }
-  
-.main-text-section:hover {
-    transform: translateY(-5px); /* Lett løft-effekt på hover */
-}
-  
-  /* Hovedinnhold inne i boksene */
+
+
+
+/* Hovedinnhold inne i boksene */
 .main-content {
     max-width: 800px;
-    margin: 0 auto; /* Sentrum av innholdet */
-    text-align: center; /* Sentrum for teksten */
+    margin: 0 auto; /* Centered content */
 }
-  
+
 .main-content h1 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #2a4d6f; /* Mørk blå for overskriften */
-    margin-bottom: 15px; /* Avstand mellom overskriften og teksten */
+    font-size: 30px; /* Reduced font size for better balance */
+    color: #b0def4; /* Darker text color for contrast */
+    margin-bottom: 20px; /* Spacing between heading and text */
     text-transform: uppercase;
-    font-family: 'Lato';
+    font-family: 'Lato'; /* Clean font */
+}
+
+.main-content p {
+    font-size: 20px; /* Standard font size for readability */
+    color: white;/* Medium gray for better contrast */
+    line-height: 1.6; /* Improved line height for readability */
+    margin-top: 10px; /* Spacing after paragraphs */
+}
+
+@keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    
+
+
+.section {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
   
-.main-content p {
-    font-size: 18px;
-    color: #555; /* Mørk grå tekstfarge */
-    line-height: 1.6;
-    margin-top: 10px;
+.section.active {
+    opacity: 1;
 }
   
 
