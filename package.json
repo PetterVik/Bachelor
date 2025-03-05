@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.48",
+    "animate.css": "^4.1.1"
+  }
+}

@@ -1,0 +1,192 @@
+  
+ /* Hero Section */
+.hero-image-section {
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    height: auto; 
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 750px;
+    object-fit: cover; 
+    top: 0;
+    object-position: center; 
+    display: block;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+
+.hero-image-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 220px; 
+    background-color: #eef6fa; 
+    clip-path: polygon(
+        0% 60%,    
+        25% 35%,  
+        50% 60%,   
+        75% 35%,   
+        100% 80%,  
+        100% 100%, 
+        0% 100%    
+    );
+    z-index: 2; 
+}
+
+
+.hero-text-section {
+    display: flex;
+    flex-direction: column;  
+    align-items: center;     
+    justify-content: flex-start; /* Changed to flex-start */
+    text-align: center;     
+    padding-top: 60px; 
+    margin-top: -130px;
+    z-index: 5;  
+    position: relative;;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.hero-content h1 {
+    font-size: 44px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+  
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+  
+/* Services Section */
+.services {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 50px;
+    padding: 50px 20px;
+    background-color: #eef6fa;
+    text-align: center;
+}
+  
+.service {
+    text-align: center;
+    width: 30%;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.service:nth-child(1),
+.service:nth-child(3) {
+    margin-top: 0; /* Ensure first and third services are aligned */
+}
+
+.service:nth-child(2) {
+    margin-top: 100px; /* Push the middle service down */
+}
+  
+.service img {
+    width: 100px;  
+    height: 100px; 
+    object-fit: contain; /* Ensure the entire image fits within the dimensions */
+    margin-bottom: 20px;
+}
+
+.img-part1 {
+    width: 200px;
+
+}
+  
+.service h3 {
+    font-size: 24px;
+    font-weight: bold;
+}
+  
+.service p {
+    font-size: 18px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+  
+
+
+.main-text-section {
+    background-color: #2C3E50; /* Light background */
+    padding: 60px 40px; /* Increased padding for better spacing */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+    display: flex;              /* Enable flexbox */
+    justify-content: center;  /* Horizontally center items */
+    align-items: center;      /* Vertically center items */
+    min-height: 100vh;       /* Ensure a minimum height to center within */
+    text-align: center; 
+    overflow: hidden;  
+}
+
+
+
+/* Hovedinnhold inne i boksene */
+.main-content {
+    max-width: 800px;
+    margin: 0 auto; /* Centered content */
+}
+
+.main-content h1 {
+    font-size: 30px; /* Reduced font size for better balance */
+    color: #b0def4; /* Darker text color for contrast */
+    margin-bottom: 20px; /* Spacing between heading and text */
+    text-transform: uppercase;
+    font-family: 'Lato'; /* Clean font */
+}
+
+.main-content p {
+    font-size: 20px; /* Standard font size for readability */
+    color: white;/* Medium gray for better contrast */
+    line-height: 1.6; /* Improved line height for readability */
+    margin-top: 10px;
+}
+
+
+.section {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+  
+.section.active {
+    opacity: 1;
+}
+  
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;           
+    text-align: center;     
+    background-color: #b0def4; 
+    padding: 10px 0;       
+    font-size: 14px;        
+    color: #333;            
+}
+  
+.footer p {
+    margin: 0;         
+}
+  
+  
