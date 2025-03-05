@@ -24,23 +24,30 @@ body {
   background-color: #eef6fa; /* Or any other solid color */
 }
 
+
 .logo-container {
   display: flex;
   align-items: center;
 }
 
 .logo {
-  width: 70px; /* Juster størrelsen på logoen */
+  width: 60px; /* Juster størrelsen på logoen */
   height: auto;
   margin-right: 5px; /* Avstand mellom logoen og teksten */
 }
+.logo-container a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
 
-.navbar h1 {
+.logo-container h1 {
   font-size: 52px;
   font-family: 'Lato'; /* Bruker Lato for logoen */
   font-weight: 300; /* Lato Light */
   color: #2C3E50;
-  margin-top: 15px;
+  margin: 0;
+  margin-right: 10px;
 }
 
 .nav-links {

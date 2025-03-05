@@ -6,8 +6,10 @@ const Navbar = ({ isScrolled }) => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="logo-container">
+        <Link to="/">
           <h1>Pure Logic</h1>
           <img src="/pure-logic-logo.png" alt="Pure Logic Logo" className="logo" />
+        </Link>
       </div>
       <div className="nav-links">
         <ul>

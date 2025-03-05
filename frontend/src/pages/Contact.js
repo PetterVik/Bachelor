@@ -16,10 +16,8 @@ const Contact = () => {
         <section className="contact-booking">
           <h2>Vår ekspertise, ditt behov</h2>
           <p>
-            Ingen løsninger passer for alle. Ønsket mål og verdiforståelse vil være ulikt mellom bedrift til bedrift. Derfor arbeider vi sammen med deg for å tilpasse vårt verktøy og metoder til ditt behov.
-          </p>
-          <p>
-            Ønsker du å finne ut mer om hvordan vi kan hjelpe deg med bærekraftig verdiskapning, lønnsom bærekraft, og bedre beslutninger?
+            Ingen løsninger passer for alle. Ønsket mål og verdiforståelse vil være ulikt mellom bedrift til bedrift. Derfor arbeider vi sammen med deg for å tilpasse vårt verktøy og metoder til ditt behov.             Ønsker du å finne ut mer om hvordan vi kan hjelpe deg med bærekraftig verdiskapning, lønnsom bærekraft, og bedre beslutninger?
+
           </p>
           <p>
             Ta kontakt for en gratis 30 minutters konsultasjon med en av våre eksperter.
@@ -32,14 +30,14 @@ const Contact = () => {
         {/* Kontaktinformasjon og Google Maps seksjon */}
       <section className="contact-info-and-map">
         <div className="contact-info">
-          <h2>Besøk oss eller send post til:</h2>
+          <h2>Adresse:</h2>
           <p>Kjørboveien 16</p>
           <p>1337 Sandvika</p>
           
-          <h2>Eller kontakt oss på e-post:</h2>
+          <h2>E-post:</h2>
           <p>post@purelogic.no</p>
           
-          <h2>Telephone:</h2>
+          <h2>Telefon:</h2>
           <p>+47 95106883</p>
         </div>
         <div className="contact-map">
