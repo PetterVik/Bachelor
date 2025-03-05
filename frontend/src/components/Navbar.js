@@ -12,8 +12,8 @@ const Navbar = () => {
       <div className="nav-links">
         <ul>
           <li><Link to="/about">Om oss</Link></li>
-          <li><Link to="/prosjekter">Prosjekter</Link></li>
-          <li><Link to="/karriere">Karriere</Link></li>
+          <li><Link to="/projects">Prosjekter</Link></li>
+          <li><Link to="/career">Karriere</Link></li>
           <li><Link to="/contact">Kontakt oss</Link></li>
         </ul>
       </div>

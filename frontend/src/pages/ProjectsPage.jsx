@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import React from "react";
 import "../styles/ProjectsPage.css";
+
 
 const ProjectsPage = () => {
 
@@ -25,23 +27,21 @@ const ProjectsPage = () => {
       ];
       
 
-  return (
-    <div className="projects-container">
-      <h1>Prosjekter</h1>
-      <div className="projects-grid">
-        {dummyProjects.map((project) => (
-          <div key={project.id} className="project-card">
-            <img src={project.image} alt={project.title} />
-            <h3>{project.title}</h3>
-            <p>{project.description}</p>
+      return (
+        <div className="projects-container">
+          <h1>Prosjekter</h1>
+          <div className="projects-grid">
+            {dummyProjects.map((project) => (
+              <div key={project.id} className="project-card">
+                <Link to={`/projects/${project.id}`}>
+                  <img src={project.image} alt={project.title} />
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                </Link>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
+        </div>
+      );
+    }
 export default ProjectsPage;
-
-
-
