@@ -1,0 +1,9 @@
+/* fullpage.css */
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: white;
+}
+
+.fp-tooltip {
+  color: white;
+}
