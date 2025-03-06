@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Sidebar() {
+export function Sidebar() {
   return (
     <div style={{ 
       width: "250px", height: "100vh", background: "#1e1e2d", color: "#fff", 

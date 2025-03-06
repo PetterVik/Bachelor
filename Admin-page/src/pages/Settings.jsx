@@ -1,4 +1,5 @@
-export default function Settings() {
+// <Setting>.jsx
+export function Settings() {
   return <h1>Settings</h1>;
 }
 

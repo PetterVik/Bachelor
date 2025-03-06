@@ -1,29 +1,41 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import Users from "./pages/Users";
-import Settings from "./pages/Settings.jsx";
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Dashboard } from './pages/Dashboard.jsx';
+import { Settings } from './pages/Settings.jsx'; // <-- Named import
+import { Sidebar } from './components/Sidebar.jsx';
+import LoginPage from './pages/Login.jsx';
+import Navbar from './components/Navbar.jsx'; // This one has a default export
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
   return (
     <Router>
-      <div style={{ display: "flex" }}>
-        <Sidebar />
-        <div style={{ flex: 1 }}>
-          <Navbar />
-          <div style={{ padding: "20px" }}>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/users" element={<Users />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </div>
-        </div>
-      </div>
+      <Routes>
+        {/* Public route for login */}
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Protected routes */}
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
 
 export default App;
+
 
