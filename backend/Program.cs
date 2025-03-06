@@ -1,19 +1,19 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Legger til API-kontrollere
+// Adds API controllers to the application
 builder.Services.AddControllers();
 
-// Aktiverer Swagger for API-dokumentasjon
+// Enables Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Konfigurerer CORS for å tillate frontend (React) å koble til backend
+// Configures CORS (Cross-Origin Resource Sharing) to allow frontend (React) to connect
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000") // Tillater kun React-appen
+            policy.WithOrigins("http://localhost:3000") // Only allows requests from React app
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -21,20 +21,24 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Bruk CORS-policy
+// Applies the CORS policy
 app.UseCors("AllowReactApp");
 
-// Konfigurerer Swagger kun i utviklingsmiljø
+// Enables Swagger UI only in development mode
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection(); (Commented this part out)
+// Redirects HTTP to HTTPS
+app.UseHttpsRedirection();
+
+// Enables authorization (can be removed if not needed)
 app.UseAuthorization();
 
-// Bruk API-kontrollere
+// Maps API controllers
 app.MapControllers();
 
+// Starts the application
 app.Run();

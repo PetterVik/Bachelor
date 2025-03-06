@@ -3,12 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar"; 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import ProjectsPage from "./pages/ProjectsPage"; // Importerer projects-siden
-import ProjectDetail from "./pages/ProjectDetail";
 import Contact from "./pages/Contact";
-import Karriere from "./pages/Karriere";  // Importerer karrieresiden
+import Karriere from "./pages/Karriere";  // Import Karriere component
+import './fullpage.css';
 import "./styles.css"; 
-
 
 function App() {
   return (
@@ -17,8 +15,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/karriere" element={<Karriere />} />  {/* Added Karriere route */}
         <Route path="/contact" element={<Contact />} />
       </Routes>

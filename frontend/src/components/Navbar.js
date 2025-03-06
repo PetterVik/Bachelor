@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles.css"; // Sørg for at CSS-filen er riktig importert
+import "../styles.css"; // Make sure the CSS file is correctly imported
 
-const Navbar = () => {
+const Navbar = ({ isScrolled }) => {
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="logo-container">
-      <h1>Pure Logic</h1>
-        <img src="/images/pure-logic-logo.png" alt="Pure Logic Logo" className="logo" />
+        <Link to="/">
+          <h1>Pure Logic</h1>
+          <img src="/pure-logic-logo.png" alt="Pure Logic Logo" className="logo" />
+        </Link>
       </div>
       <div className="nav-links">
         <ul>
           <li><Link to="/about">Om oss</Link></li>
-          <li><Link to="/projects">Prosjekter</Link></li>
-          <li><Link to="/career">Karriere</Link></li>
+          <li><Link to="/prosjekter">Prosjekter</Link></li>
+          <li><Link to="/karriere">Karriere</Link></li>
           <li><Link to="/contact">Kontakt oss</Link></li>
         </ul>
       </div>
