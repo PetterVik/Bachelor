@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5001/api/projects"; // Bruk riktig backend-port
+const API_BASE_URL = "http://localhost:5123/api/projects"; // Endre port hvis nødvendig
 
 export const fetchProjects = async () => {
     try {
