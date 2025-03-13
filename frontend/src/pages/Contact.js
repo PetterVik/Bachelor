@@ -30,14 +30,23 @@ const Contact = () => {
         {/* Kontaktinformasjon og Google Maps seksjon */}
       <section className="contact-info-and-map">
         <div className="contact-info">
-          <h2>Adresse:</h2>
+          <h2>
+          <img src="/assets/adresse.png" alt="Adresse Icon" style={{ width: '30px', marginRight: '10px' }} />
+          Adresse:
+          </h2>
           <p>Kjørboveien 16</p>
           <p>1337 Sandvika</p>
           
-          <h2>E-post:</h2>
+          <h2>
+          <img src="/assets/adresse.png" alt="E-post Icon" style={{ width: '20px', marginRight: '10px' }} />
+          E-post:
+          </h2>
           <p>post@purelogic.no</p>
           
-          <h2>Telefon:</h2>
+          <h2>
+          <img src="/assets/adresse.png" alt="Telefon Icon" style={{ width: '20px', marginRight: '10px' }} />
+          Telefon:
+          </h2>
           <p>+47 95106883</p>
         </div>
         <div className="contact-map">
