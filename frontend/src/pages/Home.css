@@ -1,5 +1,5 @@
 .home-container { 
-    max-height: 110vh;
+    max-height: none;
     margin-top: 0;
     padding-top: 0;
 } 
@@ -13,12 +13,14 @@
     position: relative;
     overflow: hidden;
     flex-direction: column;
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .hero-image {
     width: 100%;
     height: auto;
-    max-height: 810px;
+    max-height: 100vh;
     object-fit: cover; 
     top: 0;
     object-position: center; 
@@ -34,7 +36,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 350px; 
+    height: 43vh; 
     background-color: #eef6fa; 
     clip-path: polygon(
         0% 60%,    
@@ -53,28 +55,28 @@
     display: flex;
     flex-direction: column;  
     align-items: center;     
-    justify-content: flex-start; /* Changed to flex-start */
+    justify-content: flex-start; 
     text-align: center;     
-    padding-top: 60px; 
-    margin-top: -200px;
+    padding-top: 5rem; 
+    margin-top: -28vh;
     z-index: 5;  
     position: relative;;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 60vw;
     margin: 0 auto;
-    margin-top: 15px;
+    margin-top: 1rem;
 }
 
 .hero-content h1 {
-    font-size: 44px;
+    font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
 }
   
 .hero-content p {
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 1.6;
 }
   
@@ -83,16 +85,16 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    margin-top: 50px;
-    padding: 50px 20px;
+    margin-top: 5vh;
+    padding: 5vh 2rem;
     background-color: #eef6fa;
     text-align: center;
 }
   
 .service {
     text-align: center;
-    width: 30%;
-    margin-bottom: 30px;
+    width: 30vw;
+    margin-bottom: 2rem;
     transition: all 0.3s ease;
 }
 
@@ -102,29 +104,25 @@
 }
 
 .service:nth-child(2) {
-    margin-top: 100px; /* Push the middle service down */
+    margin-top: 20vh; /* Push the middle service down */
 }
   
 .service img {
-    width: 100px;  
-    height: 100px; 
+    width: 10vw;  
+    height: 10vh; 
     object-fit: contain; /* Ensure the entire image fits within the dimensions */
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
 }
 
-.img-part1 {
-    width: 200px;
-
-}
   
 .service h3 {
-    font-size: 24px;
+    font-size: 1.4rem;
     font-weight: bold;
 }
   
 .service p {
-    font-size: 18px;
-    max-width: 320px;
+    font-size: 1rem;
+    max-width: 25vw;
     margin: 0 auto;
 }
 
@@ -133,7 +131,7 @@
 
 .main-text-section {
     background-color: #2C3E50; /* Light background */
-    padding: 60px 40px; /* Increased padding for better spacing */
+    padding: 5vh 2rem; /* Increased padding for better spacing */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: transform 0.3s ease; /* Smooth transition effect */
     display: flex;              /* Enable flexbox */
@@ -148,29 +146,32 @@
 
 /* Hovedinnhold inne i boksene */
 .main-content {
-    max-width: 800px;
+    max-width: 60vw;
     margin: 0 auto; /* Centered content */
 }
 
 .main-content h1 {
-    font-size: 30px; /* Reduced font size for better balance */
+    font-size: 2rem; /* Reduced font size for better balance */
     color: #b0def4; /* Darker text color for contrast */
-    margin-bottom: 20px; /* Spacing between heading and text */
+    margin-bottom: 1rem; /* Spacing between heading and text */
     text-transform: uppercase;
     font-family: 'Lato'; /* Clean font */
 }
 
 .main-content p {
-    font-size: 20px; /* Standard font size for readability */
+    font-size: 1rem; /* Standard font size for readability */
     color: white;/* Medium gray for better contrast */
     line-height: 1.6; /* Improved line height for readability */
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 
 .section {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    padding: 0 !important; /* Remove padding */
+    margin: 0 !important; /* Remove margin */
+    height: auto;
 }
   
 .section.active {
@@ -192,5 +193,241 @@
 .footer p {
     margin: 0;         
 }
+
+/* Responsive design for screens smaller than 1024px */
+@media screen and (max-width: 1024px) {
+    .hero-image {
+        max-height: 700px; 
+    }
+    .hero-text-section {
+        padding-top: 40px; 
+        margin-top: -90px; 
+    }
+    .hero-image-section::after {
+        height: 280px;
+    }
+
+    .hero-content h1 {
+      font-size: 36px;
+    }
   
+    .hero-content p {
+      font-size: 18px;
+    }
   
+    .services {
+        padding: 30px;
+    }
+  
+    .service {
+        width: 50%;        
+        margin-bottom: 30px;   
+    }
+  
+    .service img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+
+    .service h3 {
+        font-size: 18px;       
+        margin-bottom: 10px;
+    }
+
+    .service p {
+        font-size: 16px;
+    }
+    .service:nth-child(1),
+    .service:nth-child(3) {
+        margin-top: -20px; 
+    }
+
+    .service:nth-child(2) {
+        margin-top: 300px; 
+    }
+  
+    .main-text-section {
+      padding: 40px 20px; 
+    }
+  
+    .main-content h1 {
+      font-size: 24px;
+    }
+  
+    .main-content p {
+      font-size: 16px;
+      max-width: 600px;
+    }
+  }
+    
+  
+
+/* Responsive design for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+    .hero-image {
+        max-height: 500px;
+    }
+    .hero-text-section {
+        padding-top: 40px; 
+        margin-top: -100px; 
+    }
+    .hero-image-section::after {
+        height: 250px;
+    }
+    .hero-content h1 {
+      font-size: 30px;
+    }
+  
+    .hero-content p {
+      font-size: 16px;
+    }
+  
+    .services {
+        align-items: center;   /* Center-align the items */
+        padding: 20px;         /* Add some padding */
+    }
+  
+    .service {
+        width: 33%;           /* Make each service take up most of the screen width */
+        margin-bottom: 30px;   /* Add spacing between services */
+        text-align: center;    /* Center-align text */
+    }
+  
+    .service img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+
+    .service h3 {
+        font-size: 18px;       /* Adjust heading size */
+        margin-bottom: 10px;
+    }
+
+    .service p {
+        font-size: 14px;
+    }
+    .service:nth-child(1),
+    .service:nth-child(3) {
+        margin-top: -200px; /* Ensure first and third services are aligned */
+    }
+
+    .service:nth-child(2) {
+        margin-top: 200px; /* Push the middle service down */
+    }
+  
+    .main-text-section {
+      padding: 40px 20px; /* Reduced padding for smaller screens */
+    }
+  
+    .main-content h1 {
+      font-size: 24px;
+    }
+  
+    .main-content p {
+      font-size: 16px;
+      max-width: 600px;
+    }
+  }
+
+@media screen and (max-width: 680px) {
+  
+    .services {
+        padding: 30px;
+    }
+
+    .service {
+        width: 33%;           /* Make services take full width on very small screens */
+    }
+
+    .service img {
+        width: 80px;           /* Further reduce icon size */
+        height: 80px;
+    }
+
+    .service h3 {
+        font-size: 16px;
+    }
+
+    .service p {
+        font-size: 12px;
+    }
+
+    .main-content h1 {
+      font-size: 28px;
+    }
+  
+    .main-content p {
+      font-size: 16px;
+      max-width: 500px;
+    }
+    
+}
+  
+  /* Even more responsive design for screens smaller than 480px */
+  @media screen and (max-width: 480px) {
+    .hero-image {
+        max-height: 300px; /* Juster bildehøyde ytterligere på veldig små skjermer */
+    }
+    
+    .hero-text-section {
+        padding-top: 80px; /* Redusere padding for mindre plass */
+        margin-top: -80px; /* Juster margin-top for mobiltelefoner */
+    }
+    .hero-image-section::after {
+        height: 100px;
+    }
+
+    .hero-content h1 {
+      font-size: 24px;
+    }
+  
+    .hero-content p {
+      font-size: 12px;
+      max-width: 400px;
+    }
+  
+    .services {
+        padding: 15px;
+    }
+
+    .service {
+        width: 50%;           /* Make services take full width on very small screens */
+    }
+
+    .service img {
+        width: 60px;           /* Further reduce icon size */
+        height: 60px;
+    }
+
+    .service h3 {
+        font-size: 14px;
+    }
+
+    .service p {
+        font-size: 9px;
+    }
+    .service:nth-child(1),
+    .service:nth-child(3) {
+        margin-top: -200px; /* Ensure first and third services are aligned */
+    }
+
+    .service:nth-child(2) {
+        margin-top: 200px; /* Push the middle service down */
+    }
+  
+    .main-text-section {
+      padding: 30px 15px; /* Reduced padding for smaller screens */
+    }
+  
+    .main-content h1 {
+      font-size: 20px;
+    }
+  
+    .main-content p {
+      font-size: 14px;
+      max-width: 350px;
+    }
+  }
+

@@ -7,6 +7,10 @@
     padding: 50px 20px;
 }
 
+.projects-container h1 {
+    margin-top: 90px;
+}
+
 /* Prosjektseksjonen */
 .projects-grid {
     display: flex;
