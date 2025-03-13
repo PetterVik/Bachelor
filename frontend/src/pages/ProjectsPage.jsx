@@ -12,6 +12,7 @@ const ProjectsPage = () => {
     const getProjects = async () => {
       try {
         const data = await fetchProjects(); // Calls the API function
+        console.log("Hentede prosjekter:", data); // Checking if data get fetched 
         setProjects(data); // Updates the state with the fetched data
       } catch (error) {
         console.error("Error in retrieving the projects", error); // Logs any errors that occur during fetching
@@ -29,7 +30,7 @@ const ProjectsPage = () => {
         {projects.map((project) => (
           <div key={project.id} className="project-card">
             <Link to={`/projects/${project.id}`}>
-              <img src={project.image} alt={project.title} />
+            <img src={project.imageUrl} alt={project.title} />
               <h3>{project.title}</h3>
               <p>{project.description}</p>
             </Link>
