@@ -17,6 +17,9 @@ builder.Services.AddCors(options =>
         });
 });
 
+//User Secrets for password to the database on Azure 
+builder.Configuration.AddUserSecrets<Program>();
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
