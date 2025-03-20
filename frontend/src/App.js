@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Karriere from "./pages/Karriere";  
 import ProjectsPage from "./pages/ProjectsPage";  // Importer ProjectsPage
 import ProjectDetail from "./pages/ProjectDetail"; // Importer ProjectDetail
 import './fullpage.css';
@@ -17,7 +16,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/karriere" element={<Karriere />} />  
         <Route path="/contact" element={<Contact />} />
         <Route path="/prosjekter" element={<ProjectsPage />} /> {/* Legg til prosjekter */}
         <Route path="/prosjekter/:id" element={<ProjectDetail />} /> {/* Legg til detaljvisning */}
