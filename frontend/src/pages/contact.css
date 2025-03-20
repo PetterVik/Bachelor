@@ -1,11 +1,9 @@
 .contact-container {
     background-color: #eef6fa; /* Light blue background */
-    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Sentere vertikalt */
     align-items: center; /* Sentere horisontalt */
-    min-height: 100vh; 
 }
 
 .contact-header {
@@ -28,8 +26,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Skygge rundt boksen */
     margin-top: 30px;
     margin-bottom: 30px;
-    width: 100%; /* Sørger for at boksen tar opp hele bredden på skjermen */
+    width: 80%; /* Sørger for at boksen tar opp hele bredden på skjermen */
     text-align: left;
+
     
 }
 
@@ -122,12 +121,12 @@
     border-radius: 8px;
 }
 
+
 .footer {
-    position: relative;
-    bottom: 0;
     width: 100%;           
     text-align: center;     
     background-color: #b0def4; 
+    padding: 10px 0;       
     font-size: 14px;        
     color: #333;            
 }
@@ -135,4 +134,3 @@
 .footer p {
     margin: 0;         
 }
-  

@@ -62,11 +62,12 @@ const Contact = () => {
         </div>
       </section>
 
-    {/* Footer Section */}
-    <footer className="footer">
-      <p>© 2025 Pure Logic</p>
-    </footer>
-  </div>
+      {/* Footer Section */}
+      <footer className="footer">
+        <p>© 2025 Pure Logic</p>
+      </footer>
+    
+    </div>
   );
 };
 
