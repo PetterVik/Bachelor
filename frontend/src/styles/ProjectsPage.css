@@ -4,11 +4,12 @@
     flex-direction: column;
     align-items: center;
     background-color: #d7ebfa; /* Lys blå bakgrunn */
-    padding: 50px 20px;
+    height: auto;
 }
 
 .projects-container h1 {
-    margin-top: 90px;
+    margin-top: 120px;
+    font-size: 48px;
 }
 
 /* Prosjektseksjonen */
@@ -18,7 +19,7 @@
     flex-wrap: wrap;
     gap: 30px;
     max-width: 1200px;
-    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 /* Prosjektkort */
@@ -27,6 +28,7 @@
     width: 100%;
     max-width: 300px; /* Eller den bredden du ønsker */
     color: white;
+    height: 470px;
 }
 
 .project-card:hover {
@@ -48,36 +50,126 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 160px; /* Juster høyden etter behov */
+    height: calc(100% - 200px); /* Dynamically adjust based on image height */
     z-index: 0;
 }
 
 /* Tekst-styling */
 .project-card h3 {
-    font-size: 18px;
+    font-size: 22px;
     margin: 15px 0 10px 0;
     z-index: 2;
     padding-left: 10px;
+    padding-right: 10px;
     position: relative;
-    color: white;
+    color: #C3EEFF;
+    min-height: 40px;
+    font-family: 'Glory';
+    font-weight: 500;
 }
 
 .project-card p {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.5;
     position: relative;
     padding-left: 10px;
+    padding-right: 10px;
     z-index: 2;
+    min-height: 60px;
+    color: white;
+    font-family: 'Glory';
+
 }
 
+.search-bar {
+    max-width: 1000px;     /* same as your .projects-grid */
+    margin: 0 auto 20px;   /* center it and add bottom spacing */
+    width: 100%;           /* ensure it shrinks on smaller screens */
+    padding: 0 20px;       /* optional side padding for smaller devices */
+}
+
+.search-input-container {
+    position: relative;    /* allows absolute positioning of the icon */
+    width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 5px 45px 5px 20px; /* extra right padding for the icon space */
+    border-radius: 10px;
+    border: 1px solid white;
+    font-size: 16px;
+    outline: none;
+    background-color: #ffffffc1;
+}
+  
+  /* The search icon on the right side */
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;       /* space from the right edge */
+    transform: translateY(-50%);
+    color: #aaa;       /* icon color */
+    pointer-events: none; /* icon isn't clickable */
+    font-size: 18px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;           
+    text-align: center;     
+    background-color: #b0def4; 
+    padding: 10px 0;       
+    font-size: 14px;        
+    color: #333;            
+}
+  
+.footer p {
+    margin: 0;         
+}
+  
 /* Responsiv styling */
-@media (max-width: 768px) {
-    .projects-grid {
-        flex-direction: column;
-        align-items: center;
+
+/* Medium screens: 2 in a row */
+@media (max-width: 992px) {
+    .project-card {
+      max-width: 45%; /* ~2 in a row if container is around 90-100% wide */
+    }
+    .projects-container h1 {
+        margin-top: 140px;
+        font-size: 40px;
+    }
+  }
+
+  /* Small screens: 1 in a row */
+@media (max-width: 576px) {
+    .project-card {
+      max-width: 80%; /* Takes most of the screen’s width */
+    }
+  
+    .project-card h3 {
+      font-size: 20px;
+    }
+  
+    .project-card p {
+      font-size: 16px;
+    }
+    .projects-container h1 {
+        margin-top: 100px;
+        font-size: 34px;
+    }
+    .search-bar {
+        max-width: 400px; 
+    }
+  }
+
+@media (max-width: 480px) {
+    .search-bar {
+        max-width: 370px; 
     }
 
     .project-card {
-        width: 90%;
+        height: 400px;
     }
-}
+  }
