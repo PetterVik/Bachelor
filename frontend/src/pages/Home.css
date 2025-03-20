@@ -3,6 +3,7 @@
     margin-top: 0;
     padding-top: 0;
 } 
+
  /* Hero Section */
  .hero-image-section {
     display: flex;
@@ -128,7 +129,6 @@
 
   
 
-
 .main-text-section {
     background-color: #2C3E50; /* Light background */
     padding: 5vh 2rem; /* Increased padding for better spacing */
@@ -193,6 +193,11 @@
 .footer p {
     margin: 0;         
 }
+
+.fp-controlArrow {
+    display: none !important;
+  }
+  
 
 /* Responsive design for screens smaller than 1024px */
 @media screen and (max-width: 1024px) {

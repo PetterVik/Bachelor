@@ -31,20 +31,20 @@ const Contact = () => {
       <section className="contact-info-and-map">
         <div className="contact-info">
           <h2>
-          <img src="/assets/adresse.png" alt="Adresse Icon" style={{ width: '30px', marginRight: '10px' }} />
+          <img src="/assets/adress.png" alt="Adresse Icon" style={{ width: '30px', marginRight: '10px' }} />
           Adresse:
           </h2>
           <p>Kjørboveien 16</p>
           <p>1337 Sandvika</p>
           
           <h2>
-          <img src="/assets/adresse.png" alt="E-post Icon" style={{ width: '20px', marginRight: '10px' }} />
+          <img src="/assets/email.png" alt="E-post Icon" style={{ width: '20px', marginRight: '10px' }} />
           E-post:
           </h2>
           <p>post@purelogic.no</p>
           
           <h2>
-          <img src="/assets/adresse.png" alt="Telefon Icon" style={{ width: '20px', marginRight: '10px' }} />
+          <img src="/assets/phone.png" alt="Telefon Icon" style={{ width: '20px', marginRight: '10px' }} />
           Telefon:
           </h2>
           <p>+47 95106883</p>
@@ -61,7 +61,12 @@ const Contact = () => {
           ></iframe>
         </div>
       </section>
-    </div>
+
+    {/* Footer Section */}
+    <footer className="footer">
+      <p>© 2025 Pure Logic</p>
+    </footer>
+  </div>
   );
 };
 

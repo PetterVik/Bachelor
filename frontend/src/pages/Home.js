@@ -34,6 +34,8 @@ const Home = () => {
         easing="easeInOutCubic"
         css3={true}
         scrollOverflow={true}  // Ensures scroll doesn't skip sections.
+        controlArrows={false}  // Disable the control arrows
+        showActiveTooltip={false}  // Disable active tooltip for navigation
         onLeave={(origin, destination, direction) => {
           setCurrentSection(destination.index);
         }}
@@ -136,18 +138,16 @@ const Home = () => {
                 </section>
               </div>
 
-              {/* Section 5 */}
-              <div className="section">
+              {/* Section 5 (with Footer inside) */}
+              <div className="section section-5">
                 <section className="main-text-section">
                   <div className="main-content">
                     <h1>Hvorfor ISY Decision Making?</h1>
                     <p>Med digital simulering og beslutningsorientert analyse kan vi eksponentielt øke antall analyserte tiltak og hendelser på kortere tid enn ellers. Dette gjør at vi kan gi bedre svar, identifisere hvor det finnes størst usikkerhet, og levere et grunnlag for bedre beslutningstaking – med redusert bruk av ressurser.</p>
                   </div>
                 </section>
-              </div>
 
-              {/* Footer Section */}
-              <div className="section fp-auto-height">
+                {/* Footer Section inside Section 5 */}
                 <footer className="footer">
                   <p>© 2025 Pure Logic</p>
                 </footer>

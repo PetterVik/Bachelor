@@ -1,27 +1,60 @@
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/AdminNavbar.css"; // We'll create this CSS file
 
-export function Navbar() {
+const Navbar = ({ isScrolled }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
-  function handleLogout() {
-    // Remove the token (or whatever key you used to store auth info)
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    const navLinks = document.getElementById('NavLinks');
+    const menuToggle = document.querySelector('.hamburger');
+
+    if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
     localStorage.removeItem('token');
-    // Redirect to the login page
     navigate('/login');
-  }
+  };
 
   return (
-    <nav style={{ padding: '1rem', backgroundColor: '#eee' }}>
-      {/* Example links */}
-      <Link to="/">Home</Link>
-      <Link to="/settings" style={{ marginLeft: '1rem' }}>Settings</Link>
+    <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
+      <div className="logo-container">
+        <Link to="/admin">
+          <h1>Pure Logic Admin</h1>
+          <img src="/pure-logic-logo.png" alt="Pure Logic Logo" className="logo" />
+        </Link>
+      </div>
 
-      {/* Logout button */}
-      <button onClick={handleLogout} style={{ marginLeft: '1rem' }}>
-        Logout
-      </button>
+      <div className="hamburger" onClick={toggleMenu}>
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+      </div>
+
+      <div className={`nav-links ${isMenuOpen ? 'active' : ''}`} id="NavLinks">
+        <ul>
+          <li><Link to="/admin">Dashboard</Link></li>
+          <li><Link to="/admin/settings">Settings</Link></li>
+          <li><button onClick={handleLogout} className="logout-button">Logout</button></li>
+        </ul>
+      </div>
     </nav>
   );
-}
+};
 
-  
+export default Navbar;
