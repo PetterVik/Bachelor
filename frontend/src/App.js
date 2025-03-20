@@ -17,8 +17,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/prosjekter" element={<ProjectsPage />} /> {/* Legg til prosjekter */}
-        <Route path="/prosjekter/:id" element={<ProjectDetail />} /> {/* Legg til detaljvisning */}
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
+
       </Routes>
     </Router>
   );
