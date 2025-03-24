@@ -35,7 +35,7 @@ const Navbar = ({ isScrolled }) => {
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="logo-container">
-        <Link to="/">
+      <Link to="/" onClick={() => setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100)}>
           <h1>Pure Logic</h1>
           <img src="/pure-logic-logo.png" alt="Pure Logic Logo" className="logo" />
         </Link>
