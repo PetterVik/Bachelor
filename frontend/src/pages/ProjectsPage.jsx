@@ -26,14 +26,19 @@ const ProjectsPage = () => {
 
   // Filter projects based on the search term
   const filteredProjects = projects.filter((project) => {
-    // Convert to lowercase for case-insensitive matching
-    const title = project.title.toLowerCase();
-    const description = project.description.toLowerCase();
+    const title = project.title?.toLowerCase() || "";
+    const shortDescription = project.shortDescription?.toLowerCase() || "";
+    const keywords = project.keywords?.toLowerCase() || "";
     const term = searchTerm.toLowerCase();
-
-    // Match if the search term is included in title OR description
-    return title.includes(term) || description.includes(term);
+  
+    return (
+      title.includes(term) ||
+      shortDescription.includes(term) ||
+      keywords.includes(term)
+    );
   });
+  
+
 
   // Handler for search input changes
   const handleSearchChange = (event) => {
@@ -61,14 +66,24 @@ const ProjectsPage = () => {
       <div className="projects-grid">
         {/* Mapping through the projects array and rendering each project */}
         {filteredProjects.map((project) => (
-          <div key={project.id} className="project-card">
-            <Link to={`/projects/${project.id}`}>
-              <img src={project.imageUrl} alt={project.title} />
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-            </Link>
-          </div>
-        ))}
+        <div key={project.id} className="project-card">
+          <Link to={`/projects/${project.id}`}>
+            <img src={project.imageUrl} alt={project.title} />
+            <h3>{project.title}</h3>
+            <p>{project.shortDescription}</p>
+          </Link>
+
+          {project.keywords && (
+            <div className="keywords">
+              {project.keywords.split(',').map((keyword, index) => (
+                <span key={index} className="keyword-chip">{keyword.trim()}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+
+
       </div>
       {/* Footer Section inside Section 5 */}
       <footer className="footer">
@@ -76,6 +91,7 @@ const ProjectsPage = () => {
         </footer>
     </div>
   );
+
 };
 
 export default ProjectsPage;

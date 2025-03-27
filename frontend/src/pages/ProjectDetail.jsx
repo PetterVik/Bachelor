@@ -27,23 +27,31 @@ const ProjectDetail = () => {
     fetchProject();
   }, [id]);
 
-  if (loading) {
-    return <h2>Laster prosjekt...</h2>;
-  }
-
-  if (error) {
-    return <h2>Feil: {error}</h2>;
-  }
-
-  if (!project) {
-    return <h2>Prosjekt ikke funnet</h2>;
-  }
+  if (loading) return <h2>Laster prosjekt...</h2>;
+  if (error) return <h2>Feil: {error}</h2>;
+  if (!project) return <h2>Prosjekt ikke funnet</h2>;
 
   return (
     <div className="project-detail">
       <h1>{project.title}</h1>
       <img src={project.imageUrl} alt={project.title} />
-      <p>{project.description}</p>
+
+      {project.longDescription &&
+        project.longDescription
+          // Del opp i avsnitt ved dobbel linjeskift (\n\n)
+          .split('\n\n')
+          .map((paragraph, idx) => (
+            <p key={idx}>
+              {/* Del opp i linjer ved enkelt linjeskift (\n) */}
+              {paragraph.split('\n').map((line, lineIndex) => (
+                <React.Fragment key={lineIndex}>
+                  {line}
+                  <br />
+                </React.Fragment>
+              ))}
+            </p>
+          ))
+      }
     </div>
   );
 };
