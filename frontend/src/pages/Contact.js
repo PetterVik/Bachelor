@@ -1,8 +1,74 @@
-import React from "react";
-import "../styles.css"; 
-import "./contact.css"; 
+import React, { useState } from "react";
+import "../styles.css";
+import "./contact.css";
+import moment from 'moment';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+
+
+// Sett opp norsk lokaliseringsformat
+moment.locale("nb");
+const localizer = momentLocalizer(moment);
 
 const Contact = () => {
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    description: ""
+  });
+
+  // Begrens til tirsdager og torsdager mellom 10-12
+  const availableSlots = () => {
+    const slots = [];
+    const startDate = moment().startOf("week");
+    const endDate = moment().add(2, "months").endOf("week");
+
+    for (let day = startDate; day.isBefore(endDate); day.add(1, "days")) {
+      if (day.day() === 2 || day.day() === 4) { // 2 = tirsdag, 4 = torsdag
+        const startTime = day.clone().set({ hour: 10, minute: 0 });
+        const endTime = day.clone().set({ hour: 12, minute: 0 });
+        
+        slots.push({
+          start: startTime.toDate(),
+          end: endTime.toDate(),
+          title: "Ledig time"
+        });
+      }
+    }
+    return slots;
+  };
+
+  const handleSelectSlot = (slotInfo) => {
+    setSelectedSlot(slotInfo);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Her kan du legge inn logikk for å sende data til backend
+    console.log("Booking lagret:", { ...formData, time: selectedSlot.start });
+    alert("Takk for din booking! Vi sender en bekreftelse på e-post.");
+    setSelectedSlot(null);
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      description: ""
+    });
+    setShowCalendar(false);
+  };
+
   return (
     <div className="contact-container">
       {/* Header Section */}
@@ -10,26 +76,31 @@ const Contact = () => {
         <h1>Kontakt oss</h1>
       </section>
 
-  
+      {/* Kontakt med ekspert Section */}
+      <section className="contact-booking">
+        <h2>Vår ekspertise, ditt behov</h2>
+        <p>
+          Ingen løsninger passer for alle. Ønsket mål og verdiforståelse vil være ulikt mellom bedrift til bedrift. Derfor arbeider vi sammen med deg for å tilpasse vårt verktøy og metoder til ditt behov. Ønsker du å finne ut mer om hvordan vi kan hjelpe deg med bærekraftig verdiskapning, lønnsom bærekraft, og bedre beslutninger?
+        </p>
+        <p>
+          Ta kontakt for en gratis 30 minutters konsultasjon med en av våre eksperter.
+        </p>
+        
+        {/* Book Appointment Button */}
+        <button 
+          className="book-appointment-btn"
+          onClick={() => setShowCalendar(true)}
+        >
+          Book en tid
+        </button>
+      </section>
 
-           {/* Kontakt med ekspert Section */}
-        <section className="contact-booking">
-          <h2>Vår ekspertise, ditt behov</h2>
-          <p>
-            Ingen løsninger passer for alle. Ønsket mål og verdiforståelse vil være ulikt mellom bedrift til bedrift. Derfor arbeider vi sammen med deg for å tilpasse vårt verktøy og metoder til ditt behov.             Ønsker du å finne ut mer om hvordan vi kan hjelpe deg med bærekraftig verdiskapning, lønnsom bærekraft, og bedre beslutninger?
+              
+ 
 
-          </p>
-          <p>
-            Ta kontakt for en gratis 30 minutters konsultasjon med en av våre eksperter.
-          </p>
-          
-          {/* Book Appointment Button */}
-          <button className="book-appointment-btn">Book en tid</button>
-        </section>
-
-        {/* Kontaktinformasjon og Google Maps seksjon */}
+      {/* Resten av din eksisterende kode... */}
       <section className="contact-info-and-map">
-        <div className="contact-info">
+      <div className="contact-info">
           <h2>
           <img src="/assets/adress.png" alt="Adresse Icon" style={{ width: '30px', marginRight: '10px' }} />
           Adresse:
@@ -62,14 +133,11 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Footer Section */}
       <footer className="footer">
         <p>© 2025 Pure Logic</p>
       </footer>
-    
     </div>
   );
 };
 
 export default Contact;
-
