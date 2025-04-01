@@ -1,14 +1,12 @@
 import { Navigate } from 'react-router-dom';
 
 export default function ProtectedRoute({ children }) {
-  // For example, check if there's a token in localStorage:
-  const token = localStorage.getItem('token');
+  const user = sessionStorage.getItem('user');
 
-  // If no token, redirect to /login
-  if (!token) {
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // Otherwise, render the protected page
   return children;
 }
+
