@@ -69,17 +69,25 @@ const ProjectsPage = () => {
         <div key={project.id} className="project-card">
           <Link to={`/projects/${project.id}`}>
             <img src={project.imageUrl} alt={project.title} />
+
+             {/* Tittel */}
             <h3>{project.title}</h3>
+
+            {/* Nøkkelord-chips (flyttet hit) */}
+            {project.keywords && (
+                <div className="keywords">
+                  {project.keywords.split(',').map((keyword, index) => (
+                    <span key={index} className="keyword-chip">
+                      {keyword.trim()}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Beskrivelse under nøkkelord */}
             <p>{project.shortDescription}</p>
           </Link>
 
-          {project.keywords && (
-            <div className="keywords">
-              {project.keywords.split(',').map((keyword, index) => (
-                <span key={index} className="keyword-chip">{keyword.trim()}</span>
-              ))}
-            </div>
-          )}
         </div>
       ))}
 

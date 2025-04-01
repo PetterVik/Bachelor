@@ -1,29 +1,137 @@
+/* Overordnet container */
 .project-detail {
-    max-width: 800px;
-    margin: 40px auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+  
+  /* Hero-bildet i full bredde */
+.project-hero {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+  
+  /* Selve bildet fyller bredden */
+.hero-image {
+    display: block;
+    width: 100%;
+    height: 80vh;
+    object-fit: cover; 
+}
+
+.project-body {
+    display: flex;
+    max-width: 1200px;  /* Sentrer og begrens maks bredde på innholdet */
+    margin: 40px auto;  /* Top/bunn-marg og auto for å sentrere */
+    gap: 20px;          /* Avstand mellom venstre og høyre kolonne */
+}
+
+.project-left {
+    flex: 1;            /* Tar opp all ledig plass */
+    display: flex;
+    justify-content: center; /* Sentrer .project-content horisontalt i venstre kolonne */
+}
+
+.project-sidebar {
+    width: 300px;
+    background-color: #f7f7f7; /* Lys bakgrunn i sidebaren */
+    border-left: 1px solid #ccc;
     padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    box-sizing: border-box;
 }
 
-.project-detail h1 {
-    font-size: 28px;
+.project-sidebar h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
     color: #2c3e50;
-    margin-bottom: 10px;
 }
 
-.project-detail img {
-    width: 100%;    
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 20px;
+.sidebar-project-card {
+    margin-bottom: 1.5rem;
 }
 
-.project-detail p {
-    font-size: 18px;
-    line-height: 1.6;
+.sidebar-project-card p {
+    margin: 0;
+    font-size: 1rem;
     color: #333;
 }
+  
+  /* Lite bilde i sidebaren */
+.sidebar-project-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+  
+  /* Tekstinnholdet under bildet */
+.project-content {
+    max-width: 1000px;    /* Smalere bredde for lesbarhet */
+    margin: 0 auto;   /* Sentrer og legg til topp/bunn-margin */
+    padding: 0 20px;     /* Litt sidemargin for små skjermer */
+    text-align: left;    /* Venstrejuster tekst */
+}
+  
+  /* Tittel */
+.project-content h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+  
+  /* Keywords-container */
+.keywords {
+    margin-bottom: 1.5rem;
+}
+  
+  /* Hvert nøkkelord */
+  .keyword-chip {
+    display: inline-block;
+    background-color: #c3eeff;
+    color: #2c3e50;
+    padding: 6px 10px;
+    margin: 0 6px 6px 0;
+    border-radius: 14px;
+    font-size: 0.85rem;
+}
+  
+  /* Avsnitt */
+.project-content p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.project-detail h2 {
+    font-size: 1.8rem;         /* Litt større */
+    font-weight: bold;         /* Fet skrift */
+    color: #2c3e50;            /* Samme farge som titlene */
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+  
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;           
+    text-align: center;     
+    background-color: #b0def4; 
+    padding: 10px 0;       
+    font-size: 14px;        
+    color: #333;            
+}
+  
+.footer p {
+    margin: 0;         
+}
+  

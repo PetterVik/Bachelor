@@ -57,7 +57,7 @@
 /* Tekst-styling */
 .project-card h3 {
     font-size: 22px;
-    margin: 15px 0 10px 0;
+    margin: 10px 0 3px 0;
     z-index: 2;
     padding-left: 10px;
     padding-right: 10px;
@@ -81,25 +81,26 @@
 
 }
  /* Keyword på prosjektsiden */
- .keyword-chip {
+.keyword-chip {
     display: inline-block;
-    background-color: #ffcc00; 
-    color: #000; 
-    padding: 6px 10px;
-    margin: 6px 6px 0 0;
+    background-color: #c3eeff2c; 
+    color: white; 
+    padding: 4px 8px;
+    margin: 4px 4px 0 4px;
     border-radius: 14px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-    position: relative; /* Oppfør deg selvstendig i .keywords */
-    z-index: 2;         /* Samme nivå, bare for sikkerhets skyld */
-  }
+    font-size: 0.8rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    position: relative; 
+    z-index: 2;        
+    text-align: left;
+}
   
-  .keywords {
+.keywords {
     position: relative; /* Sørger for at z-index fungerer */
     z-index: 2;         /* Løfter nøkkelordene over overlayet */
-    margin-top: 6px;
-  }
+    text-align: left;
+    margin-bottom: 10px;
+}
   
   
 
@@ -162,7 +163,7 @@
         margin-top: 140px;
         font-size: 40px;
     }
-  }
+}
 
   /* Small screens: 1 in a row */
 @media (max-width: 576px) {
@@ -184,7 +185,7 @@
     .search-bar {
         max-width: 400px; 
     }
-  }
+}
 
 @media (max-width: 480px) {
     .search-bar {
@@ -194,4 +195,4 @@
     .project-card {
         height: 400px;
     }
-  }
+}
