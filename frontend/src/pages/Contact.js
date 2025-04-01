@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "../styles.css";
 import "./contact.css";
-import moment from 'moment';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
-
-
+import moment from "moment";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 // Sett opp norsk lokaliseringsformat
 moment.locale("nb");
@@ -21,34 +19,66 @@ const Contact = () => {
     description: ""
   });
 
-  // Begrens til tirsdager og torsdager mellom 10-12
-  const availableSlots = () => {
-    const slots = [];
-    const startDate = moment().startOf("week");
-    const endDate = moment().add(2, "months").endOf("week");
+  // Referanse til kalendercontaineren (eller booking-skjemaet)
+  const calendarRef = useRef(null);
 
-    for (let day = startDate; day.isBefore(endDate); day.add(1, "days")) {
-      if (day.day() === 2 || day.day() === 4) { // 2 = tirsdag, 4 = torsdag
-        const startTime = day.clone().set({ hour: 10, minute: 0 });
-        const endTime = day.clone().set({ hour: 12, minute: 0 });
-        
-        slots.push({
-          start: startTime.toDate(),
-          end: endTime.toDate(),
-          title: "Ledig time"
+  const scrollToCalendar = () => {
+    if (calendarRef.current) {
+      const elementTop = calendarRef.current.getBoundingClientRect().top;
+      const offset = window.pageYOffset + elementTop - 110; 
+      // "150" er antall piksler du vil trekke fra (juster etter ønske)
+
+      window.scrollTo({
+        top: offset,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  // Generer ledige tidsluker – kun tirsdager (day() === 2) og torsdager (day() === 4)
+  // med tidene: 10:00, 10:30, 11:00, 11:30 og 12:00 (hver tidsluke varer i 30 minutter)
+  const generateSlots = () => {
+    const slots = [];
+    const startDate = moment().startOf("day");
+    const endDate = moment().add(2, "months").endOf("day");
+    let day = startDate.clone();
+
+    // Definer tidene som en liste (10, 10.5, 11, 11.5, 12)
+    const times = [10, 10.5, 11, 11.5, 12];
+
+    while (day.isBefore(endDate)) {
+      // 2 = tirsdag, 4 = torsdag
+      if (day.day() === 2 || day.day() === 4) {
+        times.forEach((t) => {
+          const hour = Math.floor(t);
+          const minute = (t - hour) * 60;
+          const slotStart = day.clone().set({
+            hour: hour,
+            minute: minute,
+            second: 0,
+            millisecond: 0
+          });
+          const slotEnd = slotStart.clone().add(30, "minutes");
+          slots.push({
+            start: slotStart.toDate(),
+            end: slotEnd.toDate(),
+            title: "Ledig time"
+          });
         });
       }
+      day.add(1, "day");
     }
     return slots;
   };
 
-  const handleSelectSlot = (slotInfo) => {
-    setSelectedSlot(slotInfo);
+  // Bruk onSelectEvent for å fange klikk på et "Ledig time"-event
+  const handleSelectEvent = (event) => {
+    setSelectedSlot(event);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
@@ -56,9 +86,10 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Her kan du legge inn logikk for å sende data til backend
+    // Simuler sending av data til backend og e-postbekreftelse
     console.log("Booking lagret:", { ...formData, time: selectedSlot.start });
-    alert("Takk for din booking! Vi sender en bekreftelse på e-post.");
+    alert(`Takk for din booking! En bekreftelse er sendt til ${formData.email}.`);
+    // Tilbakestill state slik at kalender og skjema lukkes
     setSelectedSlot(null);
     setFormData({
       name: "",
@@ -67,6 +98,14 @@ const Contact = () => {
       description: ""
     });
     setShowCalendar(false);
+  };
+
+  
+
+  const handleBookTime = () => {
+    setShowCalendar(true);
+    // Vent litt så elementet rendres før scroll
+    setTimeout(scrollToCalendar, 100);
   };
 
   return (
@@ -80,45 +119,141 @@ const Contact = () => {
       <section className="contact-booking">
         <h2>Vår ekspertise, ditt behov</h2>
         <p>
-          Ingen løsninger passer for alle. Ønsket mål og verdiforståelse vil være ulikt mellom bedrift til bedrift. Derfor arbeider vi sammen med deg for å tilpasse vårt verktøy og metoder til ditt behov. Ønsker du å finne ut mer om hvordan vi kan hjelpe deg med bærekraftig verdiskapning, lønnsom bærekraft, og bedre beslutninger?
+          Ingen løsninger passer for alle. Ønsket mål og verdiforståelse vil være
+          ulikt mellom bedrift til bedrift. Derfor arbeider vi sammen med deg for
+          å tilpasse vårt verktøy og metoder til ditt behov. Ønsker du å finne ut
+          mer om hvordan vi kan hjelpe deg med bærekraftig verdiskapning, lønnsom
+          bærekraft, og bedre beslutninger?
         </p>
         <p>
           Ta kontakt for en gratis 30 minutters konsultasjon med en av våre eksperter.
         </p>
-        
-        {/* Book Appointment Button */}
-        <button 
+        {/* Book Appointment Button med scroll-funksjonalitet */}
+        <button
           className="book-appointment-btn"
-          onClick={() => setShowCalendar(true)}
+          onClick={handleBookTime}
         >
           Book en tid
         </button>
       </section>
 
-              
- 
+      {/* Kalender-visning for booking */}
+      {showCalendar && !selectedSlot && (
+        <div className="calendar-container" ref={calendarRef}>
+          <h2>Velg en ledig tid</h2>
+          <Calendar
+            localizer={localizer}
+            events={generateSlots()}
+            defaultView="work_week"
+            views={["work_week"]}
+            step={30}
+            onSelectEvent={handleSelectEvent}
+            min={new Date(0, 0, 0, 10, 0, 0)}
+            max={new Date(0, 0, 0, 12, 30, 0)}
+            style={{ height: 500, margin: "30px 0" }}
+            formats={{
+              dayFormat: (date, culture, localizer) =>
+                localizer.format(date, "ddd DD/MM", culture)
+            }}
+          />
+          <button onClick={() => setShowCalendar(false)}>
+            Avbryt booking
+          </button>
+        </div>
+      )}
 
-      {/* Resten av din eksisterende kode... */}
+      {/* Booking-skjema når en slot er valgt */}
+      {showCalendar && selectedSlot && (
+        <div className="booking-form-container" ref={calendarRef}>
+          <h2>Bestill konsultasjon</h2>
+          <p>
+            Valgt tid:{" "}
+            {moment(selectedSlot.start).format("dddd, MMMM Do YYYY, HH:mm")}
+          </p>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Navn:</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
+
+            <label htmlFor="email">Epost:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+            />
+
+            <label htmlFor="subject">Emne:</label>
+            <input
+              type="text"
+              name="subject"
+              id="subject"
+              value={formData.subject}
+              onChange={handleInputChange}
+            />
+
+            <label htmlFor="description">Melding:</label>
+            <textarea
+              name="description"
+              id="description"
+              rows="4"
+              value={formData.description}
+              onChange={handleInputChange}
+              required
+            ></textarea>
+
+            <button type="submit">Bestill konsultasjon</button>
+          </form>
+          <button onClick={() => setSelectedSlot(null)}>
+            Tilbake til kalender
+          </button>
+        </div>
+      )}
+
+      {/* Kontaktinformasjon og kart */}
       <section className="contact-info-and-map">
-      <div className="contact-info">
+        <div className="contact-info">
           <h2>
-          <img src="/assets/adress.png" alt="Adresse Icon" style={{ width: '30px', marginRight: '10px' }} />
-          Adresse:
+            <img
+              src="/assets/adress.png"
+              alt="Adresse Icon"
+              style={{ width: "30px", marginRight: "10px" }}
+            />
+            Adresse:
           </h2>
           <p>Kjørboveien 16</p>
           <p>1337 Sandvika</p>
-          
+
           <h2>
-          <img src="/assets/email.png" alt="E-post Icon" style={{ width: '20px', marginRight: '10px' }} />
-          E-post:
+            <img
+              src="/assets/email.png"
+              alt="E-post Icon"
+              style={{ width: "20px", marginRight: "10px" }}
+            />
+            E-post:
           </h2>
-          <p>post@purelogic.no</p>
-          
+          <p>
+            <a href="mailto:post@purelogic.no">post@purelogic.no</a>
+          </p>
+
+
           <h2>
-          <img src="/assets/phone.png" alt="Telefon Icon" style={{ width: '20px', marginRight: '10px' }} />
-          Telefon:
+            <img
+              src="/assets/phone.png"
+              alt="Telefon Icon"
+              style={{ width: "20px", marginRight: "10px" }}
+            />
+            Telefon:
           </h2>
-          <p>+47 95106883</p>
+          <p>+47 951 06 883</p>
         </div>
         <div className="contact-map">
           <iframe
