@@ -171,7 +171,6 @@
     transition: opacity 0.5s ease-in-out;
     padding: 0 !important; /* Remove padding */
     margin: 0 !important; /* Remove margin */
-    height: auto;
 }
   
 .section.active {
