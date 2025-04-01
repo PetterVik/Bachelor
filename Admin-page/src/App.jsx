@@ -12,28 +12,38 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Routes>
-          {/* Public route for login */}
-          <Route path="/login" element={<LoginPage />} />
+      <Routes>
+  {/* Public route for login */}
+  <Route path="/login" element={<LoginPage />} />
 
-          {/* Protected routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <Settings />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+  {/* Default/dashboard route */}
+  <Route
+    path="/"
+    element={
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    }
+  />
+
+  {/* Other protected routes */}
+  <Route
+    path="/dashboard"
+    element={
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    }
+  />
+  <Route
+    path="/settings"
+    element={
+      <ProtectedRoute>
+        <Settings />
+      </ProtectedRoute>
+    }
+  />
+</Routes>
       </Router>
     </AuthProvider>
   );
