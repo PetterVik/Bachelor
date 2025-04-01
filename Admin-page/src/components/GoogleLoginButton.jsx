@@ -2,7 +2,7 @@ import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
-const allowedEmails = ['hermanhanssen97@gmail.com', 'Petterviken97@gmail.com']; // eposter som har tilgang
+const allowedEmails = ['hermanhanssen97@gmail.com', 'petterviken97@gmail.com']; // eposter som har tilgang
 
 const GoogleLoginButton = () => {
   const login = useGoogleLogin({
