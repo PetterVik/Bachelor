@@ -39,5 +39,16 @@ namespace PureLogicBackend.Controllers
 
             return Ok(project);
         }
+        // Opprett et nytt prosjekt
+        [HttpPost]
+        public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
+        {
+            // Du kan senere legge til autentisering/middleware for å begrense til admin-brukere
+            _context.Projects.Add(project);
+            await _context.SaveChangesAsync();
+
+            // Returner en CreatedAtAction-respons som peker til det nye prosjektet
+            return CreatedAtAction(nameof(GetProjectById), new { id = project.Id }, project);
+        }
     }
 }
