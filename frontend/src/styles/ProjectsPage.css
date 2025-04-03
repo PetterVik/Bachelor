@@ -8,8 +8,9 @@
 }
 
 .projects-container h1 {
-    margin-top: 120px;
+    margin-top: 150px;
     font-size: 48px;
+    margin-bottom: 70px;
 }
 
 /* Prosjektseksjonen */
@@ -18,7 +19,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
-    max-width: 1200px;
+    max-width: 1500px;
     margin-bottom: 30px;
 }
 
@@ -26,7 +27,7 @@
 .project-card {
     position: relative;
     width: 100%;
-    max-width: 300px; /* Eller den bredden du ønsker */
+    max-width: 400px; /* Eller den bredden du ønsker */
     color: white;
     height: 470px;
 }
@@ -85,11 +86,10 @@
     display: inline-block;
     background-color: #c3eeff2c; 
     color: white; 
-    padding: 4px 8px;
+    padding: 4px 4px;
     margin: 4px 4px 0 4px;
     border-radius: 14px;
-    font-size: 0.8rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.6rem;
     position: relative; 
     z-index: 2;        
     text-align: left;
@@ -99,13 +99,13 @@
     position: relative; /* Sørger for at z-index fungerer */
     z-index: 2;         /* Løfter nøkkelordene over overlayet */
     text-align: left;
-    margin-bottom: 10px;
+    margin-left: 10px;
 }
   
   
 
 .search-bar {
-    max-width: 1000px;     /* same as your .projects-grid */
+    max-width: 1300px;     /* same as your .projects-grid */
     margin: 0 auto 20px;   /* center it and add bottom spacing */
     width: 100%;           /* ensure it shrinks on smaller screens */
     padding: 0 20px;       /* optional side padding for smaller devices */

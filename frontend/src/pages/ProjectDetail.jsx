@@ -105,7 +105,8 @@ const ProjectDetail = () => {
                 const trimmed = paragraph.trim();
                 if (
                   trimmed.startsWith("Oppdrag") ||
-                  trimmed.startsWith("Løsning")
+                  trimmed.startsWith("Løsning") ||
+                  trimmed.startsWith("Resultat")
                 ) {
                   return <h2 key={idx}>{trimmed}</h2>;
                 } else {

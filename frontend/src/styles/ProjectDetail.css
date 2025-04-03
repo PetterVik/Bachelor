@@ -26,7 +26,7 @@
 
 .project-body {
     display: flex;
-    max-width: 1200px;  /* Sentrer og begrens maks bredde på innholdet */
+    max-width: 1300px;  /* Sentrer og begrens maks bredde på innholdet */
     margin: 40px auto;  /* Top/bunn-marg og auto for å sentrere */
     gap: 20px;          /* Avstand mellom venstre og høyre kolonne */
 }
@@ -39,7 +39,7 @@
 
 .project-sidebar {
     width: 300px;
-    background-color: #f7f7f7; /* Lys bakgrunn i sidebaren */
+    background-color: #f7f7f7c0; /* Lys bakgrunn i sidebaren */
     border-left: 1px solid #ccc;
     padding: 20px;
     box-sizing: border-box;
@@ -50,6 +50,7 @@
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: #2c3e50;
+    border-bottom: 1px solid black;
 }
 
 .sidebar-project-card {
