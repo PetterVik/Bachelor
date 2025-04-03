@@ -46,25 +46,11 @@ body {
     height: 100px;
   }
 
-  .remove-section-button {
-    background-color: transparent;  /* Transparent background */
-    color: #e74c3c;  /* Red color */
-    font-size: 24px;  /* Larger font size for the minus sign */
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 10px;
-    margin-right: 10px;
-  }
   
-  .remove-section-button:hover {
-    color: #c0392b;  /* Darker red on hover */
-  }
 
   .add-section-button {
     background-color: transparent; /* Light blue background */
-    color: white;  /* Black text */
+    color: white; 
     font-size: 16px;
     padding: 10px 20px;
     cursor: pointer;
@@ -77,8 +63,26 @@ body {
   .add-section-button:hover {
     background-color: #8bb4d6; /* Darker blue on hover */
   }
+
+  .remove-section-button {
+    background-color: #D5EAF9;  /* Transparent background */
+    color: black; 
+    font-size: 32px;  /* Larger font size for the minus sign */
+    padding: 8px 20px;
+    border: 2px solid black;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 70%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
   
-  button {
+  .remove-section-button:hover {
+    background-color: white;
+  }
+  
+  .submit {
     background-color: #D5EAF9; /* Light blue background */
     color: black;  /* Black text */
     font-size: 18px;
@@ -93,7 +97,7 @@ body {
     font-family: 'Glory';
   }
   
-  button:hover {
+  .submit:hover {
     background-color: #8bb4d6; /* Darker blue on hover */
   }
   

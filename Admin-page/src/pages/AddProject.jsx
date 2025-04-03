@@ -5,8 +5,6 @@ import '../styles/AddProject.css';
 const AddProject = () => {
     const [formData, setFormData] = useState({
       title: '',
-      startDate: '',
-      endDate: '',
       description: '',
       keywords: '',
       subtitle: '',
@@ -144,7 +142,7 @@ const AddProject = () => {
 
         {/* Submit button */}
         <div>
-          <button type="submit">Last opp prosjekt</button>
+          <button type="submit" className="submit">Last opp prosjekt</button>
         </div>
       </form>
     </div>
