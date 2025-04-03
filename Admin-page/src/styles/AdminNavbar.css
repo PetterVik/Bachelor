@@ -1,7 +1,7 @@
 /* Navbar CSS - Make navbar more compact */
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.6);
   padding: 10px 20px;
@@ -11,6 +11,12 @@
   position: fixed;
   width: 100%;
   top: 0;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
@@ -25,4 +31,12 @@
   font-weight: 300;
   color: #2C3E50;
   margin: 0;
+  margin-right: 10px;
+  margin-left: 20px;
 }
+
+.logo-link {
+  text-decoration: none; /* Fjern understreking */
+  color: inherit; /* Arv farge fra foreldrene */
+}
+
