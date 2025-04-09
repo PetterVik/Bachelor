@@ -76,7 +76,8 @@ const ProjectDetail = () => {
       {/* Hero-bilde i full bredde */}
       <div className="project-hero">
         <img
-          src={project.imageUrl}
+          // Her legger vi til backend-adressen før bilde-stien
+          src={`http://localhost:5123${project.imageUrl}`}
           alt={project.title}
           className="hero-image"
         />
@@ -99,7 +100,7 @@ const ProjectDetail = () => {
               </div>
             )}
 
-            {/* Del opp longDescription i avsnitt og rendr <h2> for "Oppdrag" og "Løsning" */}
+            {/* Del opp longDescription i avsnitt og rendr <h2> for "Oppdrag", "Løsning" og "Resultat" */}
             {project.longDescription &&
               project.longDescription.split("\n\n").map((paragraph, idx) => {
                 const trimmed = paragraph.trim();
@@ -135,7 +136,8 @@ const ProjectDetail = () => {
               <div key={sp.id} className="sidebar-project-card">
                 <Link to={`/projects/${sp.id}`}>
                   <img
-                    src={sp.imageUrl}
+                    // Samme her: prepend backend URL
+                    src={`http://localhost:5123${sp.imageUrl}`}
                     alt={sp.title}
                     className="sidebar-project-image"
                   />
