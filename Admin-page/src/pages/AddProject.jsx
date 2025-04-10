@@ -151,7 +151,7 @@ const AddProject = () => {
                 <h2>Legg til nytt prosjekt</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Prosjekt tittel</label>
+                        <label>Prosjekttittel</label>
                         <input
                             type="text"
                             name="title"
