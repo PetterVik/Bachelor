@@ -1,191 +1,192 @@
 /* src/styles/AddProject.css */
 body {
-  background-color: #D5EAF9;
-  margin: 0;  /* Remove any default margin */
-  font-family: 'Glory' ;  /* Optional: Add the font for consistency */
+    background-color: #D5EAF9;
+    margin: 0;  /* Remove any default margin */
+    font-family: 'Glory' ;  /* Optional: Add the font for consistency */
 }
 
 .add-project-container {
-  background-color: #2c3e50d9;
-  padding: 20px;
-  border-radius: 8px;
-  width: 100%;
-  max-width: 800px;
-  margin: 30px auto;
-  color: white;
-  margin-top: 150px;
-}
+    background-color: #2c3e50d9;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    color: white;
+    margin-top: 150px;
+  }
+  
+  .add-project-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: white;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+    margin-top: 15px;
+  }
 
-.add-project-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 28px;
-  color: white;
-}
+  .form-group option {
+    color: #808080;
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    height: 40px;
+    background-color: white;
+    max-width: 100%;
+    color: #808080;
+    cursor: pointer;
+  }
 
-.form-group {
-  margin-bottom: 15px;
-}
+  .form-group select:focus {
+    color: black;
+  }
+  .form-group select option:checked {
+    color: black; /* Change this to black */
+  }
 
-.form-group label {
-  font-size: 18px;
-  margin-bottom: 8px;
-  display: block;
-  margin-top: 15px;
-}
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    height: 20px;
+    background-color: white;
+    max-width: 100%;
+  }
+  
+  .form-group textarea {
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    background-color: white;
+  }
 
-.form-group option {
-  color: #808080;
-}
+  .form-group input[type="text"],
+  .form-group textarea {
+    width: calc(100% - 20px);  /* Adjust width for text input field */
+  }
 
-.form-group select {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-top: 5px;
-  height: 40px;
-  background-color: white;
-  max-width: 100%;
-  color: #808080;
-  cursor: pointer;
-}
-
-.form-group select:focus {
-  color: black;
-}
-.form-group select option:checked {
-  color: black; /* Change this to black */
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-top: 5px;
-  height: 20px;
-  background-color: white;
-  max-width: 100%;
-}
-
-.form-group textarea {
-  height: 60px;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-top: 5px;
-  background-color: white;
-}
-
-.form-group input[type="text"],
-.form-group textarea {
-  width: calc(100% - 20px);  /* Adjust width for text input field */
-}
-
-/* Style for the file input container */
+  /* Style for the file input container */
 .form-group input[type="file"] {
-  display: none; /* Hides the default file input button */
+    display: none; /* Hides the default file input button */
 }
 
 /* Custom file input button */
 .custom-file-upload {
-  color: rgba(0, 0, 0, 0.6);  /* Black text */
-  background-color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: left;
-  border: 1px solid #ddd;
-  display: inline-block;
-  margin-top: 10px;
+    color: rgba(0, 0, 0, 0.6);  /* Black text */
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin-top: 10px;
 }
 
 /* Hover effect for custom file input button */
 .custom-file-upload:hover {
-  background: linear-gradient(45deg, #D5EAF9, #8bb4d6);
-  border: 1px solid #8bb4d6;
+    background: linear-gradient(45deg, #D5EAF9, #8bb4d6);
+    border: 1px solid #8bb4d6;
 }
 
 
 .form-group label {
-  font-size: 18px;
-  margin-bottom: 8px;
-  display: block;
-}
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .form-group div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group input[type="radio"] {
+    margin-right: 10px;
+  }
+  
+  .form-group input[type="radio"]:checked + label {
+    font-weight: bold;
+  }
+  
+  
 
-.form-group div {
-  display: flex;
-  align-items: center;
-}
+  .add-section-button {
+    background-color: #D5EAF9; /* Light blue background */
+    color: black; 
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-align: right;
+    display: block;
+    margin-right: 10px;  /* Center the button horizontally */
+    width: auto;
+    border-radius: 10px;
+    border: none;
+  }
+  
+  .add-section-button:hover {
+    background-color: #8bb4d6; /* Darker blue on hover */
+  }
 
-.form-group input[type="radio"] {
-  margin-right: 10px;
-}
-
-.form-group input[type="radio"]:checked + label {
-  font-weight: bold;
-}
-
-
-
-.add-section-button {
-  background-color: #D5EAF9; /* Light blue background */
-  color: black; 
-  font-size: 16px;
-  padding: 10px 20px;
-  cursor: pointer;
-  text-align: right;
-  display: block;
-  margin-right: 10px;  /* Center the button horizontally */
-  width: auto;
-  border-radius: 10px;
-  border: none;
-}
-
-.add-section-button:hover {
-  background-color: #8bb4d6; /* Darker blue on hover */
-}
-
-.remove-section-button {
-  background-color: #D5EAF9;  /* Light blue background */
-  color: black;  /* Black text */
-  font-size: 22px;  /* Larger font size for the minus sign */
-  padding: 3px 15px;  /* Make the padding equal to create a round button */
-  border: 1px solid black;  /* Black border around the button */
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 10px;
-  margin-right: 10px;
-  border-radius: 30%;  /* Make it fully round */
-  transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transition */
-}
-
-.remove-section-button:hover {
-  background-color: white;
-}
-
-.submit {
-  background-color: #D5EAF9; /* Light blue background */
-  color: black;  /* Black text */
-  font-size: 18px;
-  padding: 15px 30px;  /* Wider padding for a larger button */
-  border: none;
-  border-radius: 50px;  /* Rounded corners */
-  cursor: pointer;
-  text-align: center;
-  display: block;
-  margin: 20px auto;  /* Center the button horizontally */
-  width: 50%;  /* Set the button width to 50% of its parent */
-  font-family: 'Glory';
-}
-
-.submit:hover {
-  background-color: #95c2e7; /* Darker blue on hover */
-}
+  .remove-section-button {
+    background-color: #D5EAF9;  /* Light blue background */
+    color: black;  /* Black text */
+    font-size: 22px;  /* Larger font size for the minus sign */
+    padding: 3px 15px;  /* Make the padding equal to create a round button */
+    border: 1px solid black;  /* Black border around the button */
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 30%;  /* Make it fully round */
+    transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transition */
+  }
+  
+  .remove-section-button:hover {
+    background-color: white;
+  }
+  
+  .submit {
+    background-color: #D5EAF9; /* Light blue background */
+    color: black;  /* Black text */
+    font-size: 18px;
+    padding: 15px 30px;  /* Wider padding for a larger button */
+    border: none;
+    border-radius: 50px;  /* Rounded corners */
+    cursor: pointer;
+    text-align: center;
+    display: block;
+    margin: 20px auto;  /* Center the button horizontally */
+    width: 50%;  /* Set the button width to 50% of its parent */
+    font-family: 'Glory';
+  }
+  
+  .submit:hover {
+    background-color: #95c2e7; /* Darker blue on hover */
+  }
+  

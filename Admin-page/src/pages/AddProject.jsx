@@ -5,7 +5,9 @@ import '../styles/AddProject.css';
 import axios from 'axios';
 
 const AddProject = () => {
-  const [formData, setFormData] = useState({
+    const [fileName, setFileName] = useState('Bla gjennom datamaskinen her');
+
+    const [formData, setFormData] = useState({
     title: '',
     description: '',
     keywords: [], // Endret: lagrer egentlig et array i state
@@ -14,9 +16,10 @@ const AddProject = () => {
     visibleOnWebsite: 'no', // 'yes' eller 'no'
     sections: [{ subtitle: '', text: '' }],
     image: null,
-  });
 
-  // Forhåndsdefinerte nøkkelord
+    });
+  
+    // Forhåndsdefinerte nøkkelord
   const predefinedKeywords = [
     'Grønn industri',
     'Solkraft',
@@ -66,7 +69,7 @@ const AddProject = () => {
       keywords: formData.keywords.filter((kw) => kw !== keyword),
     });
   };
-
+   
   // Handle input changes
   const handleChange = (e, index) => {
     const { name, value, files } = e.target;
@@ -86,6 +89,7 @@ const AddProject = () => {
       });
     }
   };
+
 
   // Add a new section
   const addSection = () => {
@@ -167,18 +171,21 @@ const AddProject = () => {
               onChange={handleChange}
               required
             />
+            
           </div>
+
 
           <div className="form-group">
             <label>Last opp bilde</label>
             <label htmlFor="file-input" className="custom-file-upload">
-              Bla gjennom datamaskinen her
+              {fileName}
             </label>
             <input
               id="file-input"
               type="file"
               name="image"
               onChange={handleChange}
+              style={{ display: 'none' }}
             />
           </div>
 
@@ -195,7 +202,11 @@ const AddProject = () => {
           {/* Nøkkelord */}
           <div className="form-group">
             <label>Nøkkelord</label>
-            <select onChange={handleKeywordChange} disabled={formData.keywords.length >= 5}>
+            <select
+              onChange={handleKeywordChange}
+              disabled={formData.keywords.length >= 5}
+              defaultValue=""
+            >
               <option value="" disabled>
                 Velg nøkkelord
               </option>
@@ -207,6 +218,10 @@ const AddProject = () => {
             </select>
             <input
               type="text"
+              placeholder="Nytt nøkkelord"
+              onBlur={handleCustomKeywordChange}
+              maxLength="50"
+              disabled={formData.keywords.length >= 5}
               placeholder="Nytt nøkkelord"
               onBlur={handleCustomKeywordChange}
               maxLength="50"
@@ -269,6 +284,17 @@ const AddProject = () => {
               )}
             </div>
           ))}
+              {index > 0 && (
+                <button
+                  type="button"
+                  className="remove-section-button"
+                  onClick={() => removeSection(index)}
+                >
+                  x
+                </button>
+              )}
+            </div>
+          ))}
 
           <button
             type="button"
@@ -312,5 +338,7 @@ const AddProject = () => {
     </>
   );
 };
+
+export default AddProject;
 
 export default AddProject;
