@@ -23,8 +23,12 @@ const ProjectsPage = () => {
     getProjects(); //calling the API
   }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
 
-  // Filter projects based on the search term
+  // Filter projects based on visibleOnWebsite and the search term
   const filteredProjects = projects.filter((project) => {
+    // Først, filtrer bort prosjekter der visibleOnWebsite ikke er true
+    if (!project.visibleOnWebsite) return false;
+
+    // Deretter filtrer på tittel, kort beskrivelse og nøkkelord
     const title = project.title?.toLowerCase() || "";
     const shortDescription = project.shortDescription?.toLowerCase() || "";
     const keywords = project.keywords?.toLowerCase() || "";

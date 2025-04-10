@@ -53,7 +53,7 @@ namespace PureLogicBackend.Controllers
                 Keywords = dto.Keywords,
                 ShortDescription = dto.Description, // Juster om du vil lagre kort beskrivelse separat
                 LongDescription = dto.Sections,      // For enkelhet lagrer vi "sections" her; du kan senere kombinere dem etter behov
-                // VisibleOnWebsite kan legges til i modellen om du ønsker
+                VisibleOnWebsite = dto.VisibleOnWebsite  // Ny linje: Mapper inn VisibleOnWebsite-verdi fra DTO
             };
 
             // Håndter bildeopplasting hvis et bilde er lastet opp
