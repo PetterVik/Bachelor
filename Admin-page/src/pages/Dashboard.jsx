@@ -36,7 +36,9 @@ const Dashboard = () => {
                 <li>
                   <Link to="/edit-project">Rediger prosjekt</Link>
                   </li>
-                <li>Se arkiv</li>
+                <li>
+                  <Link to="/arkiv">Se arkiv</Link>
+                  </li>
               </ul>
             )}
         </div>

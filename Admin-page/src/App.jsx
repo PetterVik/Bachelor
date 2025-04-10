@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AuthProvider from "./auth/AuthProvider";
 import AddProject from './pages/AddProject';  // Import AddProject page
 import EditProject from './pages/EditProject.jsx';
+import Arkiv from './pages/Arkiv.jsx';
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <EditProject />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/arkiv"
+            element={
+              <ProtectedRoute>
+                <Arkiv />
               </ProtectedRoute>
             }
           />
