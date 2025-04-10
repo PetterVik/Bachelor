@@ -84,12 +84,27 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simuler sending av data til backend og e-postbekreftelse
-    console.log("Booking lagret:", { ...formData, time: selectedSlot.start });
-    alert(`Takk for din booking! En bekreftelse er sendt til ${formData.email}.`);
-    // Tilbakestill state slik at kalender og skjema lukkes
+    try {
+      const response = await fetch("http://localhost:5050/send-booking-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          time: moment(selectedSlot.start).format("dddd, MMMM Do YYYY, HH:mm"),
+        }),
+      });
+  
+      if (!response.ok) throw new Error("E-postfeil");
+  
+      alert(`Takk for din booking! En bekreftelse er sendt til ${formData.email}.`);
+    } catch (err) {
+      alert("Noe gikk galt ved sending av e-post. Prøv igjen senere.");
+    }
+  
     setSelectedSlot(null);
     setFormData({
       name: "",
@@ -99,6 +114,7 @@ const Contact = () => {
     });
     setShowCalendar(false);
   };
+  
 
   
 
