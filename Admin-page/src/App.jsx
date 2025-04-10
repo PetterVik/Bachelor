@@ -7,6 +7,7 @@ import { LoginPage } from './pages/Login.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import AuthProvider from "./auth/AuthProvider";
 import AddProject from './pages/AddProject';  // Import AddProject page
+import EditProject from './pages/EditProject.jsx';
 
 function App() {
   return (
@@ -35,6 +36,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/edit-project"
+            element={
+              <ProtectedRoute>
+                <EditProject />
+              </ProtectedRoute>
+            }
+          />
+
+
 
           {/* Other protected routes */}
           <Route

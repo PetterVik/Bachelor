@@ -33,7 +33,9 @@ const Dashboard = () => {
                 {/* Link for "Legg til nytt prosjekt" */}
                 <Link to="/add-project">Legg til nytt prosjekt</Link>
               </li>
-                <li>Rediger prosjekt</li>
+                <li>
+                  <Link to="/edit-project">Rediger prosjekt</Link>
+                  </li>
                 <li>Se arkiv</li>
               </ul>
             )}

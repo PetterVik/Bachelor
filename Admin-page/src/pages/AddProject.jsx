@@ -71,20 +71,31 @@ const AddProject = () => {
   
     // Handle input changes
     const handleChange = (e, index) => {
-        const { name, value, files } = e.target;
-        if (name === 'image') {
-            // Håndter bildefelt
-            setFormData({ ...formData, image: files[0] });
-        } else if (name === 'subtitle' || name === 'text') {
-            // Oppdater en seksjon (underoverskrift/tekst)
+        const { name, value, type, files } = e.target;
+
+        if (name === 'image' && type === 'file') {
+            const file = files?.[0];
+            if (file) {
+              setFileName(file.name);
+              setFormData({
+                ...formData,
+                image: file,
+              });
+            } else {
+              setFileName('Bla gjennom datamaskinen her');
+              setFormData({
+                ...formData,
+                image: null,
+              });
+            }
+          } else if (name === 'subtitle' || name === 'text') {
             const updatedSections = [...formData.sections];
             updatedSections[index][name] = value;
             setFormData({ ...formData, sections: updatedSections });
-        } else {
-            // Vanlige felter
+          } else {
             setFormData({
-                ...formData,
-                [name]: value,
+              ...formData,
+              [name]: value,
             });
         }
     };
