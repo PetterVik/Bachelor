@@ -120,9 +120,8 @@ const ProjectDetail = () => {
             {sections.length > 0 ? (
               sections.map((section, index) => (
                 <div key={index}>
-                  {/* Underoverskrift */}
-                  <h2>{section.subtitle}</h2>
-                  {/* Tekst, med line breaks bevart */}
+                  {/* Skjul underoverskriften "Intro", men vis teksten */}
+                  {section.subtitle !== "Intro" && <h2>{section.subtitle}</h2>}
                   <p style={{ whiteSpace: "pre-line" }}>{section.text}</p>
                 </div>
               ))
