@@ -6,6 +6,9 @@ namespace PureLogicBackend.Controllers
     using System.Threading.Tasks;
     using PureLogicBackend.Data;
     using PureLogicBackend.Models;
+    using PureLogicBackend.DTOs;
+    using System.IO;
+    using System;
 
     [ApiController]
     [Route("api/projects")]
@@ -31,23 +34,52 @@ namespace PureLogicBackend.Controllers
         public async Task<ActionResult<Project>> GetProjectById(int id)
         {
             var project = await _context.Projects.FindAsync(id);
-
             if (project == null)
             {
-                return NotFound(); // Returnerer HTTP 404 hvis prosjektet ikke finnes
+                return NotFound();
             }
-
             return Ok(project);
         }
-        // Opprett et nytt prosjekt
+
+        // Oppretter et nytt prosjekt via CMS
         [HttpPost]
-        public async Task<ActionResult<Project>> CreateProject([FromBody] Project project)
+        public async Task<IActionResult> CreateProject([FromForm] ProjectDto dto)
         {
-            // Du kan senere legge til autentisering/middleware for å begrense til admin-brukere
+            // Lag et nytt Project-objekt og map feltene fra dto
+            var project = new Project
+            {
+                Title = dto.Title,
+                Description = dto.Description,
+                Keywords = dto.Keywords,
+                ShortDescription = dto.Description, // Juster om du vil lagre kort beskrivelse separat
+                LongDescription = dto.Sections,      // For enkelhet lagrer vi "sections" her; du kan senere kombinere dem etter behov
+                // VisibleOnWebsite kan legges til i modellen om du ønsker
+            };
+
+            // Håndter bildeopplasting hvis et bilde er lastet opp
+            if (dto.Image != null)
+            {
+                // Bestem mappen der du ønsker å lagre bilder (for eksempel "uploads" i prosjektmappen)
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+                // Lag et unikt filnavn
+                var uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await dto.Image.CopyToAsync(stream);
+                }
+                // Lagre relativ filsti (juster om nødvendig)
+                project.ImageUrl = "/uploads/" + uniqueFileName;
+            }
+
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            // Returner en CreatedAtAction-respons som peker til det nye prosjektet
+            // Returner 201 Created med den nye prosjekt-ID-en
             return CreatedAtAction(nameof(GetProjectById), new { id = project.Id }, project);
         }
     }

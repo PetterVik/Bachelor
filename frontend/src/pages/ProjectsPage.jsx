@@ -8,7 +8,6 @@ const ProjectsPage = () => {
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-
   useEffect(() => {
     // Function to fetch projects from the backend API
     const getProjects = async () => {
@@ -30,15 +29,13 @@ const ProjectsPage = () => {
     const shortDescription = project.shortDescription?.toLowerCase() || "";
     const keywords = project.keywords?.toLowerCase() || "";
     const term = searchTerm.toLowerCase();
-  
+
     return (
       title.includes(term) ||
       shortDescription.includes(term) ||
       keywords.includes(term)
     );
   });
-  
-
 
   // Handler for search input changes
   const handleSearchChange = (event) => {
@@ -66,15 +63,16 @@ const ProjectsPage = () => {
       <div className="projects-grid">
         {/* Mapping through the projects array and rendering each project */}
         {filteredProjects.map((project) => (
-        <div key={project.id} className="project-card">
-          <Link to={`/projects/${project.id}`}>
-            <img src={project.imageUrl} alt={project.title} />
+          <div key={project.id} className="project-card">
+            <Link to={`/projects/${project.id}`}>
+              {/* Endret linjen nedenfor for å hente bildet fra backend */}
+              <img src={`http://localhost:5123${project.imageUrl}`} alt={project.title} />
 
-             {/* Tittel */}
-            <h3>{project.title}</h3>
+              {/* Tittel */}
+              <h3>{project.title}</h3>
 
-            {/* Nøkkelord-chips (flyttet hit) */}
-            {project.keywords && (
+              {/* Nøkkelord-chips (flyttet hit) */}
+              {project.keywords && (
                 <div className="keywords">
                   {project.keywords.split(',').map((keyword, index) => (
                     <span key={index} className="keyword-chip">
@@ -85,21 +83,17 @@ const ProjectsPage = () => {
               )}
 
               {/* Beskrivelse under nøkkelord */}
-            <p>{project.shortDescription}</p>
-          </Link>
-
-        </div>
-      ))}
-
-
+              <p>{project.shortDescription}</p>
+            </Link>
+          </div>
+        ))}
       </div>
       {/* Footer Section inside Section 5 */}
       <footer className="footer">
-          <p>© 2025 Pure Logic</p>
-        </footer>
+        <p>© 2025 Pure Logic</p>
+      </footer>
     </div>
   );
-
 };
 
 export default ProjectsPage;

@@ -1,3 +1,4 @@
+// src/pages/ProjectDetail.jsx
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "./../styles/ProjectDetail.css";
@@ -9,7 +10,7 @@ const ProjectDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Hent det nåværende prosjektet
+  // Henter det nåværende prosjektet
   useEffect(() => {
     const fetchProject = async () => {
       try {
@@ -29,7 +30,7 @@ const ProjectDetail = () => {
     fetchProject();
   }, [id]);
 
-  // Hent alle prosjekter for å finne lignende prosjekter
+  // Henter alle prosjekter for å finne lignende prosjekter
   useEffect(() => {
     const fetchAllProjects = async () => {
       try {
@@ -47,11 +48,12 @@ const ProjectDetail = () => {
     fetchAllProjects();
   }, []);
 
+  // Viser lastemelding, feil eller "ikke funnet"
   if (loading) return <h2>Laster prosjekt...</h2>;
   if (error) return <h2>Feil: {error}</h2>;
   if (!project) return <h2>Prosjekt ikke funnet</h2>;
 
-  // Filtrer ut lignende prosjekter basert på keywords
+  // Finne lignende prosjekter basert på felles nøkkelord
   const currentKeywords = new Set(
     (project.keywords || "")
       .split(",")
@@ -65,30 +67,44 @@ const ProjectDetail = () => {
         .split(",")
         .map((keyword) => keyword.trim().toLowerCase())
     );
+    // Returner true hvis de deler minst ett felles nøkkelord
     for (const kw of currentKeywords) {
       if (pKeywords.has(kw)) return true;
     }
     return false;
   });
 
+  // Forsøk å parse longDescription som JSON.
+  // Hvis det ikke er gyldig JSON, havner vi i catch-blokken,
+  // og da kan vi vise longDescription som ren tekst i stedet.
+  let sections = [];
+  try {
+    if (project.longDescription) {
+      sections = JSON.parse(project.longDescription);
+    }
+  } catch (err) {
+    console.error("Feil ved parsing av longDescription:", err);
+  }
+
   return (
     <div className="project-detail">
       {/* Hero-bilde i full bredde */}
       <div className="project-hero">
         <img
-          src={project.imageUrl}
+          src={`http://localhost:5123${project.imageUrl}`}
           alt={project.title}
           className="hero-image"
         />
       </div>
 
-      {/* Hovedlayout: venstre for innhold, høyre sidebar */}
+      {/* Hovedlayout: venstre kolonne for innhold, høyre sidebar */}
       <div className="project-body">
-        {/* Venstre kolonne med hovedinnhold */}
+        {/* Venstre side */}
         <div className="project-left">
           <div className="project-content">
             <h1>{project.title}</h1>
 
+            {/* Viser nøkkelord om de finnes */}
             {project.keywords && (
               <div className="keywords">
                 {project.keywords.split(",").map((keyword, index) => (
@@ -99,33 +115,24 @@ const ProjectDetail = () => {
               </div>
             )}
 
-            {/* Del opp longDescription i avsnitt og rendr <h2> for "Oppdrag" og "Løsning" */}
-            {project.longDescription &&
-              project.longDescription.split("\n\n").map((paragraph, idx) => {
-                const trimmed = paragraph.trim();
-                if (
-                  trimmed.startsWith("Oppdrag") ||
-                  trimmed.startsWith("Løsning") ||
-                  trimmed.startsWith("Resultat")
-                ) {
-                  return <h2 key={idx}>{trimmed}</h2>;
-                } else {
-                  return (
-                    <p key={idx}>
-                      {paragraph.split("\n").map((line, lineIndex) => (
-                        <React.Fragment key={lineIndex}>
-                          {line}
-                          <br />
-                        </React.Fragment>
-                      ))}
-                    </p>
-                  );
-                }
-              })}
+            {/* Hvis sections er en liste (dvs. gyldig JSON), rendrer vi dem én etter én.
+               * Hvis det ikke finnes eller ikke er gyldig, viser vi longDescription som tekst. */}
+            {sections.length > 0 ? (
+              sections.map((section, index) => (
+                <div key={index}>
+                  {/* Underoverskrift */}
+                  <h2>{section.subtitle}</h2>
+                  {/* Tekst, med line breaks bevart */}
+                  <p style={{ whiteSpace: "pre-line" }}>{section.text}</p>
+                </div>
+              ))
+            ) : (
+              <p style={{ whiteSpace: "pre-line" }}>{project.longDescription}</p>
+            )}
           </div>
         </div>
 
-        {/* Høyre kolonne: Sidebar med lignende prosjekter */}
+        {/* Høyre side (sidebar) */}
         <div className="project-sidebar">
           <h3>Lignende prosjekter</h3>
           {similarProjects.length === 0 ? (
@@ -135,7 +142,7 @@ const ProjectDetail = () => {
               <div key={sp.id} className="sidebar-project-card">
                 <Link to={`/projects/${sp.id}`}>
                   <img
-                    src={sp.imageUrl}
+                    src={`http://localhost:5123${sp.imageUrl}`}
                     alt={sp.title}
                     className="sidebar-project-image"
                   />
