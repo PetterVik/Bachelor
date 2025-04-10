@@ -8,17 +8,13 @@ const AddProject = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    keywords: '',
+    keywords: [], // Endret: lagrer egentlig et array i state
     subtitle: '',
     text: '',
-    visibleOnWebsite: false,
-    sections: [{ subtitle: '', text: '' }], // State for multiple sections
+    visibleOnWebsite: 'no', // 'yes' eller 'no'
+    sections: [{ subtitle: '', text: '' }],
     image: null,
   });
-  
-  // State for tilbakemelding
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   // Forhåndsdefinerte nøkkelord
   const predefinedKeywords = [
@@ -30,24 +26,32 @@ const AddProject = () => {
     'Vann',
     'Industriarkitektur',
   ];
-  
+
   // Legge til et nøkkelord
   const handleKeywordChange = (e) => {
     const selectedKeyword = e.target.value;
-    if (!formData.keywords.includes(selectedKeyword) && formData.keywords.length < 5) {
+    if (
+      selectedKeyword &&
+      !formData.keywords.includes(selectedKeyword) &&
+      formData.keywords.length < 5
+    ) {
       setFormData({
         ...formData,
         keywords: [...formData.keywords, selectedKeyword],
       });
       // Nullstiller rullegardinen etter valg
-      e.target.value = ''; // Setter verdien til tomt igjen
+      e.target.value = '';
     }
   };
 
   // Legge til eget nøkkelord
   const handleCustomKeywordChange = (e) => {
     const customKeyword = e.target.value;
-    if (customKeyword && !formData.keywords.includes(customKeyword) && formData.keywords.length < 5) {
+    if (
+      customKeyword &&
+      !formData.keywords.includes(customKeyword) &&
+      formData.keywords.length < 5
+    ) {
       setFormData({
         ...formData,
         keywords: [...formData.keywords, customKeyword],
@@ -67,13 +71,15 @@ const AddProject = () => {
   const handleChange = (e, index) => {
     const { name, value, files } = e.target;
     if (name === 'image') {
-      // For filinput hentes filobjektet direkte
+      // Håndter bildefelt
       setFormData({ ...formData, image: files[0] });
     } else if (name === 'subtitle' || name === 'text') {
+      // Oppdater en seksjon (underoverskrift/tekst)
       const updatedSections = [...formData.sections];
       updatedSections[index][name] = value;
       setFormData({ ...formData, sections: updatedSections });
     } else {
+      // Vanlige felter
       setFormData({
         ...formData,
         [name]: value,
@@ -97,45 +103,55 @@ const AddProject = () => {
       sections: updatedSections,
     });
   };
-  
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Opprett FormData for å håndtere både tekst og fil
-    const data = new FormData();
-    data.append('title', formData.title);
-    data.append('description', formData.description);
-    data.append('keywords', formData.keywords);
-    data.append('visibleOnWebsite', formData.visibleOnWebsite);
-    if (formData.image) {
-      data.append('image', formData.image);
-    }
-    // Seksjoner sendes som en JSON-streng
-    data.append('sections', JSON.stringify(formData.sections));
+    console.log('Skal sende dette skjemaet:', formData);
 
     try {
+      const data = new FormData();
+      data.append('title', formData.title);
+      data.append('description', formData.description);
+
+      // keywords er et array → lag en kommaseparert streng
+      //   eller JSON.stringify. Avhenger av hva serveren forventer!
+      //   Ofte vil en kommaseparert streng være nok hvis serveren gjør "Split".
+      data.append('keywords', formData.keywords.join(','));
+
+      // Convert 'yes'/'no' til 'true'/'false' hvis serveren forventer bool
+      const isVisible = formData.visibleOnWebsite === 'yes' ? 'true' : 'false';
+      data.append('visibleOnWebsite', isVisible);
+
+      // eventuelt: data.append('visibleOnWebsite', formData.visibleOnWebsite);
+      // hvis serveren faktisk bruker "string visibleOnWebsite" i DTO
+
+      if (formData.image) {
+        data.append('image', formData.image);
+      }
+
+      // Sections sendes som en JSON-streng
+      data.append('sections', JSON.stringify(formData.sections));
+
       const response = await axios.post('http://localhost:5123/api/projects', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // Logging for å se hele responsen og strukturen i response.data
-      console.log("Hele responsen:", response);
-      console.log("response.data:", response.data);
-      
-      // Bruk response.data.id eller response.data.Id avhengig av hva backend returnerer
-      console.log('Nytt prosjekt opprettet med id:', response.data.id || response.data.Id);
-      setSuccessMessage('Nytt prosjekt har blitt lagt til!');
-      setErrorMessage('');
+
+      console.log('Hele responsen:', response);
+      console.log('response.data:', response.data);
+
+      // Avhengig av hva serveren returnerer:
+      console.log('Nytt prosjekt opprettet med id:', response.data.id);
+
+      alert('Prosjekt opprettet!');
     } catch (error) {
       console.error('Feil under opprettelse av prosjekt:', error);
-      console.error('error.message:', error.message);
-      console.error('error.stack:', error.stack);
-      setErrorMessage('Det oppstod en feil under opprettelsen av prosjektet.');
-      setSuccessMessage('');
+      alert('Det oppstod en feil under opprettelsen av prosjektet.');
     }
   };
-  
+
   return (
     <>
       <Navbar />
@@ -152,7 +168,7 @@ const AddProject = () => {
               required
             />
           </div>
-  
+
           <div className="form-group">
             <label>Last opp bilde</label>
             <label htmlFor="file-input" className="custom-file-upload">
@@ -165,7 +181,7 @@ const AddProject = () => {
               onChange={handleChange}
             />
           </div>
-  
+
           <div className="form-group">
             <label>Kort beskrivelse</label>
             <textarea
@@ -175,12 +191,12 @@ const AddProject = () => {
               onChange={handleChange}
             />
           </div>
-  
+
           {/* Nøkkelord */}
           <div className="form-group">
             <label>Nøkkelord</label>
             <select onChange={handleKeywordChange} disabled={formData.keywords.length >= 5}>
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Velg nøkkelord
               </option>
               {predefinedKeywords.sort().map((keyword, index) => (
@@ -198,7 +214,7 @@ const AddProject = () => {
             />
           </div>
           <div>
-            {formData.keywords.length > 0 && (
+            {Array.isArray(formData.keywords) && formData.keywords.length > 0 && (
               <div>
                 <strong>Valgte nøkkelord:</strong>
                 <ul>
@@ -214,7 +230,7 @@ const AddProject = () => {
               </div>
             )}
           </div>
-  
+
           {formData.sections.map((section, index) => (
             <div key={index} className="form-group">
               <label>Underoverskrift</label>
@@ -224,7 +240,7 @@ const AddProject = () => {
                 onChange={(e) => handleChange(e, index)}
                 required
               >
-                <option value="" disabled selected>
+                <option value="" disabled>
                   Velg underoverskrift
                 </option>
                 <option value="Intro">Intro</option>
@@ -232,7 +248,7 @@ const AddProject = () => {
                 <option value="Løsning">Løsning</option>
                 <option value="Resultat">Resultat</option>
               </select>
-  
+
               <label>Tekst</label>
               <textarea
                 type="text"
@@ -241,7 +257,7 @@ const AddProject = () => {
                 onChange={(e) => handleChange(e, index)}
                 required
               />
-  
+
               {index > 0 && (
                 <button
                   type="button"
@@ -253,7 +269,7 @@ const AddProject = () => {
               )}
             </div>
           ))}
-  
+
           <button
             type="button"
             className="add-section-button"
@@ -261,7 +277,7 @@ const AddProject = () => {
           >
             + Legg til et nytt avsnitt
           </button>
-  
+
           <div className="form-group">
             <label>Synlig på nettside:</label>
             <div>
@@ -287,11 +303,10 @@ const AddProject = () => {
               </label>
             </div>
           </div>
-  
+
           <div>
             <button type="submit" className="submit">Last opp prosjekt</button>
           </div>
-  
         </form>
       </div>
     </>
