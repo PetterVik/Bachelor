@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Navbar from '../components/Navbar'; // Import Navbar
 import axios from "axios"; // Import Axios
 import "../styles/Arkiv.css";
 
@@ -43,49 +44,48 @@ const Arkiv = () => {
   };
 
   return (
-    <div className="projects-container">
-      <h1>Arkiv</h1>
+    <>
+      <Navbar /> {/* Added Navbar here */}
+      <div className="projects-container">
+        <h1>Arkiv</h1>
 
-      {/* Search bar */}
-      <div className="search-bar">
-        <div className="search-input-container">
-          <input
-            type="text"
-            placeholder="Søk i arkivet..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-            className="search-input"
-          />
-          <span className="search-icon">🔍</span>
+        {/* Search bar */}
+        <div className="search-bar">
+          <div className="search-input-container">
+            <input
+              type="text"
+              placeholder="Søk i arkivet..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="search-input"
+            />
+            <span className="search-icon">🔍</span>
+          </div>
+        </div>
+
+        <div className="projects-grid">
+          {/* Mapping through the archived projects and rendering each one */}
+          {filteredProjects.map((project) => (
+            <div key={project.id} className="project-card">
+              <Link to={`/projects/${project.id}`}>
+                <img src={`http://localhost:5123${project.imageUrl}`} alt={project.title} />
+                <h3>{project.title}</h3>
+                {project.keywords && (
+                  <div className="keywords">
+                    {project.keywords.split(',').map((keyword, index) => (
+                      <span key={index} className="keyword-chip">
+                        {keyword.trim()}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <p>{project.shortDescription}</p>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
-
-      <div className="projects-grid">
-        {/* Mapping through the archived projects and rendering each one */}
-        {filteredProjects.map((project) => (
-          <div key={project.id} className="project-card">
-            <Link to={`/projects/${project.id}`}>
-              <img src={`http://localhost:5123${project.imageUrl}`} alt={project.title} />
-              <h3>{project.title}</h3>
-              {project.keywords && (
-                <div className="keywords">
-                  {project.keywords.split(',').map((keyword, index) => (
-                    <span key={index} className="keyword-chip">
-                      {keyword.trim()}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <p>{project.shortDescription}</p>
-            </Link>
-          </div>
-        ))}
-      </div>
-
-      <footer className="footer">
-        <p>© 2025 Pure Logic</p>
-      </footer>
-    </div>
+    </>
   );
 };
 
