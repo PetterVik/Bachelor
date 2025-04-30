@@ -1,34 +1,52 @@
 import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
+<<<<<<< Updated upstream
 const allowedEmails = ['hermanhanssen97@gmail.com', 'petterviken97@gmail.com', 'malinskogeng12@gmail.com']; // eposter som har tilgang
+=======
+
+const allowedEmails = ['hermanhanssen97@gmail.com', 'petterviken97@gmail.com', 'malinskogeng@gmail.com'];
+>>>>>>> Stashed changes
 
 const GoogleLoginButton = () => {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        // Hent brukerinfo fra Google med access_token
-        const res = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
-          headers: {
-            Authorization: `Bearer ${tokenResponse.access_token}`,
-          },
-        });
-
-        const user = res.data;
-        console.log('✅ Innlogget bruker:', user);
-
-        if (allowedEmails.includes(user.email)) {
-          sessionStorage.setItem('user', JSON.stringify(user));
-          window.location.href = '/';
-        } else {
-          alert('Du har ikke tilgang');
+        const { access_token } = tokenResponse;
+    
+        const userInfoResponse = await axios.get(
+          'https://www.googleapis.com/oauth2/v3/userinfo',
+          {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        );
+    
+        const user = userInfoResponse.data;
+        console.log('User info from Google:', user);
+    
+        if (!allowedEmails.includes(user.email)) {
+          alert('Du har ikke tilgang.');
+          return;
         }
+    
+        sessionStorage.setItem('user', JSON.stringify({
+          email: user.email,
+          name: user.name,
+          picture: user.picture,
+        }));
+    
+        window.location.href = '/';
       } catch (error) {
-        console.error('Feil ved henting av brukerinfo:', error);
+        console.error('Login error:', error);
         alert('Noe gikk galt ved innlogging.');
       }
-    },
+    }
+    ,
+
     onError: () => {
       alert('Innlogging feilet');
     },
@@ -42,5 +60,6 @@ const GoogleLoginButton = () => {
 };
 
 export default GoogleLoginButton;
+
 
 

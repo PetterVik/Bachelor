@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import '../styles/AddProject.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const EditProject = () => {
+    const navigate = useNavigate();
     const [fileName, setFileName] = useState('Bla gjennom datamaskinen her');
     const [projects, setProjects] = useState([]);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -189,8 +192,17 @@ const EditProject = () => {
     return (
         <>
             <Navbar />
+
+
+            <div className="back-button-container">
+                <button onClick={() => navigate('/dashboard')} className="tilbake-knapp">
+                Tilbake til Dashboard
+                </button>
+            </div>
+
             <div className="add-project-container">
                 <h2>Rediger prosjekt</h2>
+
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Velg prosjekt</label>
@@ -361,6 +373,8 @@ const EditProject = () => {
                         </>
                     )}
                 </form>
+                    
+
             </div>
         </>
     );
