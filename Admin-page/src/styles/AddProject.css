@@ -192,8 +192,7 @@ body {
   .submit:hover {
     background-color: #95c2e7; /* Darker blue on hover */
   }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 
 
   .delete-project-button {
@@ -210,9 +209,7 @@ body {
   }
   
   
-=======
-=======
->>>>>>> Stashed changes
+
   
   .tilbake-knapp {
     justify-content: left;
@@ -229,9 +226,4 @@ body {
   .tilbake-knapp:hover {
     background-color: white; 
     color: black; /* Black font on hover */
-<<<<<<< Updated upstream
   }
->>>>>>> Stashed changes
-=======
-  }
->>>>>>> Stashed changes

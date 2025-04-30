@@ -3,17 +3,9 @@ import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 const allowedEmails = ['hermanhanssen97@gmail.com', 'petterviken97@gmail.com', 'malinskogeng12@gmail.com']; // eposter som har tilgang
-=======
 
-const allowedEmails = ['hermanhanssen97@gmail.com', 'petterviken97@gmail.com', 'malinskogeng@gmail.com'];
->>>>>>> Stashed changes
-=======
-
-const allowedEmails = ['hermanhanssen97@gmail.com', 'petterviken97@gmail.com', 'malinskogeng@gmail.com'];
->>>>>>> Stashed changes
 
 const GoogleLoginButton = () => {
   const login = useGoogleLogin({
