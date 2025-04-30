@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles.css"; // Correct relative path
-import "./about.css"; // Correct relative path
+import "../styles/styles.css"; // Correct relative path
+import "../styles/about.css"; // Correct relative path
 
 const About = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import "../styles.css";
-import "./contact.css";
+import "../styles/styles.css";
+import "../styles/contact.css";
 import moment from "moment";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -142,7 +142,7 @@ const Contact = () => {
           bærekraft, og bedre beslutninger?
         </p>
         <p>
-          Ta kontakt for en gratis 30 minutters konsultasjon med en av våre eksperter.
+          Ta kontakt for en gratis 30 minutters uforpliktende virituell kaffe med en av våre eksperter.
         </p>
         {/* Book Appointment Button med scroll-funksjonalitet */}
         <button
@@ -226,7 +226,7 @@ const Contact = () => {
               required
             ></textarea>
 
-            <button type="submit">Bestill konsultasjon</button>
+            <button type="submit">Book en uformell prat</button>
           </form>
           <button onClick={() => setSelectedSlot(null)}>
             Tilbake til kalender

@@ -46,6 +46,20 @@ app.get("/api/projects/:id", (req, res) => {
   res.json(project);
 });
 
+app.delete('/api/projects/:id', async (req, res) => {
+  const projectId = req.params.id;
+  try {
+    const result = await Project.findByIdAndDelete(projectId);
+    if (!result) {
+      return res.status(404).send('Prosjekt ikke funnet');
+    }
+    res.status(200).send('Prosjekt slettet');
+  } catch (error) {
+    res.status(500).send('Feil ved sletting av prosjekt');
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });

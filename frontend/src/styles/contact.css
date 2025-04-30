@@ -241,13 +241,6 @@
 
 
 
-
-
-
-
-
-
-
 /* Kontaktinformasjon og Google Maps seksjon */
 .contact-info-and-map {
     display: flex; /* Bruker flex for å plassere elementene ved siden av hverandre */
@@ -309,3 +302,114 @@
 .footer p {
     margin: 0;         
 }
+
+
+ /* Responsiv design for skjermer mindre enn 1024px */
+@media screen and (max-width: 1024px) {
+    .contact-booking,
+    .calendar-container,
+    .booking-form-container,
+    .contact-info-and-map {
+      width: 90%;
+      flex-direction: column;
+    }
+  
+    .contact-info-and-map {
+      flex-direction: column; /* Legg kontaktinfo og kart under hverandre */
+      align-items: center;
+    }
+  
+    .contact-info,
+    .contact-map {
+      width: 100%; /* Full bredde */
+      margin: 0 0 20px 0; /* Litt margin under */
+    }
+  
+    .contact-map iframe {
+      width: 100%;
+      height: 300px; /* Mindre høyde på mobil */
+    }
+  
+    .book-appointment-btn {
+      width: 60%; /* Gjør knappen bredere */
+    }
+  }
+  
+  /* Responsiv design for skjermer mindre enn 768px */
+  @media screen and (max-width: 768px) {
+    .contact-header h1 {
+      font-size: 36px; /* Mindre heading */
+      margin-top: 100px;
+    }
+  
+    .contact-booking h2 {
+      font-size: 24px;
+    }
+  
+    .contact-booking p {
+      font-size: 14px;
+    }
+  
+    .calendar-container h2,
+    .booking-form-container h2 {
+      font-size: 24px;
+    }
+  
+    .calendar-container button,
+    .booking-form-container button {
+      width: 100%;
+    }
+  
+    .booking-form-container form input,
+    .booking-form-container form textarea {
+      font-size: 14px;
+    }
+  
+    .book-appointment-btn {
+      width: 80%;
+    }
+  }
+  
+  /* Ekstra responsiv for mobilskjermer (mindre enn 480px) */
+  @media screen and (max-width: 480px) {
+    .contact-header h1 {
+      font-size: 28px;
+      margin-top: 100px;
+    }
+  
+    .book-appointment-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 14px;
+    }
+  
+    .contact-booking {
+      padding: 20px;
+    }
+
+    .contact-booking p {
+        padding: 15px;
+        font-size: 16px;
+    }
+  
+    .calendar-container,
+    .booking-form-container {
+      padding: 1rem;
+    }
+  
+    .contact-info p {
+      margin-left: 0; /* Fjern margin på små skjermer */
+    }
+    .contact-info {
+        align-items: left;
+    }
+  
+    .contact-info h2 {
+      text-align: left;
+    }
+  
+    .contact-map iframe {
+      height: 250px;
+    }
+  }
+  

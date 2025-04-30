@@ -10,10 +10,10 @@ const AddProject = () => {
     const [formData, setFormData] = useState({
       title: '',
       description: '',
-      keywords: [], // Endret: lagrer egentlig et array i state
+      keywords: [], 
       subtitle: '',
       text: '',
-      visibleOnWebsite: 'no', // 'yes' eller 'no'
+      visibleOnWebsite: 'yes', 
       sections: [{ subtitle: '', text: '' }],
       image: null,
     });

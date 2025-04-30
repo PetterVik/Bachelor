@@ -152,6 +152,25 @@
     margin: 0;         
 }
   
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .pagination button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #b0def4;
+    background: #fff;
+    cursor: pointer;
+  }
+  .pagination button.active {
+    background: #b0def4;
+    font-weight: bold;
+  }
+
+  
 /* Responsiv styling */
 
 /* Medium screens: 2 in a row */
