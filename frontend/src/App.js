@@ -7,8 +7,8 @@ import Contact from "./pages/Contact";
 import ProjectsPage from "./pages/ProjectsPage";  // Importer ProjectsPage
 import ProjectDetail from "./pages/ProjectDetail"; // Importer ProjectDetail
 import ScrollToTop from './components/ScrollToTop';
-import './fullpage.css';
-import "./styles.css"; 
+import './styles/fullpage.css';
+import "./styles/styles.css"; 
 
 function App() {
   return (

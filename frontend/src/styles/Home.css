@@ -1,41 +1,49 @@
 html, body {
     height: 100%;
     margin: 0;
+    font-family: 'Lato';
+    line-height: 1.6;
+}
+
+* {
+    box-sizing: border-box;
 }
   
 
-.home-container { 
-    max-height: none;
-    margin-top: 0;
-    padding-top: 0;
-} 
-
- /* Hero Section */
- .hero-image-section {
+.hero-image-section {
     display: flex;
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    height: auto; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     width: 100%;
     position: relative;
     overflow: hidden;
-    flex-direction: column;
-    margin-top: 0;
-    padding-top: 0;
 }
+
 
 .hero-image {
     width: 100%;
-    height: auto;
-    max-height: 100vh;
-    object-fit: cover; 
-    top: 0;
-    object-position: center; 
-    display: block;
-    margin: 0 auto;
-    z-index: 1;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area */
+    object-position: center;
+}
+.hero-text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    width: 100%;
 }
 
+.hero-content {
+    max-width: 80%;
+    margin: 0 auto;
+}
 
 .hero-image-section::after {
     content: "";
@@ -43,8 +51,8 @@ html, body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 43vh; 
-    background-color: #eef6fa; 
+    height: 43vh;
+    background-color: #eef6fa;
     clip-path: polygon(
         0% 60%,    
         25% 35%,  
@@ -54,55 +62,35 @@ html, body {
         100% 100%, 
         0% 100%    
     );
-    z-index: 2; 
+    z-index: 2;
 }
 
-
-.hero-text-section {
-    display: flex;
-    flex-direction: column;  
-    align-items: center;     
-    justify-content: flex-start; 
-    text-align: center;     
-    padding-top: 5rem; 
-    margin-top: -28vh;
-    z-index: 5;  
-    position: relative;;
-}
-
-.hero-content {
-    max-width: 60vw;
-    margin: 0 auto;
-    margin-top: 1rem;
-}
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 6vw; /* Dynamically sized font */
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
-  
+
 .hero-content p {
-    font-size: 1.125rem;
-    line-height: 1.6;
+    font-size: 2vw;
 }
   
 /* Services Section */
 .services {
     display: flex;
     justify-content: space-around;
-    align-items: flex-start;
-    margin-top: 5vh;
-    padding: 5vh 2rem;
+    align-items: center;
+    padding: 50px 20px;
     background-color: #eef6fa;
     text-align: center;
+    flex-wrap: wrap;
 }
   
 .service {
+    width: 30%;
+    padding: 10px;
     text-align: center;
-    width: 30vw;
-    margin-bottom: 2rem;
-    transition: all 0.3s ease;
 }
 
 .service:nth-child(1),
@@ -115,163 +103,115 @@ html, body {
 }
   
 .service img {
-    width: 10vw;  
-    height: 10vh; 
-    object-fit: contain; /* Ensure the entire image fits within the dimensions */
-    margin-bottom: 2rem;
+    width: 10vw;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
 }
 
   
 .service h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
-  
+
 .service p {
     font-size: 1rem;
-    max-width: 25vw;
-    margin: 0 auto;
 }
 
   
 
 .main-text-section {
-    background-color: #2C3E50; /* Light background */
-    padding: 5vh 2rem; /* Increased padding for better spacing */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease; /* Smooth transition effect */
-    display: flex;              /* Enable flexbox */
-    justify-content: center;  /* Horizontally center items */
-    align-items: center;      /* Vertically center items */
-    min-height: 100vh;       /* Ensure a minimum height to center within */
-    text-align: center; 
-    overflow: hidden;  
+    background-color: #2C3E50;
+    padding: 40px 20px;
+    text-align: center;
 }
 
-
-
-/* Hovedinnhold inne i boksene */
-.main-content {
-    max-width: 60vw;
-    margin: 0 auto; /* Centered content */
+.main-text-section h1 {
+    font-size: 3rem;
+    color: #b0def4;
+    margin-bottom: 1rem;
 }
 
-.main-content h1 {
-    font-size: 2rem; /* Reduced font size for better balance */
-    color: #b0def4; /* Darker text color for contrast */
-    margin-bottom: 1rem; /* Spacing between heading and text */
-    text-transform: uppercase;
-    font-family: 'Lato'; /* Clean font */
-}
-
-.main-content p {
-    font-size: 1rem; /* Standard font size for readability */
-    color: white;/* Medium gray for better contrast */
-    line-height: 1.6; /* Improved line height for readability */
+.main-text-section p {
+    font-size: 1.2rem;
+    color: white;
+    line-height: 1.6;
     margin-top: 1rem;
+    max-width: 80%;
+    margin: 0 auto;
 }
+
 
 
 .section {
+    height: 100vh;
+    min-height: 100vh;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    padding: 0 !important; /* Remove padding */
-    margin: 0 !important; /* Remove margin */
-    height: 100vh;
+    padding: 0 !important;
+    margin: 0 !important;
 }
-  
-.section.active {
-    opacity: 1;
-}
-  
 
+/* Footer */
 .footer {
     position: relative;
     bottom: 0;
-    width: 100%;           
-    text-align: center;     
-    background-color: #b0def4; 
-    padding: 10px 0;       
-    font-size: 14px;        
-    color: #333;            
+    width: 100%;
+    text-align: center;
+    background-color: #b0def4;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #333;
 }
-  
+
 .footer p {
-    margin: 0;         
+    margin: 0;
 }
-
-.fp-controlArrow {
-    display: none !important;
-  }
   
-
-/* Responsive design for screens smaller than 1024px */
-@media screen and (max-width: 1024px) {
+  
+  @media screen and (min-width: 1440px) {
     .hero-image {
-        max-height: 700px; 
+        max-height: 60vh; /* Juster bildehøyden for ekstra store skjermer */
     }
-    .hero-text-section {
-        padding-top: 40px; 
-        margin-top: -90px; 
+
+    .services {
+        padding: 5vh 10vw; /* Øk padding for å utnytte plassen på veldig store skjermer */
     }
-    .hero-image-section::after {
-        height: 280px;
+
+    .service {
+        width: 20%;  /* Gjør service-elementene smalere på veldig store skjermer */
     }
 
     .hero-content h1 {
-      font-size: 36px;
+        font-size: 5rem; /* Øk font-størrelsen enda mer på ekstra store skjermer */
     }
-  
+}
+  @media screen and (min-width: 1024px) {
+    .hero-image {
+        max-height: 70vh; /* Sørger for at bildet ikke blir for høyt på store skjermer */
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;  /* Øk font-størrelsen på større skjermer */
+    }
+
     .hero-content p {
-      font-size: 18px;
+        font-size: 1.5rem; /* Juster fontstørrelsen for større skjermer */
     }
-  
+
     .services {
-        padding: 30px;
+        flex-direction: row; /* Flere kolonner for services på store skjermer */
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 5vh 2rem;
     }
-  
+
     .service {
-        width: 50%;        
-        margin-bottom: 30px;   
+        width: 30%;  /* Øk bredden på service-elementene på større skjermer */
+        margin-bottom: 0;
     }
-  
-    .service img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 15px;
-    }
-
-    .service h3 {
-        font-size: 18px;       
-        margin-bottom: 10px;
-    }
-
-    .service p {
-        font-size: 16px;
-    }
-    .service:nth-child(1),
-    .service:nth-child(3) {
-        margin-top: -20px; 
-    }
-
-    .service:nth-child(2) {
-        margin-top: 300px; 
-    }
-  
-    .main-text-section {
-      padding: 40px 20px; 
-    }
-  
-    .main-content h1 {
-      font-size: 24px;
-    }
-  
-    .main-content p {
-      font-size: 16px;
-      max-width: 600px;
-    }
-  }
-    
+}
   
 
 /* Responsive design for screens smaller than 768px */

@@ -9,6 +9,7 @@ const ProjectDetail = () => {
   const [allProjects, setAllProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
 
   // Henter det nåværende prosjektet
   useEffect(() => {
@@ -60,19 +61,22 @@ const ProjectDetail = () => {
       .map((keyword) => keyword.trim().toLowerCase())
   );
 
-  const similarProjects = allProjects.filter((p) => {
-    if (p.id === project.id) return false;
+  const visibleProjects = allProjects.filter(
+    (p) => p.visibleOnWebsite && p.id !== project.id
+  );
+  
+  const similarProjects = visibleProjects.filter((p) => {
     const pKeywords = new Set(
       (p.keywords || "")
         .split(",")
         .map((keyword) => keyword.trim().toLowerCase())
     );
-    // Returner true hvis de deler minst ett felles nøkkelord
     for (const kw of currentKeywords) {
       if (pKeywords.has(kw)) return true;
     }
     return false;
   });
+  
 
   // Forsøk å parse longDescription som JSON.
   // Hvis det ikke er gyldig JSON, havner vi i catch-blokken,

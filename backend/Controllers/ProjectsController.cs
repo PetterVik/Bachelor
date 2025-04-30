@@ -45,42 +45,53 @@ namespace PureLogicBackend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProject([FromForm] ProjectDto dto)
         {
-            // Lag et nytt Project-objekt og map feltene fra dto
             var project = new Project
             {
                 Title = dto.Title,
                 Description = dto.Description,
                 Keywords = dto.Keywords,
                 ShortDescription = dto.Description, // Juster om du vil lagre kort beskrivelse separat
-                LongDescription = dto.Sections,      // For enkelhet lagrer vi "sections" her; du kan senere kombinere dem etter behov
-                VisibleOnWebsite = dto.VisibleOnWebsite  // Ny linje: Mapper inn VisibleOnWebsite-verdi fra DTO
+                LongDescription = dto.Sections,      // For enkelhet lagrer vi "sections" her
+                VisibleOnWebsite = dto.VisibleOnWebsite
             };
 
-            // Håndter bildeopplasting hvis et bilde er lastet opp
+            // Håndter bildeopplasting
             if (dto.Image != null)
             {
-                // Bestem mappen der du ønsker å lagre bilder (for eksempel "uploads" i prosjektmappen)
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
                 if (!Directory.Exists(uploadsFolder))
                 {
                     Directory.CreateDirectory(uploadsFolder);
                 }
-                // Lag et unikt filnavn
                 var uniqueFileName = $"{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await dto.Image.CopyToAsync(stream);
                 }
-                // Lagre relativ filsti (juster om nødvendig)
                 project.ImageUrl = "/uploads/" + uniqueFileName;
             }
 
             _context.Projects.Add(project);
             await _context.SaveChangesAsync();
 
-            // Returner 201 Created med den nye prosjekt-ID-en
             return CreatedAtAction(nameof(GetProjectById), new { id = project.Id }, project);
+        }
+
+        // Sletter et prosjekt basert på ID
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProject(int id)
+        {
+            var project = await _context.Projects.FindAsync(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            _context.Projects.Remove(project);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles.css"; // Sørg for at CSS-filen er korrekt importert
+import "../styles/styles.css"; // Sørg for at CSS-filen er korrekt importert
 
 const Navbar = ({ isScrolled }) => {
   // Bruk state for å kontrollere om menyen er åpen
@@ -41,12 +41,14 @@ const Navbar = ({ isScrolled }) => {
         </Link>
       </div>
 
-      {/* Hamburger-menyen */}
-      <div className="hamburger" onClick={toggleMenu}>
-        <div className="line"></div>
-        <div className="line"></div>
-        <div className="line"></div>
-      </div>
+      {!isMenuOpen && (
+        <div className="hamburger" onClick={toggleMenu}>
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </div>
+      )}
+
 
       {/* Navigasjonslenker */}
       <div className={`nav-links ${isMenuOpen ? 'active' : ''}`} id="navLinks">

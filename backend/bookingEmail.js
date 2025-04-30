@@ -1,50 +1,50 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
+const express = require('express');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 
-const router = express.Router();
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-const sendConfirmationEmail = async (formData, selectedSlot) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail", // Or your preferred email provider
-    auth: {
-      user: "your-email@gmail.com", // Replace with your email
-      pass: "your-email-password", // Replace with your email password or app password
-    },
-  });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'malinskogeng12@gmail.com',
+    pass: 'mwwb ltsx loxq hury',
+  },
+});
 
-  const mailOptions = {
-    from: '"Your Company" <your-email@gmail.com>',
-    to: formData.email,
-    subject: "Booking Confirmation",
-    text: `Hi ${formData.name},\n\nThank you for booking a consultation.\n\nDetails:\nDate & Time: ${selectedSlot.start}\nSubject: ${formData.subject}\nDescription: ${formData.description}\n\nBest regards,\nYour Company`,
-    html: `<p>Hi ${formData.name},</p>
-           <p>Thank you for booking a consultation.</p>
-           <p><strong>Details:</strong></p>
-           <ul>
-             <li><strong>Date & Time:</strong> ${selectedSlot.start}</li>
-             <li><strong>Subject:</strong> ${formData.subject}</li>
-             <li><strong>Description:</strong> ${formData.description}</li>
-           </ul>
-           <p>Best regards,<br>Your Company</p>`,
-  };
+
+
+// API-endepunkt for å sende booking-bekreftelse
+app.post('/send-booking-email', async (req, res) => {
+  const { name, email, subject, description, time } = req.body;
 
   try {
-    await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully!");
-  } catch (error) {
-    console.error("Error sending email:", error);
-  }
-};
+    await transporter.sendMail({
+      from: '"Pure Logic" <malinskogeng@hotmail.com>',  
+      to: email,   
+      bcc: 'post@purelogic.no',                                
+      subject: subject || "Bekreftelse på konsultasjon",
+      html: `
+        <h2>Hei ${name},</h2>
+        <p>Takk for at du booket en gratis konsultasjon!</p>
+        <p><strong>Tid:</strong> ${time}</p>
+        <p><strong>Melding:</strong> ${description}</p>
+        <br/>
+        <p>Vi ser frem til samtalen!</p>
+        <p>Hilsen,<br>Pure Logic</p>
+      `
+    });
 
-router.post("/send-email", async (req, res) => {
-  const { formData, selectedSlot } = req.body;
-
-  try {
-    await sendConfirmationEmail(formData, selectedSlot);
-    res.status(200).send("Email sent successfully!");
+    res.status(200).send("E-post sendt!");
   } catch (error) {
-    res.status(500).send("Error sending email.");
+    console.error("Feil ved sending av e-post:", error);
+    res.status(500).send("Kunne ikke sende e-post.");
   }
 });
 
-module.exports = router;
+// Start serveren
+app.listen(5050, () => {
+  console.log("Server kjører på port 5050");
+});

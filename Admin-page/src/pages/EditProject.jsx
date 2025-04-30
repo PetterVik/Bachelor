@@ -1,4 +1,3 @@
-// src/pages/EditProject.jsx
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import '../styles/AddProject.css';
@@ -14,7 +13,7 @@ const EditProject = () => {
         keywords: [],
         subtitle: '',
         text: '',
-        visibleOnWebsite: 'no',
+        visibleOnWebsite: 'yes',
         sections: [{ subtitle: '', text: '' }],
         image: null,
     });
@@ -53,13 +52,15 @@ const EditProject = () => {
 
         // Parse longDescription (sections) like in ProjectDetail.jsx
         let sections = [];
-        try {
-            if (selected.longDescription) {
+        if (selected.longDescription) {
+            try {
                 sections = JSON.parse(selected.longDescription);
+            } catch (err) {
+                console.error("Feil ved parsing av longDescription:", err);
+                // Håndter feilen, kanskje sett en standard verdi for sections
             }
-        } catch (err) {
-            console.error("Feil ved parsing av longDescription:", err);
         }
+        
 
         setSelectedProject(selected);
 
@@ -163,6 +164,25 @@ const EditProject = () => {
         } catch (error) {
             console.error('Feil under oppdatering av prosjekt:', error);
             alert('Det oppstod en feil under oppdateringen av prosjektet.');
+        }
+    };
+
+    const handleDelete = async () => {
+        if (!selectedProject) return;
+
+        const confirmDelete = window.confirm(`Er du sikker på at du vil slette prosjektet: ${selectedProject.title}?`);
+        if (!confirmDelete) return;
+
+        try {
+            await axios.delete(`http://localhost:5123/api/projects/${selectedProject.id}`);
+            alert('Prosjektet er slettet!');
+            // Fjern prosjektet fra listen
+            setProjects(projects.filter(project => project.id !== selectedProject.id));
+            // Nullstill valgt prosjekt
+            setSelectedProject(null);
+        } catch (error) {
+            console.error('Feil ved sletting av prosjekt:', error);
+            alert('Det oppstod en feil under sletting av prosjektet.');
         }
     };
 
@@ -330,6 +350,14 @@ const EditProject = () => {
                             <div>
                                 <button type="submit" className="submit">Oppdater prosjekt</button>
                             </div>
+
+                            <button
+                                type="button"
+                                className="delete-project-button"
+                                onClick={handleDelete}
+                            >
+                                Slett prosjekt
+                            </button>
                         </>
                     )}
                 </form>
