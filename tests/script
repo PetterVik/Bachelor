@@ -1,0 +1,7 @@
+artillery run tests/config.yml
+
+
+# For å få rapporten ut: 
+
+artillery report --output report.html report.json
+

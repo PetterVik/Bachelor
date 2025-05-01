@@ -1,0 +1,18 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 5
+scenarios:
+  - flow:
+      - get:
+          url: '/'  # Home route
+      - get:
+          url: '/about'  # Another route
+      - post:
+          url: '/contact'  # Simulate a POST request
+          json:
+            name: 'John Doe'
+            email: 'johndoe@example.com'
+            message: 'Hello, this is a test message.'
+      
