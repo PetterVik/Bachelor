@@ -194,6 +194,7 @@ body {
   }
 
 
+
   .delete-project-button {
     background-color: red;
     color: white;
@@ -208,3 +209,21 @@ body {
   }
   
   
+
+  
+  .tilbake-knapp {
+    justify-content: left;
+    align-items: left;
+    margin-top: 130px;
+    margin-left: 20px;
+    border-radius: 50px;
+    background-color: #2c3e50d9; /* Light blue background */
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+  }
+
+  .tilbake-knapp:hover {
+    background-color: white; 
+    color: black; /* Black font on hover */
+  }

@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import '../styles/AddProject.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddProject = () => {
+    const navigate = useNavigate();
     const [fileName, setFileName] = useState('Bla gjennom datamaskinen her');
 
     const [formData, setFormData] = useState({
@@ -158,6 +160,14 @@ const AddProject = () => {
     return (
         <>
             <Navbar />
+
+            <div className="back-button-container">
+                <button onClick={() => navigate('/dashboard')} className="tilbake-knapp">
+                Tilbake til Dashboard
+                </button>
+            </div>
+
+
             <div className="add-project-container">
                 <h2>Legg til nytt prosjekt</h2>
                 <form onSubmit={handleSubmit}>

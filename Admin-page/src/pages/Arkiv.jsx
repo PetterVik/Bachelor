@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar'; // Import Navbar
 import axios from "axios"; // Import Axios
 import "../styles/Arkiv.css";
+import '../styles/AddProject.css';
+import { useNavigate } from 'react-router-dom';
 
 const Arkiv = () => {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -46,6 +49,13 @@ const Arkiv = () => {
   return (
     <>
       <Navbar /> {/* Added Navbar here */}
+
+      <div className="back-button-container">
+        <button onClick={() => navigate('/dashboard')} className="tilbake-knapp">
+          Tilbake til Dashboard
+        </button>
+      </div>
+
       <div className="projects-container">
         <h1>Arkiv</h1>
 
