@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.48",
     "cors": "^2.8.5",
     "cra-template": "1.2.0",
     "express": "^5.1.0",
@@ -12,8 +13,10 @@
     "react-big-calendar": "^1.18.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.2.0",
+    "react-fullpage": "^0.1.19",
     "react-router-dom": "^7.1.5",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.9.3",
     "web-vitals": "^4.2.4"
   },
   "scripts": {

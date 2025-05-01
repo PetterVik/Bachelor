@@ -3,47 +3,48 @@ html, body {
     margin: 0;
     font-family: 'Lato';
     line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
 * {
     box-sizing: border-box;
 }
-  
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
 .hero-image-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100%;
     position: relative;
+    height: 80vh;
+    width: 100%;
     overflow: hidden;
 }
-
 
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the area */
+    object-fit: cover;
     object-position: center;
 }
+
 .hero-text-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     position: absolute;
-    z-index: 2;
     text-align: center;
-    color: white;
-    padding: 20px;
+    color: black;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    padding: 10px;
+    z-index: 3;
 }
 
-.hero-content {
-    max-width: 80%;
-    margin: 0 auto;
-}
 
 .hero-image-section::after {
     content: "";
@@ -51,7 +52,7 @@ html, body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 43vh;
+    height: 45vh;
     background-color: #eef6fa;
     clip-path: polygon(
         0% 60%,    
@@ -65,17 +66,17 @@ html, body {
     z-index: 2;
 }
 
-
 .hero-content h1 {
-    font-size: 6vw; /* Dynamically sized font */
-    font-weight: bold;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
+    font-family: 'Glory';
 }
 
 .hero-content p {
-    font-size: 2vw;
+    font-size: 0.5rem;
+    font-family: 'Lato';
 }
-  
+
 /* Services Section */
 .services {
     display: flex;
@@ -85,8 +86,9 @@ html, body {
     background-color: #eef6fa;
     text-align: center;
     flex-wrap: wrap;
+    margin-bottom: 15vh;
 }
-  
+
 .service {
     width: 30%;
     padding: 10px;
@@ -101,7 +103,7 @@ html, body {
 .service:nth-child(2) {
     margin-top: 20vh; /* Push the middle service down */
 }
-  
+
 .service img {
     width: 10vw;
     height: auto;
@@ -109,7 +111,6 @@ html, body {
     margin-bottom: 20px;
 }
 
-  
 .service h3 {
     font-size: 1.5rem;
     font-weight: bold;
@@ -119,12 +120,14 @@ html, body {
     font-size: 1rem;
 }
 
-  
-
 .main-text-section {
-    background-color: #2C3E50;
-    padding: 40px 20px;
+    display: flex;
+    justify-content: center;  /* Horizontally center */
+    align-items: center;  /* Vertically center */
+    padding: 50px 20px;
     text-align: center;
+    background-color: #2C3E50;
+    height: 100vh;  /* Ensure it takes up the full height of the viewport */
 }
 
 .main-text-section h1 {
@@ -138,11 +141,9 @@ html, body {
     color: white;
     line-height: 1.6;
     margin-top: 1rem;
-    max-width: 80%;
+    max-width: 60%;
     margin: 0 auto;
 }
-
-
 
 .section {
     height: 100vh;
@@ -168,83 +169,85 @@ html, body {
 .footer p {
     margin: 0;
 }
-  
-  
-  @media screen and (min-width: 1440px) {
+
+@media screen and (min-width: 1440px) {
     .hero-image {
-        max-height: 60vh; /* Juster bildehøyden for ekstra store skjermer */
+        max-height: 60vh; /* Adjust image height for very large screens */
     }
 
     .services {
-        padding: 5vh 10vw; /* Øk padding for å utnytte plassen på veldig store skjermer */
+        padding: 5vh 10vw; /* Increase padding to utilize space on very large screens */
     }
 
     .service {
-        width: 20%;  /* Gjør service-elementene smalere på veldig store skjermer */
+        width: 20%;  /* Make service items narrower on very large screens */
     }
 
     .hero-content h1 {
-        font-size: 5rem; /* Øk font-størrelsen enda mer på ekstra store skjermer */
+        font-size: 5rem; /* Increase font size for very large screens */
     }
 }
-  @media screen and (min-width: 1024px) {
+
+@media screen and (min-width: 1024px) {
     .hero-image {
-        max-height: 70vh; /* Sørger for at bildet ikke blir for høyt på store skjermer */
+        max-height: 70vh; /* Ensures the image isn't too large on larger screens */
     }
 
     .hero-content h1 {
-        font-size: 4rem;  /* Øk font-størrelsen på større skjermer */
+        font-size: 4rem;  /* Increase font size on larger screens */
     }
 
     .hero-content p {
-        font-size: 1.5rem; /* Juster fontstørrelsen for større skjermer */
+        font-size: 1.5rem; /* Adjust font size for larger screens */
     }
 
     .services {
-        flex-direction: row; /* Flere kolonner for services på store skjermer */
+        flex-direction: row; /* More columns for services on larger screens */
         justify-content: space-around;
         align-items: flex-start;
         padding: 5vh 2rem;
     }
 
     .service {
-        width: 30%;  /* Øk bredden på service-elementene på større skjermer */
+        width: 30%;  /* Increase width of service items on larger screens */
         margin-bottom: 0;
     }
 }
-  
 
 /* Responsive design for screens smaller than 768px */
 @media screen and (max-width: 768px) {
     .hero-image {
         max-height: 500px;
     }
+
     .hero-text-section {
-        padding-top: 40px; 
-        margin-top: -100px; 
+        padding-top: 40px;
+        margin-top: -100px;
     }
+
     .hero-image-section::after {
         height: 250px;
     }
+
     .hero-content h1 {
       font-size: 30px;
     }
-  
+
     .hero-content p {
       font-size: 16px;
     }
-  
+
     .services {
-        align-items: center;   /* Center-align the items */
-        padding: 20px;         /* Add some padding */
+        align-items: center;
+        padding: 20px;
     }
-  
+
     .service {
-        width: 33%;           /* Make each service take up most of the screen width */
-        margin-bottom: 30px;   /* Add spacing between services */
-        text-align: center;    /* Center-align text */
+        width: 33%; /* Make each service take up most of the screen width */
+        margin-bottom: 30px;
+        text-align: center;
     }
-  
+
     .service img {
       width: 80px;
       height: 80px;
@@ -252,48 +255,38 @@ html, body {
     }
 
     .service h3 {
-        font-size: 18px;       /* Adjust heading size */
-        margin-bottom: 10px;
+        font-size: 18px;
     }
 
     .service p {
         font-size: 14px;
     }
-    .service:nth-child(1),
-    .service:nth-child(3) {
-        margin-top: -200px; /* Ensure first and third services are aligned */
+
+    .main-text-section {
+      padding: 40px 20px;
     }
 
-    .service:nth-child(2) {
-        margin-top: 200px; /* Push the middle service down */
-    }
-  
-    .main-text-section {
-      padding: 40px 20px; /* Reduced padding for smaller screens */
-    }
-  
     .main-content h1 {
       font-size: 24px;
     }
-  
+
     .main-content p {
       font-size: 16px;
       max-width: 600px;
     }
-  }
+}
 
 @media screen and (max-width: 680px) {
-  
     .services {
         padding: 30px;
     }
 
     .service {
-        width: 33%;           /* Make services take full width on very small screens */
+        width: 33%;
     }
 
     .service img {
-        width: 80px;           /* Further reduce icon size */
+        width: 80px;
         height: 80px;
     }
 
@@ -308,24 +301,23 @@ html, body {
     .main-content h1 {
       font-size: 28px;
     }
-  
+
     .main-content p {
       font-size: 16px;
       max-width: 500px;
     }
-    
 }
-  
-  /* Even more responsive design for screens smaller than 480px */
-  @media screen and (max-width: 480px) {
+
+@media screen and (max-width: 480px) {
     .hero-image {
-        max-height: 300px; /* Juster bildehøyde ytterligere på veldig små skjermer */
+        max-height: 300px;
     }
-    
+
     .hero-text-section {
-        padding-top: 80px; /* Redusere padding for mindre plass */
-        margin-top: -80px; /* Juster margin-top for mobiltelefoner */
+        padding-top: 80px;
+        margin-top: -80px;
     }
+
     .hero-image-section::after {
         height: 100px;
     }
@@ -333,22 +325,22 @@ html, body {
     .hero-content h1 {
       font-size: 24px;
     }
-  
+
     .hero-content p {
       font-size: 12px;
       max-width: 400px;
     }
-  
+
     .services {
         padding: 15px;
     }
 
     .service {
-        width: 50%;           /* Make services take full width on very small screens */
+        width: 50%;
     }
 
     .service img {
-        width: 60px;           /* Further reduce icon size */
+        width: 60px;
         height: 60px;
     }
 
@@ -359,26 +351,17 @@ html, body {
     .service p {
         font-size: 9px;
     }
-    .service:nth-child(1),
-    .service:nth-child(3) {
-        margin-top: -200px; /* Ensure first and third services are aligned */
+
+    .main-text-section {
+      padding: 30px 15px;
     }
 
-    .service:nth-child(2) {
-        margin-top: 200px; /* Push the middle service down */
-    }
-  
-    .main-text-section {
-      padding: 30px 15px; /* Reduced padding for smaller screens */
-    }
-  
     .main-content h1 {
       font-size: 20px;
     }
-  
+
     .main-content p {
       font-size: 14px;
       max-width: 350px;
     }
-  }
-
+}
