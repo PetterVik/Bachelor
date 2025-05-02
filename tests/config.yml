@@ -1,9 +1,9 @@
 config:
-  target: 'http://localhost:3000'   # Your locally hosted app
+  target: 'http://localhost:3000'   
   phases:
-    - duration: 60  # Test duration in seconds
-      arrivalRate: 5  # Number of virtual users per second
+    - duration: 120  # Test duration in seconds
+      arrivalRate: 200  # Number of virtual users per second
 scenarios:
   - flow:
       - get:
-          url: '/'  # The route you want to test
+          url: '/'  

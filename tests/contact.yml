@@ -1,18 +1,16 @@
 config:
-  target: 'http://localhost:3000'
+  target: 'http://localhost:5050'  # Backend-serveren som sender e-poster
   phases:
     - duration: 60
-      arrivalRate: 5
+      arrivalRate: 2  # 2 forespørsler per sekund i 60 sekunder
+
 scenarios:
   - flow:
-      - get:
-          url: '/'  # Home route
-      - get:
-          url: '/about'  # Another route
       - post:
-          url: '/contact'  # Simulate a POST request
+          url: "/send-booking-email"
           json:
-            name: 'John Doe'
-            email: 'johndoe@example.com'
-            message: 'Hello, this is a test message.'
-      
+            name: "Test Bruker"
+            email: "malinskogeng@hotmail.com"
+            subject: "Test booking"
+            description: "Test beskrivelse"
+            time: "2025-05-01 10:30" 

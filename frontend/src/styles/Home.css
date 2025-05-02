@@ -66,7 +66,7 @@ html, body {
     z-index: 2;
 }
 
-.hero-content h1 {
+.hero-text-section h1 {
     font-size: 1rem;
     margin-bottom: 0.5rem;
     font-family: 'Glory';
@@ -87,6 +87,7 @@ html, body {
     text-align: center;
     flex-wrap: wrap;
     margin-bottom: 15vh;
+    position: relative;
 }
 
 .service {
@@ -120,6 +121,7 @@ html, body {
     font-size: 1rem;
 }
 
+
 .main-text-section {
     display: flex;
     justify-content: center;  /* Horizontally center */
@@ -131,9 +133,10 @@ html, body {
 }
 
 .main-text-section h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     color: #b0def4;
     margin-bottom: 1rem;
+    text-transform: uppercase;
 }
 
 .main-text-section p {

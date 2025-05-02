@@ -75,20 +75,31 @@ const AddProject = () => {
     const handleChange = (e, index) => {
         const { name, value, type, files } = e.target;
 
-        if (name === 'image' && type === 'file') {
+        if (name === 'description') {
+            // Splitte teksten i ord og sjekke lengden
+            const wordCount = value.trim().split(/\s+/).length;
+            if (wordCount <= 50) {
+                setFormData({
+                    ...formData,
+                    [name]: value,
+                });
+            } else {
+                alert("Du kan ikke skrive mer enn 100 ord.");
+            }
+        } else if (name === 'image' && type === 'file') {
             const file = files?.[0];
             if (file) {
-              setFileName(file.name);
-              setFormData({
-                ...formData,
-                image: file,
-              });
+                setFileName(file.name);
+                setFormData({
+                    ...formData,
+                    image: file,
+                });
             } else {
-              setFileName('Bla gjennom datamaskinen her');
-              setFormData({
-                ...formData,
-                image: null,
-              });
+                setFileName('Bla gjennom datamaskinen her');
+                setFormData({
+                    ...formData,
+                    image: null,
+                });
             }
           } else if (name === 'subtitle' || name === 'text') {
             const updatedSections = [...formData.sections];

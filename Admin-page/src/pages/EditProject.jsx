@@ -156,8 +156,8 @@ const EditProject = () => {
             }
             data.append('sections', JSON.stringify(formData.sections));
 
-            const response = await axios.post(
-                `http://localhost:5123/api/projects/${selectedProject.id}`, data, { 
+            const response = await axios.put(
+                `http://localhost:5001/api/projects/${selectedProject.id}`, data, { 
                 headers: { 
                     'Content-Type': 'multipart/form-data', 
                 }, 

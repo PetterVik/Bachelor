@@ -17,7 +17,11 @@ const Arkiv = () => {
       try {
         const response = await axios.get("http://localhost:5123/api/projects"); // Endpoint for projects
         const archivedProjects = response.data.filter((project) => project.isArchived === true); // Filter archived projects
-        console.log("Hentede arkiverte prosjekter:", archivedProjects);
+        if (archivedProjects.length === 0) {
+          console.log("Ingen arkiverte prosjekter funnet.");
+        } else {
+          console.log("Hentede arkiverte prosjekter:", archivedProjects);
+        }
         setProjects(archivedProjects); // Update state with fetched projects
       } catch (error) {
         console.error("Feil ved henting av arkiverte prosjekter:", error);
@@ -26,6 +30,7 @@ const Arkiv = () => {
 
     getProjects(); // Fetch projects when the component mounts
   }, []);
+
 
   // Filter projects based on search term
   const filteredProjects = projects.filter((project) => {
@@ -40,6 +45,7 @@ const Arkiv = () => {
       keywords.includes(term)
     );
   });
+
 
   // Handler for search input changes
   const handleSearchChange = (event) => {

@@ -25,9 +25,10 @@ namespace PureLogicBackend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            var projects = await _context.Projects.ToListAsync();
+            var projects = await _context.Projects.Where(p => p.IsArchived == true).ToListAsync();
             return Ok(projects);
         }
+
 
         // Henter ETT prosjekt basert på ID
         [HttpGet("{id}")]
@@ -77,6 +78,31 @@ namespace PureLogicBackend.Controllers
 
             return CreatedAtAction(nameof(GetProjectById), new { id = project.Id }, project);
         }
+
+        // Oppdaterer et eksisterende prosjekt
+        [HttpPut("{id}")]
+            public async Task<IActionResult> UpdateProject(int id, [FromBody] ProjectDto dto)
+            {
+                var project = await _context.Projects.FindAsync(id);
+                if (project == null)
+                {
+                    return NotFound();
+                }
+
+                // Oppdater prosjektet med data fra dto
+                project.Title = dto.Title;
+                project.Description = dto.Description;
+                project.ShortDescription = dto.Description;
+                project.LongDescription = dto.Sections;
+                project.VisibleOnWebsite = dto.VisibleOnWebsite;
+                project.Keywords = dto.Keywords;
+
+                _context.Entry(project).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+
+                return Ok(project);
+            }
+
 
         // Sletter et prosjekt basert på ID
         [HttpDelete("{id}")]
