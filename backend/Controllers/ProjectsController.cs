@@ -22,10 +22,11 @@ namespace PureLogicBackend.Controllers
         }
 
         // Henter ALLE prosjekter
+        // Henter ALLE prosjekter
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
-            var projects = await _context.Projects.Where(p => p.IsArchived == true).ToListAsync();
+            var projects = await _context.Projects.ToListAsync();
             return Ok(projects);
         }
 

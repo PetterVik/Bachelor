@@ -8,19 +8,20 @@ const Navbar = ({ isScrolled }) => {
 
   // Funksjon for å toggle menyen
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(prevState => !prevState);  // Oppdater basert på forrige tilstand
   };
 
   // Funksjon for å lukke menyen hvis man klikker utenfor
   const handleClickOutside = (event) => {
     const navLinks = document.getElementById('navLinks');
     const menuToggle = document.querySelector('.hamburger');
-
-    // Sjekk om klikket er utenfor menyen og hamburger-ikonet
-    if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+  
+    // Før vi prøver å bruke .contains(), sørger vi for at elementene eksisterer
+    if (navLinks && menuToggle && !navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
       setIsMenuOpen(false); // Lukk menyen hvis klikket er utenfor
     }
   };
+  
 
   // Legg til event listener på mount og fjern den på unmount
   useEffect(() => {
@@ -30,12 +31,12 @@ const Navbar = ({ isScrolled }) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, []); // Sørg for at dette skjer én gang etter initial render
 
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
       <div className="logo-container">
-      <Link to="/" onClick={() => setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100)}>
+        <Link to="/" onClick={() => setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100)}>
           <h1>Pure Logic</h1>
           <img src="/pure-logic-logo.png" alt="Pure Logic Logo" className="logo" />
         </Link>
@@ -48,7 +49,6 @@ const Navbar = ({ isScrolled }) => {
           <div className="line"></div>
         </div>
       )}
-
 
       {/* Navigasjonslenker */}
       <div className={`nav-links ${isMenuOpen ? 'active' : ''}`} id="navLinks">
