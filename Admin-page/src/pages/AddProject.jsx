@@ -78,13 +78,13 @@ const AddProject = () => {
         if (name === 'description') {
             // Splitte teksten i ord og sjekke lengden
             const wordCount = value.trim().split(/\s+/).length;
-            if (wordCount <= 50) {
+            if (wordCount <= 30) {
                 setFormData({
                     ...formData,
                     [name]: value,
                 });
             } else {
-                alert("Du kan ikke skrive mer enn 100 ord.");
+                alert("Du kan ikke skrive mer enn 30 ord.");
             }
         } else if (name === 'image' && type === 'file') {
             const file = files?.[0];

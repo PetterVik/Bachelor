@@ -14,6 +14,7 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
 }
 
 .hero-image-section {
@@ -37,9 +38,9 @@ html, body {
     position: absolute;
     text-align: center;
     color: black;
-    top: 70%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 80%;                 /* Plasser teksten i midten vertikalt */
+    left: 50%;                /* Plasser teksten i midten horisontalt */
+    transform: translate(-50%, -50%);  /* Juster for å sikre at teksten er perfekt sentrert */
     width: 100%;
     padding: 10px;
     z-index: 3;
@@ -187,7 +188,7 @@ html, body {
     }
 
     .hero-content h1 {
-        font-size: 5rem; /* Increase font size for very large screens */
+        font-size: 2rem; /* Increase font size for very large screens */
     }
 }
 
@@ -203,7 +204,6 @@ html, body {
     .hero-content p {
         font-size: 1.5rem; /* Adjust font size for larger screens */
     }
-
     .services {
         flex-direction: row; /* More columns for services on larger screens */
         justify-content: space-around;
@@ -217,10 +217,32 @@ html, body {
     }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .hero-image {
+        max-height: 60vh; /* Adjust image height for medium screens */
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;  /* Øk fontstørrelsen for overskriften */
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;  /* Øk fontstørrelsen for paragrafen */
+    }
+
+    .main-text-section h1 {
+        font-size: 2.5rem;  /* Øk fontstørrelsen for overskriften */
+    }
+
+    .main-text-section p {
+        font-size: 1.4rem;  /* Øk fontstørrelsen for paragrafen */
+    }
+}
+
+
 /* Responsive design for screens smaller than 768px */
 @media screen and (max-width: 768px) {
     .hero-image {
-        max-height: 500px;
+        max-height: 60vh; /* Adjust image height for smaller screens */
     }
 
     .hero-text-section {
@@ -229,10 +251,11 @@ html, body {
     }
 
     .hero-image-section::after {
-        height: 250px;
+        height: 300px;
     }
 
     .hero-content h1 {
+        margin-top: 60px;
       font-size: 30px;
     }
 
@@ -280,6 +303,9 @@ html, body {
 }
 
 @media screen and (max-width: 680px) {
+    .hero-image-section::after {
+        height: 290px;
+    }
     .services {
         padding: 30px;
     }
@@ -303,26 +329,45 @@ html, body {
 
     .main-content h1 {
       font-size: 28px;
+      margin-top: 80px;
     }
 
     .main-content p {
       font-size: 16px;
       max-width: 500px;
     }
+    .section {
+        height: 30vh;
+    }
 }
 
 @media screen and (max-width: 480px) {
-    .hero-image {
-        max-height: 300px;
+    .hero-image-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80vh;  /* Juster høyden etter behov */
+        z-index: -1;  /* Sørg for at teksten vises over bildet */
+    }
+
+     .hero-image {
+        object-fit: cover;
+        object-position: center;
     }
 
     .hero-text-section {
-        padding-top: 80px;
-        margin-top: -80px;
+        position: absolute;
+        top: 80%;  /* Juster etter behov for å plassere teksten under bildet */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        padding: 10px;
+        z-index: 3;
     }
 
     .hero-image-section::after {
-        height: 100px;
+        height: 250px;
     }
 
     .hero-content h1 {
@@ -366,5 +411,8 @@ html, body {
     .main-content p {
       font-size: 14px;
       max-width: 350px;
+    }
+    .section {
+        height: 50vh;
     }
 }

@@ -186,7 +186,7 @@ body {
 
   .nav-links {
     position: fixed;
-    top: 0;
+    top: -10px;
     right: 0;
     height: 100%;
     width: 250px;
@@ -195,14 +195,13 @@ body {
     transition: right 0.5s ease;
     z-index: 10;
     display: none;
-
   }
-
 
   .nav-links.active {
     right: 0;
     display: block;
   }
+  
   .nav-links ul {
     list-style: none; /* Remove bullet points */
     padding: 0;
@@ -228,5 +227,12 @@ body {
 
   .hamburger {
     display: flex; /* Vis hamburger-menyen på små skjermer */
+  }
+  .hamburger.hide {
+    display: none; /* Skjul hamburger-ikonet når menyen er åpen */
+  }
+  
+  .nav-links.active + .hamburger {
+    display: none; /* Sørg for at hamburger-ikonet skjules når menyen er åpen */
   }
 }

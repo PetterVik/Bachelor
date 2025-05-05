@@ -1,0 +1,26 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # Kjør pipelinen på push til main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Kjør på Ubuntu-miljø
+
+    steps:
+      # Steg 1: Check ut koden fra repositoriet
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Steg 2: Sett opp SSH-nøkler for autentisering til serveren
+      - name: Setup SSH keys
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Steg 3: Kjør deploy-skriptet på serveren
+      - name: Deploy to Server
+        run: |
+          ssh user@your-server "cd /path/to/project && git pull && npm install && pm2 restart app"
