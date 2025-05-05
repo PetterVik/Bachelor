@@ -18,6 +18,7 @@ const Navbar = ({ isScrolled }) => {
       setIsMenuOpen(false);
     }
   };
+  
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -25,7 +26,7 @@ const Navbar = ({ isScrolled }) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, []); // Sørg for at dette skjer én gang etter initial render
 
   return (
     <nav className={`navbar ${isScrolled ? 'navbar-scrolled' : ''}`}>
