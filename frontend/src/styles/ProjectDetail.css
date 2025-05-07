@@ -1,109 +1,66 @@
-/* Overordnet container */
+/* General page setup */
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
 .project-detail {
-    width: 100%;
+    font-family:'Glory';
     margin: 0;
     padding: 0;
+    color: #333;
 }
   
-  /* Hero-bildet i full bredde */
 .project-hero {
     width: 100%;
-    margin: 0;
-    padding: 0;
+    height: 80vh;
+    overflow: hidden;
+    position: relative;
 }
 
 .navbar {
     background-color: rgba(255, 255, 255, 0.8);
 }
   
-  /* Selve bildet fyller bredden */
 .hero-image {
-    display: block;
     width: 100%;
-    height: 80vh;
-    object-fit: cover; 
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
-
+  
 .project-body {
     display: flex;
     max-width: 1300px;  /* Sentrer og begrens maks bredde på innholdet */
-    margin: 40px auto;  /* Top/bunn-marg og auto for å sentrere */
-    gap: 20px;          /* Avstand mellom venstre og høyre kolonne */
+    margin: 10px auto;  /* Top/bunn-marg og auto for å sentrere */
+    gap: 10px; 
 }
-
+  
 .project-left {
-    flex: 1;            /* Tar opp all ledig plass */
+    flex: 1;
     display: flex;
-    justify-content: center; /* Sentrer .project-content horisontalt i venstre kolonne */
+    justify-content: center;
 }
-
+  
 .project-sidebar {
     width: 300px;
-    background-color: #f7f7f7c0; /* Lys bakgrunn i sidebaren */
-    border-left: 1px solid #ccc;
+    background-color: none; /* Lys bakgrunn i sidebaren */
+    border-left: 2px solid #ccc;
     padding: 20px;
     box-sizing: border-box;
 }
-
-.project-sidebar h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-    border-bottom: 1px solid black;
-}
-
-.sidebar-project-card {
-    margin-bottom: 1.5rem;
-}
-
-.sidebar-project-card p {
-    margin: 0;
-    font-size: 1rem;
-    color: #333;
-}
   
-  /* Lite bilde i sidebaren */
-.sidebar-project-image {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    margin-bottom: 5px;
-    border-radius: 4px;
-}
-  
-  /* Tekstinnholdet under bildet */
 .project-content {
-    max-width: 1000px;    /* Smalere bredde for lesbarhet */
+    max-width: 1000px;
     margin: 0 auto;   /* Sentrer og legg til topp/bunn-margin */
     padding: 0 20px;     /* Litt sidemargin for små skjermer */
-    text-align: left;    /* Venstrejuster tekst */
+    text-align: left;
 }
-  
-  /* Tittel */
+
 .project-content h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
 }
-  
-  /* Keywords-container */
-.keywords {
-    margin-bottom: 1.5rem;
-}
-  
-  /* Hvert nøkkelord */
-  .keyword-chip {
-    display: inline-block;
-    background-color: #c3eeff;
-    color: #2c3e50;
-    padding: 6px 10px;
-    margin: 0 6px 6px 0;
-    border-radius: 14px;
-    font-size: 0.85rem;
-}
-  
-  /* Avsnitt */
+
 .project-content p {
     font-size: 1.3rem;
     line-height: 1.6;
@@ -113,14 +70,57 @@
 
 .project-detail h2 {
     font-size: 1.8rem;         /* Litt større */
-    font-weight: bold;         /* Fet skrift */
-    color: #2c3e50;            /* Samme farge som titlene */
     margin-top: 2rem;
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
+    letter-spacing: 1px;
+    font-family: 'Lato';
 }
   
-
+  
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+  
+  
+.keywords {
+    margin-bottom: 1.5rem;
+}
+  
+.keyword-chip {
+    display: inline-block;
+    background-color: #c3eeff;
+    color: #2c3e50;
+    padding: 6px 4px;
+    margin: 0 6px 6px 0;
+    border-radius: 14px;
+    font-size: 1rem;
+}
+  
+.sidebar-project-card {
+    margin-bottom: 20px;
+}
+  
+.sidebar-project-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+  
+.sidebar-project-card p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+  
+.sidebar-project-card a {
+    text-decoration: none;
+    color: inherit;
+}
+  
 .footer {
     position: relative;
     bottom: 0;
@@ -129,10 +129,6 @@
     background-color: #b0def4; 
     padding: 10px 0;       
     font-size: 14px;        
-    color: #333;            
-}
-  
-.footer p {
-    margin: 0;         
+    color: #333;  
 }
   

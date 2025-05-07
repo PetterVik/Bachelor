@@ -5,9 +5,30 @@ html, body {
     line-height: 1.6;
     scroll-behavior: smooth;
 }
+body {
+    transition: background-color 0.5s ease-in-out;
+  }
+  
 
 * {
     box-sizing: border-box;
+}
+
+.sticky-wrapper {
+    position: relative;
+    height: 500vh; /* Juster til antall sticky seksjoner × 100vh */
+}
+
+.sticky-section {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2rem 1rem;
 }
 
 .home-container {
@@ -18,83 +39,85 @@ html, body {
 }
 
 .hero-image-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    height: 80vh;
     width: 100%;
+    height: 100vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .hero-image {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     object-fit: cover;
-    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 
 .hero-text-section {
     position: absolute;
-    text-align: center;
-    color: black;
-    top: 80%;                 /* Plasser teksten i midten vertikalt */
-    left: 50%;                /* Plasser teksten i midten horisontalt */
-    transform: translate(-50%, -50%);  /* Juster for å sikre at teksten er perfekt sentrert */
+    top: 82%; /* juster etter smak */
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    padding: 10px;
-    z-index: 3;
-}
-
-
-.hero-image-section::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 45vh;
-    background-color: #eef6fa;
-    clip-path: polygon(
-        0% 60%,    
-        25% 35%,  
-        50% 60%,   
-        75% 35%,   
-        100% 80%,  
-        100% 100%, 
-        0% 100%    
-    );
+    display: flex;
+    justify-content: center;
     z-index: 2;
 }
 
-.hero-text-section h1 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    font-family: 'Glory';
+.hero-content {
+    padding: 2rem 2rem;
+    max-width: 900px;
+    text-align: center;
+}
+
+.hero-divider {
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    line-height: 0;
+}
+
+
+.hero-content h1 {
+    font-size: 2rem;
+    color: #2C3E50;
+    margin-bottom: 1rem;
+    font-family: 'Glory', 'Lato', sans-serif;
 }
 
 .hero-content p {
-    font-size: 0.5rem;
-    font-family: 'Lato';
+    font-size: 1rem;
+    color: #2C3E50;
+    font-family: 'Lato', sans-serif;
 }
 
 /* Services Section */
 .services {
+    background: #eef6fa;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 50px 20px;
-    background-color: #eef6fa;
-    text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
     flex-wrap: wrap;
-    margin-bottom: 15vh;
-    position: relative;
+    width: 100%;
+    padding: 2rem 0;
+    height: 100vh;
 }
 
 .service {
     width: 30%;
     padding: 10px;
     text-align: center;
+    flex: 1 1 250px;
+    max-width: 350px;
 }
 
 .service:nth-child(1),
@@ -129,7 +152,6 @@ html, body {
     align-items: center;  /* Vertically center */
     padding: 50px 20px;
     text-align: center;
-    background-color: #2C3E50;
     height: 100vh;  /* Ensure it takes up the full height of the viewport */
 }
 
@@ -149,6 +171,17 @@ html, body {
     margin: 0 auto;
 }
 
+.main-bg-1 {
+    background: #374B60;    /* Lys blå */
+}
+.main-bg-2 {
+    background: #2C3E50;    /* Ekstra lys blå/hvitaktig */
+}
+.main-bg-3 {
+    background: #23303D;    /* Mørk blå */
+    color: #fff;
+}
+
 .section {
     height: 100vh;
     min-height: 100vh;
@@ -160,12 +193,12 @@ html, body {
 
 /* Footer */
 .footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
     background-color: #b0def4;
-    padding: 10px 0;
+    padding: 0;
     font-size: 14px;
     color: #333;
 }
@@ -196,13 +229,16 @@ html, body {
     .hero-image {
         max-height: 70vh; /* Ensures the image isn't too large on larger screens */
     }
+    .hero-divider {
+        bottom: 30%;
+    }
 
     .hero-content h1 {
-        font-size: 4rem;  /* Increase font size on larger screens */
+        font-size: 3rem;  /* Increase font size on larger screens */
     }
 
     .hero-content p {
-        font-size: 1.5rem; /* Adjust font size for larger screens */
+        font-size: 1rem; /* Adjust font size for larger screens */
     }
     .services {
         flex-direction: row; /* More columns for services on larger screens */
@@ -221,6 +257,9 @@ html, body {
     .hero-image {
         max-height: 60vh; /* Adjust image height for medium screens */
     }
+    .hero-divider {
+        bottom: 39%;
+    }
     .hero-content h1 {
         font-size: 2.5rem;  /* Øk fontstørrelsen for overskriften */
     }
@@ -236,6 +275,9 @@ html, body {
     .main-text-section p {
         font-size: 1.4rem;  /* Øk fontstørrelsen for paragrafen */
     }
+    .services {
+        padding: 5vh 2rem; /* Juster padding for mellomstore skjermer */
+    }
 }
 
 
@@ -244,6 +286,9 @@ html, body {
     .hero-image {
         max-height: 60vh; /* Adjust image height for smaller screens */
     }
+    .hero-divider {
+        bottom: 37%;
+    }
 
     .hero-text-section {
         padding-top: 40px;
@@ -251,7 +296,7 @@ html, body {
     }
 
     .hero-image-section::after {
-        height: 300px;
+        height: 50px;
     }
 
     .hero-content h1 {
@@ -265,58 +310,21 @@ html, body {
 
     .services {
         align-items: center;
-        padding: 20px;
+        padding: 0;
+        margin-top: -20vh;
+        margin-bottom: 100px;
     }
 
     .service {
         width: 33%; /* Make each service take up most of the screen width */
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         text-align: center;
     }
 
     .service img {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       margin-bottom: 15px;
-    }
-
-    .service h3 {
-        font-size: 18px;
-    }
-
-    .service p {
-        font-size: 14px;
-    }
-
-    .main-text-section {
-      padding: 40px 20px;
-    }
-
-    .main-content h1 {
-      font-size: 24px;
-    }
-
-    .main-content p {
-      font-size: 16px;
-      max-width: 600px;
-    }
-}
-
-@media screen and (max-width: 680px) {
-    .hero-image-section::after {
-        height: 290px;
-    }
-    .services {
-        padding: 30px;
-    }
-
-    .service {
-        width: 33%;
-    }
-
-    .service img {
-        width: 80px;
-        height: 80px;
     }
 
     .service h3 {
@@ -327,13 +335,69 @@ html, body {
         font-size: 12px;
     }
 
+    .main-text-section {
+      padding: 40px 20px;
+    }
+
     .main-content h1 {
-      font-size: 28px;
-      margin-top: 80px;
+      font-size: 20px;
     }
 
     .main-content p {
-      font-size: 16px;
+      font-size: 14px;
+      max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .hero-image-section::after {
+        height: 290px;
+    }
+    .hero-divider {
+        bottom: 37%;
+        width: 180%;
+    }
+    .hero-content h1 {
+      font-size: 26px;
+      margin-top: 40px;
+    }
+
+    .hero-content p {
+      font-size: 12px;
+    }
+    .services {
+        align-items: center;
+        margin-top: -20vh; /* Increase the space to prevent overlap */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two items per row on small screens */
+        grid-gap: 10px;
+        margin-bottom: 100px;
+    }
+
+    .service {
+        width: 100%;  /* Full width for smaller screens */
+        text-align: center;
+    }
+
+    .service img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .service h3 {
+        font-size: 14px;
+    }
+
+    .service p {
+        font-size: 12px;
+    }
+
+    .main-content h1 {
+      font-size: 18px;
+    }
+
+    .main-content p {
+      font-size: 14px;
       max-width: 500px;
     }
     .section {
@@ -343,12 +407,11 @@ html, body {
 
 @media screen and (max-width: 480px) {
     .hero-image-section {
-        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 80vh;  /* Juster høyden etter behov */
-        z-index: -1;  /* Sørg for at teksten vises over bildet */
+        z-index: 2;  /* Sørg for at teksten vises over bildet */
     }
 
      .hero-image {
@@ -358,7 +421,7 @@ html, body {
 
     .hero-text-section {
         position: absolute;
-        top: 80%;  /* Juster etter behov for å plassere teksten under bildet */
+        top: 70%;  /* Juster etter behov for å plassere teksten under bildet */
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
@@ -381,10 +444,11 @@ html, body {
 
     .services {
         padding: 15px;
+        margin-top: -20vh;
     }
 
     .service {
-        width: 50%;
+        width: 100%;
     }
 
     .service img {
@@ -405,14 +469,17 @@ html, body {
     }
 
     .main-content h1 {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .main-content p {
-      font-size: 14px;
-      max-width: 350px;
+      font-size: 12px;
+      max-width: 300px;
     }
     .section {
         height: 50vh;
+    }
+    .footer {
+        bottom: 0;
     }
 }

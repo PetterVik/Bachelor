@@ -1,0 +1,20 @@
+config:
+  target: 'http://localhost:5123'  # URL-en til backend-serveren din
+  phases:
+    - duration: 60
+      arrivalRate: 7  # 7 forespørsler per sekund
+
+scenarios:
+  - flow:
+      - post:
+          url: "/api/projects"  # Denne ruten brukes til å legge til prosjekter (API-endepunkt for å opprette prosjekter)
+          json:
+            title: "Test Project"
+            description: "Test beskrivelse"
+            keywords: ["Grønn industri", "Solkraft", "Vindkraft"]
+            visibleOnWebsite: "yes"
+            sections: [
+              { subtitle: "Intro", text: "Intro tekst" },
+              { subtitle: "Oppdrag", text: "Oppdrag tekst" }
+            ]
+            image: "image1.png"

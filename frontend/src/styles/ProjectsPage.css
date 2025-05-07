@@ -29,7 +29,11 @@
     width: 100%;
     max-width: 400px; 
     color: white;
-    height: 470px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Ensure space between image and text */
+    overflow: hidden; /* Hide overflowing text */
 }
 
 .project-card:hover {
@@ -65,9 +69,10 @@
     padding-right: 10px;
     position: relative;
     color: #C3EEFF;
-    min-height: 40px;
     font-family: 'Glory';
     font-weight: 500;
+    overflow: hidden; /* Hide overflowed text */
+    text-overflow: ellipsis; /* Add ellipsis for overflowed text */
 }
 
 .project-card p {
@@ -77,11 +82,16 @@
     padding-left: 10px;
     padding-right: 10px;
     z-index: 2;
-    min-height: 60px;
+    height: auto;
     color: white;
     font-family: 'Glory';
-
+    overflow: hidden; /* Prevent overflow */
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    -webkit-box-orient: vertical;
 }
+
  /* Keyword på prosjektsiden */
 .keyword-chip {
     display: inline-block;
@@ -178,10 +188,30 @@
 @media (max-width: 992px) {
     .project-card {
       max-width: 45%; /* ~2 in a row if container is around 90-100% wide */
+
+    }
+    .project-card img {
+        max-height: 170px; /* Dynamisk høyde */
     }
     .projects-container h1 {
         margin-top: 140px;
         font-size: 40px;
+    }
+    .project-card::after {
+        height: calc(100% - 170px); /* Dynamically adjust based on image height */
+    }
+    .project-card h3 {
+        font-size: 18px; 
+    }
+    .project-card p {
+        font-size: 14px;
+        -webkit-line-clamp: 1;
+    }
+    .keyword-chip {
+        padding: 2px 2px;
+        margin: 2px 2px 0 2px;
+        font-size: 8px;
+        border-radius: 8px;
     }
 }
 
@@ -214,5 +244,20 @@
 
     .project-card {
         height: 400px;
+    }
+    .project-card img {
+        max-height: 150px; /* Dynamisk høyde */
+    }
+    .project-card::after {
+        height: calc(100% - 150px); /* Dynamically adjust based on image height */
+    }
+    .project-card p {
+        max-height: 80px;
+        overflow: hidden; /* Hide overflowed text */
+        text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limit to 3 lines */
+        -webkit-box-orient: vertical;
+        line-height: 1.5; /* Adjust line height */
     }
 }

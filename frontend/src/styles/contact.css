@@ -74,9 +74,9 @@
 
 .calendar-container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 80%;
     background-color: #fff;
-    padding: 2rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -368,6 +368,21 @@
     .book-appointment-btn {
       width: 80%;
     }
+    .rbc-toolbar button {
+      font-size: 10px; /* Adjust button font size */
+      width: 40%;
+      text-align: left;
+    }
+    .rbc-toolbar-label {
+      font-size: 12px;
+    }
+    .rbc-header {
+      font-size: 10px;
+    }
+    .rbc-event {
+      font-size: 12px;
+      padding: 0.1rem;
+    }
   }
   
   /* Ekstra responsiv for mobilskjermer (mindre enn 480px) */
@@ -380,23 +395,77 @@
     .book-appointment-btn {
       width: 100%;
       padding: 12px;
-      font-size: 14px;
+      font-size: 12px;
     }
   
     .contact-booking {
       padding: 20px;
+      overflow-y: auto;
+    }
+    .contact-booking h2 {
+        font-size: 20px;
     }
 
     .contact-booking p {
         padding: 15px;
-        font-size: 16px;
+        font-size: 14px;
     }
-  
-    .calendar-container,
-    .booking-form-container {
+
+    .calendar-container {
+      max-width: 100%;
+      height: 500px;
       padding: 1rem;
+      box-sizing: border-box; /* Ensure padding doesn't affect width */
+      overflow-x: auto;
     }
-  
+    /* Adjust the grid for the calendar */
+    .rbc-calendar {
+      width: 100%; /* Make the calendar grid width 100% */
+    }
+    .calendar-container h2 {
+      font-size: 12px;
+    }
+
+    .rbc-toolbar {
+      display: flex;
+      justify-content: center; /* Centers the toolbar buttons horizontally */
+      margin-top: -20px;  /* Adds space between the header and the buttons */
+    }
+
+    .rbc-toolbar button {
+      font-size: 8px; /* Smaller font for buttons */
+      padding: 2px 4px; /* Adjust button padding */
+      width: 30%; /* Reduce button width */
+      margin: 0 5px; /* Adds spacing between the buttons */
+      text-align: left;
+    }
+    .rbc-toolbar-label {
+      font-size: 10px;
+    }
+    .rbc-header {
+      font-size: 8px;
+      padding: 0;
+      text-align: left;
+    }
+    .rbc-event {
+      font-size: 10px;
+      padding: 0.1rem;
+    }
+    .rbc-time-content {
+      font-size: 10px; /* Adjust time content font size */
+    }
+    .rbc-time-slot {
+      font-size: 10px; /* Adjust time slot font size */
+      padding: 5px;
+    }
+
+
+    .booking-form-container {
+      height: 500px; /* Fixed height for the booking form */
+      overflow-y: auto; /* Enable scrolling if content overflows */
+    }
+
+
     .contact-info p {
       margin-left: 0; /* Fjern margin på små skjermer */
     }
