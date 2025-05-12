@@ -1,4 +1,4 @@
-// src/pages/AddProject.jsx
+//importerer nødvendige biblioteker og komponenter
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import '../styles/AddProject.css';
@@ -6,10 +6,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const AddProject = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const [fileName, setFileName] = useState('Bla gjennom datamaskinen her');
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({  //holder på feltene i skjemaet
       title: '',
       description: '',
       keywords: [], 
@@ -71,7 +71,7 @@ const AddProject = () => {
         });
     };
   
-    // Handle input changes
+    // Handtere input endringer
     const handleChange = (e, index) => {
         const { name, value, type, files } = e.target;
 
@@ -113,7 +113,7 @@ const AddProject = () => {
         }
     };
 
-    // Add a new section
+    // Legge til ny seksjon
     const addSection = () => {
         setFormData({
             ...formData,
@@ -121,7 +121,7 @@ const AddProject = () => {
         });
     };
 
-    // Remove a section
+    // Fjerne seksjon
     const removeSection = (index) => {
         const updatedSections = formData.sections.filter((_, i) => i !== index);
         setFormData({
@@ -130,7 +130,7 @@ const AddProject = () => {
         });
     };
 
-    // Handle form submission
+    // Håndtere innsending av skjema
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('Skal sende dette skjemaet:', formData);
@@ -141,7 +141,7 @@ const AddProject = () => {
             data.append('description', formData.description);
             // keywords er et array → lag en kommaseparert streng
             data.append('keywords', formData.keywords.join(','));
-            // Convert 'yes'/'no' til 'true'/'false' hvis serveren forventer bool
+            // Convert 'yes'/'no' til 'true'/'false' hvis serveren forventer boolean
             const isVisible = formData.visibleOnWebsite === 'yes' ? 'true' : 'false';
             data.append('visibleOnWebsite', isVisible);
 
@@ -178,8 +178,8 @@ const AddProject = () => {
                 </button>
             </div>
 
-
-            <div className="add-project-container">
+            
+            <div className="add-project-container">  {/* Container for å legge til prosjekt */}
                 <h2>Legg til nytt prosjekt</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -271,7 +271,7 @@ const AddProject = () => {
                             >
                                 <option value="" disabled>
                                     Velg underoverskrift
-                                </option>
+                                </option>   {/* Rullegardinmeny for underoverskrifter*/}
                                 <option value="Intro">Intro</option>
                                 <option value="Oppdrag">Oppdrag</option>
                                 <option value="Løsning">Løsning</option>
@@ -311,7 +311,7 @@ const AddProject = () => {
                         <label>Synlig på nettside:</label>
                         <div>
                             <label>
-                                <input 
+                                <input  //radioknapp for synlig eller ikke på nettsiden
                                     type="radio" 
                                     name="visibleOnWebsite" 
                                     value="yes" 

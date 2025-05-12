@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar'; // Ensure this is imported correctly
-import '../styles/Dashboard.css'; // Ensure this is the correct path to your CSS file
+import React, { useState } from 'react'; // Import React og useState
+import { Link } from 'react-router-dom'; // Import Link for navigation
+import Navbar from '../components/Navbar'; // Import Navbar komponenten
+import '../styles/Dashboard.css'; // Importere CSS for styling
 
 const Dashboard = () => {
-  // State to toggle dropdown visibility
+  // Boolean state som håndterer om dropdown er åpen eller lukket
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Toggle the dropdown
+  // Toggle dropdown
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  return (
+  return ( //retunerer dashboardet
     <div className="dashboard">
       <Navbar />
       
@@ -23,7 +23,7 @@ const Dashboard = () => {
             <label>Alternativer</label>
             <input
               type="text"
-              onClick={toggleDropdown} // Show dropdown when clicked
+              onClick={toggleDropdown} // Vis dropdown når trykket på
               placeholder="Hva ønsker du å gjøre?"
               readOnly
             />
