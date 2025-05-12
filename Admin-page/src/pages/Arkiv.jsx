@@ -16,7 +16,8 @@ const Arkiv = () => {
     const getProjects = async () => {
       try {
         const response = await axios.get("http://localhost:5123/api/projects"); // Endpoint for projects
-        const archivedProjects = response.data.filter((project) => project.isArchived === true); // Filtrerer arkiverte prosjekter
+        console.log("Full respons fra API:", response.data);
+        const archivedProjects = response.data; // Filtrerer arkiverte prosjekter
         if (archivedProjects.length === 0) {
           console.log("Ingen arkiverte prosjekter funnet.");
         } else {
