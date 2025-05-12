@@ -9,6 +9,7 @@ import AuthProvider from "./auth/AuthProvider";
 import AddProject from './pages/AddProject';  // Import AddProject page
 import EditProject from './pages/EditProject.jsx';
 import Arkiv from './pages/Arkiv.jsx';
+import ProjectDetail from './pages/ProjectDetailAdm.jsx';
 
 function App() {
   return (
@@ -65,6 +66,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+            <Route 
+              path="/projects/:id" 
+              element={
+                <ProtectedRoute>
+                  <ProjectDetail />
+                </ProtectedRoute>
+              }
+            />
+
        
         </Routes>
       </Router>
