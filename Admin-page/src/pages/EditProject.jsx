@@ -206,6 +206,7 @@ const EditProject = () => { //definerer EditProject komponenten
                 </button>
             </div>
 
+
             <div className="add-project-container">
                 <h2>Rediger prosjekt</h2>
 
