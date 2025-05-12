@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import "../styles/ProjectDetailAdm.css";
+import Navbar from "../components/Navbar"; // Import Navbar
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -92,6 +93,7 @@ const ProjectDetail = () => {
 
   return (
     <div className="project-detail">
+      <Navbar /> {/* Legger til navbar */}
       {/* Hero-bilde i full bredde */}
       <div className="project-hero">
         <img
