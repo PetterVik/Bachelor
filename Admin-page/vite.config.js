@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      // Hvis ikke nødvendig, kan du fjerne dette aliaset
       warning: path.resolve(__dirname, 'node_modules', 'warning', 'warning.js')
     }
   },

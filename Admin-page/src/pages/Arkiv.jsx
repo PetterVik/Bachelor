@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import Navbar from '../components/Navbar'; // Import Navbar
 import axios from "axios"; // Import Axios
 import "../styles/Arkiv.css";
-import '../styles/AddProject.css';
 import { useNavigate } from 'react-router-dom';
 
 const Arkiv = () => {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState([]); //lagrer liste over arkvierte prosjekter
-  const [searchTerm, setSearchTerm] = useState(""); //søketeksten fra brukeren
+  const [projects, setProjects] = useState([]); // lagrer liste over arkvierte prosjekter
+  const [searchTerm, setSearchTerm] = useState(""); // søketeksten fra brukeren
+  const [currentPage, setCurrentPage] = useState(1); // side nummer
+  const [projectsPerPage] = useState(6); // antall prosjekter per side
+  const [totalPages, setTotalPages] = useState(0); // total antall sider
+  const [isLoading, setIsLoading] = useState(true); // loading state
 
   useEffect(() => {
-    // Henter arkvierte prosjekter med Axios
     const getProjects = async () => {
       try {
         const response = await axios.get("http://localhost:5123/api/projects"); // Endpoint for projects
@@ -22,17 +24,25 @@ const Arkiv = () => {
         } else {
           console.log("Hentede arkiverte prosjekter:", archivedProjects);
         }
-        setProjects(archivedProjects); // Oppdaterer state med hentede prosjekter
+        // Sorter prosjektene alfabetisk etter tittel
+        const sortedProjects = archivedProjects.sort((a, b) => {
+          const titleA = a.title?.toLowerCase() || "";
+          const titleB = b.title?.toLowerCase() || "";
+          return titleA.localeCompare(titleB); // Sorter alfabetisk
+        });
+        setProjects(sortedProjects); // Oppdaterer state med sorterte prosjekter
+        setTotalPages(Math.ceil(sortedProjects.length / projectsPerPage)); // Beregn total antall sider
+        setIsLoading(false); // Sett loading til false når data er hentet
       } catch (error) {
         console.error("Feil ved henting av arkiverte prosjekter:", error);
+        setIsLoading(false); // Sett loading til false selv om det er feil
       }
     };
 
     getProjects(); // Kaller funksjonen for å hente prosjekter
   }, []);
 
-
-  // Filtrerer basert på søket til bruker
+  // Filtrering av prosjektene basert på søket
   const filteredProjects = projects.filter((project) => {
     const title = project.title?.toLowerCase() || "";
     const shortDescription = project.shortDescription?.toLowerCase() || "";
@@ -46,10 +56,28 @@ const Arkiv = () => {
     );
   });
 
+  // Bestem hvilke prosjekter som skal vises på nåværende side
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = filteredProjects.slice(indexOfFirstProject, indexOfLastProject);
 
-  // Handler for search input changes
+  // Håndter endring av søketekst
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+  };
+
+  // Håndter forrige side
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Håndter neste side
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
@@ -79,27 +107,45 @@ const Arkiv = () => {
           </div>
         </div>
 
-        <div className="projects-grid">
-          {/* Mapping through the archived projects and rendering each one */}
-          {filteredProjects.map((project) => (
-            <div key={project.id} className="project-card">
-              <Link to={`/projects/${project.id}`}>
-                <img src={`http://localhost:5123${project.imageUrl}`} alt={project.title} />
-                <h3>{project.title}</h3>
-                {project.keywords && (
-                  <div className="keywords">
-                    {project.keywords.split(',').map((keyword, index) => (
-                      <span key={index} className="keyword-chip">
-                        {keyword.trim()}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                <p>{project.shortDescription}</p>
-              </Link>
+        {/* Hvis dataene er under lasting, vis en lasteskjerm */}
+        {isLoading ? (
+          <div className="loading">Laster prosjekter...</div>
+        ) : (
+          <>
+            <div className="projects-grid">
+              {/* Mapping through the archived projects and rendering each one */}
+              {currentProjects.map((project) => (
+                <div key={project.id} className="project-card">
+                  <Link to={`/projects/${project.id}`}>
+                    <img src={`http://localhost:5123${project.imageUrl}`} alt={project.title} />
+                    <h3>{project.title}</h3>
+                    {project.keywords && (
+                      <div className="keywords">
+                        {project.keywords.split(',').map((keyword, index) => (
+                          <span key={index} className="keyword-chip">
+                            {keyword.trim()}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <p>{project.shortDescription}</p>
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+
+            {/* Paginering */}
+            <div className="pagination">
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                Forrige
+              </button>
+              <span>Side {currentPage} av {totalPages}</span>
+              <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                Neste
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
