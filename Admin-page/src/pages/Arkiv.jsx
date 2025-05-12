@@ -8,31 +8,31 @@ import { useNavigate } from 'react-router-dom';
 
 const Arkiv = () => {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [projects, setProjects] = useState([]); //lagrer liste over arkvierte prosjekter
+  const [searchTerm, setSearchTerm] = useState(""); //søketeksten fra brukeren
 
   useEffect(() => {
-    // Function to fetch archived projects using Axios
+    // Henter arkvierte prosjekter med Axios
     const getProjects = async () => {
       try {
         const response = await axios.get("http://localhost:5123/api/projects"); // Endpoint for projects
-        const archivedProjects = response.data.filter((project) => project.isArchived === true); // Filter archived projects
+        const archivedProjects = response.data.filter((project) => project.isArchived === true); // Filtrerer arkiverte prosjekter
         if (archivedProjects.length === 0) {
           console.log("Ingen arkiverte prosjekter funnet.");
         } else {
           console.log("Hentede arkiverte prosjekter:", archivedProjects);
         }
-        setProjects(archivedProjects); // Update state with fetched projects
+        setProjects(archivedProjects); // Oppdaterer state med hentede prosjekter
       } catch (error) {
         console.error("Feil ved henting av arkiverte prosjekter:", error);
       }
     };
 
-    getProjects(); // Fetch projects when the component mounts
+    getProjects(); // Kaller funksjonen for å hente prosjekter
   }, []);
 
 
-  // Filter projects based on search term
+  // Filtrerer basert på søket til bruker
   const filteredProjects = projects.filter((project) => {
     const title = project.title?.toLowerCase() || "";
     const shortDescription = project.shortDescription?.toLowerCase() || "";
@@ -40,7 +40,7 @@ const Arkiv = () => {
     const term = searchTerm.toLowerCase();
 
     return (
-      title.includes(term) ||
+      title.includes(term) || 
       shortDescription.includes(term) ||
       keywords.includes(term)
     );
@@ -54,7 +54,7 @@ const Arkiv = () => {
 
   return (
     <>
-      <Navbar /> {/* Added Navbar here */}
+      <Navbar /> {/* Navbar komponenten */}
 
       <div className="back-button-container">
         <button onClick={() => navigate('/dashboard')} className="tilbake-knapp">
@@ -65,7 +65,7 @@ const Arkiv = () => {
       <div className="projects-container">
         <h1>Arkiv</h1>
 
-        {/* Search bar */}
+        {/* Search bar for filtrering av prosjekter */}
         <div className="search-bar">
           <div className="search-input-container">
             <input
