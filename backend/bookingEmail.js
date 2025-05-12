@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -9,8 +10,8 @@ app.use(express.json());
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'malinskogeng12@gmail.com',
-    pass: 'mwwb ltsx loxq hury',
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
   },
 });
 
@@ -22,7 +23,7 @@ app.post('/send-booking-email', async (req, res) => {
 
   try {
     await transporter.sendMail({
-      from: '"Pure Logic" <malinskogeng@hotmail.com>',  
+      from: '"Pure Logic" <${process.env.GMAIL_USER}>',
       to: email,   
       bcc: 'post@purelogic.no',                                
       subject: subject || "Bekreftelse på konsultasjon",

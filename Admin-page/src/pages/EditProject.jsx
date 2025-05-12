@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import '../styles/AddProject.css';
+import '../styles/AddProject.css'; //importerer CSS-filen
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-const EditProject = () => {
-    const navigate = useNavigate();
-    const [fileName, setFileName] = useState('Bla gjennom datamaskinen her');
-    const [projects, setProjects] = useState([]);
-    const [selectedProject, setSelectedProject] = useState(null);
-    const [formData, setFormData] = useState({
+const EditProject = () => { //definerer EditProject komponenten
+    const navigate = useNavigate(); //initialiserer funksjonen for navigasjon
+    const [fileName, setFileName] = useState('Bla gjennom datamaskinen her'); 
+    const [projects, setProjects] = useState([]); 
+    const [selectedProject, setSelectedProject] = useState(null); //prosjektet som er valgt til redigerering
+    const [formData, setFormData] = useState({ //initialiserer formData med tomme verdier
         title: '',
         description: '',
         keywords: [],
@@ -21,7 +21,7 @@ const EditProject = () => {
         image: null,
     });
 
-    const predefinedKeywords = [
+    const predefinedKeywords = [  //liste med nøkkelord som man kan velge når prosjekter lastes opp
         'Grønn industri',
         'Solkraft',
         'Areal - og eiendomsutvikling',
@@ -31,20 +31,20 @@ const EditProject = () => {
         'Industriarkitektur',
     ];
 
-    useEffect(() => {
+    useEffect(() => { //henter alle prosjektene fra databasen
         const fetchProjects = async () => {
             try {
                 const response = await axios.get('http://localhost:5123/api/projects');
                 setProjects(response.data);
             } catch (error) {
-                console.error('Feil ved henting av prosjekter:', error);
+                console.error('Feil ved henting av prosjekter:', error); //feilmelding
             }
         };
 
         fetchProjects();
     }, []);
 
-    const handleProjectSelect = async (e) => {
+    const handleProjectSelect = async (e) => { //henter valgt prosjekt og fyller inn skjemaet med eksiterende informasjon om prosjektet
         const projectId = e.target.value;
         const selected = projects.find(project => project.id.toString() === projectId.toString());
 
@@ -53,7 +53,7 @@ const EditProject = () => {
             return;
         }
 
-        // Parse longDescription (sections) like in ProjectDetail.jsx
+        // Parse longDescription til section
         let sections = [];
         if (selected.longDescription) {
             try {
@@ -77,7 +77,7 @@ const EditProject = () => {
         });
     };
 
-    const handleKeywordChange = (e) => {
+    const handleKeywordChange = (e) => {  //henter valgt nøkkelord og legger det til i formData
         const selectedKeyword = e.target.value;
         if (selectedKeyword && !formData.keywords.includes(selectedKeyword) && formData.keywords.length < 5) {
             setFormData({
@@ -88,7 +88,7 @@ const EditProject = () => {
         }
     };
 
-    const handleCustomKeywordChange = (e) => {
+    const handleCustomKeywordChange = (e) => { //henter nytt nøkkelord og legger det til i formData
         const customKeyword = e.target.value;
         if (customKeyword && !formData.keywords.includes(customKeyword) && formData.keywords.length < 5) {
             setFormData({
@@ -98,7 +98,7 @@ const EditProject = () => {
         }
     };
 
-    const handleChange = (e, index) => {
+    const handleChange = (e, index) => { //håndterer endringer 
         const { name, value, type, files } = e.target;
 
         if (name === 'image' && type === 'file') {
@@ -128,14 +128,14 @@ const EditProject = () => {
         }
     };
 
-    const addSection = () => {
+    const addSection = () => { //legger til nytt avsnitt/seksjon
         setFormData({
             ...formData,
             sections: [...formData.sections, { subtitle: '', text: '' }],
         });
     };
 
-    const removeSection = (index) => {
+    const removeSection = (index) => { //fjerner avsnitt/seksjon
         const updatedSections = formData.sections.filter((_, i) => i !== index);
         setFormData({
             ...formData,
@@ -143,7 +143,7 @@ const EditProject = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => { //samler all data i FormData og sender put forespørsel om å oppdatere prosjektet i databasen
         e.preventDefault();
         try {
             const data = new FormData();
@@ -170,9 +170,9 @@ const EditProject = () => {
         }
     };
 
-    const handleDelete = async () => {
+    const handleDelete = async () => { //håndetrer sletting av prosjekt
         if (!selectedProject) return;
-
+        // Ber om bekreftelse at prosjektet skal slettes
         const confirmDelete = window.confirm(`Er du sikker på at du vil slette prosjektet: ${selectedProject.title}?`);
         if (!confirmDelete) return;
 
@@ -189,7 +189,7 @@ const EditProject = () => {
         }
     };
 
-    return (
+    return ( //returnerer JSX som viser skjemaet for redigering av prosjekt
         <>
             <Navbar />
 

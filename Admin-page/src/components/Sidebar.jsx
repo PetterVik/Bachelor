@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-export function Sidebar() {
+export function Sidebar() { //returnerer Sidebar komponenten
   return (
-    <div style={{ 
+    <div style={{ //styling av sidebar
       width: "250px", height: "100vh", background: "#1e1e2d", color: "#fff", 
       padding: "20px", display: "flex", flexDirection: "column"
     }}>

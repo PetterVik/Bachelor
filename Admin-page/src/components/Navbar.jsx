@@ -1,11 +1,12 @@
+//importerer nødvendige biblioteker og komponenter
 import React from "react";
 import { Link } from "react-router-dom";
-import "../styles/AdminNavbar.css"; // Update your CSS as needed
-import logo from '../assets/pure-logic-logo.png';  // Importer bildet
+import "../styles/AdminNavbar.css"; 
+import logo from '../assets/pure-logic-logo.png';  
 
 
 const Navbar = () => {
-  return (
+  return ( //returnerer navbar
     <nav className="navbar">
       <div className="logo-container">
       <Link to="/" className="logo-link">
