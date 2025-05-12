@@ -10,42 +10,57 @@ using PureLogicBackend.Data;
 
 namespace backend.Migrations
 {
+    // Partial-klass som EF Core bruker til å bygge den interne modellen
+    // for AppDbContext etter migrasjonen «UpdateProjectSchema».
+
     [DbContext(typeof(AppDbContext))]
     [Migration("20250313114056_UpdateProjectSchema")]
     partial class UpdateProjectSchema
     {
-        /// <inheritdoc />
+    // Konfigurerer ModelBuilder med entiteter, kolonner, relasjoner og mapping
+    // slik de skal se ut etter at «UpdateProjectSchema» er kjørt.
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
+
+    // Generelle annotasjoner for EF Core-versjon og maks ID-lengde
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+    // Aktiverer standard Identity-strategi for PostgreSQL (IdentityByDefaultColumns)
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+    // Definerer konfigurasjon for Project-entiteten
             modelBuilder.Entity("PureLogicBackend.Models.Project", b =>
                 {
+                    // PK-kolonnen Id med automatisk verdi­generering
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    // Tekstkolonne for prosjektbeskrivelse
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    // Tekstkolonne for bildeadresse, nå navngitt i snake_case
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
+                    // Tekstkolonne for prosjektets tittel
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+                    // Angir Id som primærnøkkel for entiteten
                     b.HasKey("Id");
 
+                    // Mapper entiteten til tabellen "Projects"
                     b.ToTable("Projects");
 
+                    // Seed-data: to eksempeldokumenter legges inn ved migrasjon. Disse kan slettes ved behov. 
                     b.HasData(
                         new
                         {

@@ -4,25 +4,25 @@
 
 namespace backend.Migrations
 {
-    /// <inheritdoc />
+        // Migration som oppdaterer Projects‐skjemaet ved å gi kolonnen ImageUrl et snake_case‐navn.
     public partial class UpdateProjectSchema : Migration
     {
-        /// <inheritdoc />
-        protected override void Up(MigrationBuilder migrationBuilder)
+        // Kjør migrasjonen: bytt ut kolonnen "ImageUrl" med "image_url" i Projects-tabellen.
+                protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "ImageUrl",
-                table: "Projects",
-                newName: "image_url");
+                name: "ImageUrl", // Eksisterende kolonnenavn
+                table: "Projects", // Tabellen som inneholder kolonnen
+                newName: "image_url"); // Nyt kolonnenavn i snake_case
         }
 
-        /// <inheritdoc />
+        // Reverter migrasjonen: bytt kolonnenavnet "image_url" tilbake til "ImageUrl".
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "image_url",
-                table: "Projects",
-                newName: "ImageUrl");
+                name: "image_url", // Kolonnenavn etter Up()
+                table: "Projects", // Tabellen som inneholder kolonnen
+                newName: "ImageUrl"); // Originalt kolonnenavn for rollback
         }
     }
 }

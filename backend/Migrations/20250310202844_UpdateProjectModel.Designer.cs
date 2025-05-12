@@ -10,28 +10,38 @@ using PureLogicBackend.Data;
 
 namespace backend.Migrations
 {
+        // Denne partial-klassen inneholder logikken for å bygge modellen 
+        // slik EF Core forventer den etter migrasjonen «UpdateProjectModel».
+
     [DbContext(typeof(AppDbContext))]
     [Migration("20250310202844_UpdateProjectModel")]
     partial class UpdateProjectModel
     {
-        /// <inheritdoc />
+        // Konfigurerer det interne EF Core ModelBuilder-objektet
+        // med entiteter, kolonner, relasjoner og seed-data for denne migrasjonen.
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
+        // Globale annotasjoner for EF Core-versjon og begrensning på ID-lengde
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+        // Angir standard Identity-kolonne­strategi for PostgreSQL
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+        // Konfigurerer Project-entiteten:
             modelBuilder.Entity("PureLogicBackend.Models.Project", b =>
                 {
+
+        // Definerer PK-kolonnen Id med automatisk verdi­generering
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+        // Kolonner for prosjektets Title, Description og ImageUrl
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
@@ -41,10 +51,12 @@ namespace backend.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+        // Setter Id som primærnøkkel
                     b.HasKey("Id");
 
+        // Mapper entiteten til tabellen "Projects"
                     b.ToTable("Projects");
-
+        // Seed-data: legger inn to standardprosjekter ved migrasjon. Disse er eldre, og kan fjernes hvis det er ønskelig
                     b.HasData(
                         new
                         {

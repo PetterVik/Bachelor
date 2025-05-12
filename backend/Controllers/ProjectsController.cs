@@ -22,7 +22,6 @@ namespace PureLogicBackend.Controllers
         }
 
         // Henter ALLE prosjekter
-        // Henter ALLE prosjekter
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
@@ -50,7 +49,7 @@ namespace PureLogicBackend.Controllers
             var project = new Project
             {
                 Title = dto.Title,
-                Description = dto.Description,
+                Description = dto.Description,       //En eldre versjon vi ikke har fjernet. Erstattet med Short- og LongDescription.
                 Keywords = dto.Keywords,
                 ShortDescription = dto.Description, // Juster om du vil lagre kort beskrivelse separat
                 LongDescription = dto.Sections,      // For enkelhet lagrer vi "sections" her

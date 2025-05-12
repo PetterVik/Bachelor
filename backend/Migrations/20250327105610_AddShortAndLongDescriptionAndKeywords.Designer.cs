@@ -10,51 +10,71 @@ using PureLogicBackend.Data;
 
 namespace backend.Migrations
 {
+    // Partial-klasse som definerer EF Core-modellen for AppDbContext etter 
+    // migrasjonen AddShortAndLongDescriptionAndKeywords.
+
     [DbContext(typeof(AppDbContext))]
     [Migration("20250327105610_AddShortAndLongDescriptionAndKeywords")]
     partial class AddShortAndLongDescriptionAndKeywords
     {
-        /// <inheritdoc />
+        // Bygger ModelBuilder-objektet med entitetskonfigurasjon, kolonner,
+        // mapping, og seed-data slik det skal være etter migrasjonen.
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
+
+            // Globale metadata for EF Core-versjon og maksimal lengde på
+            // identifikatorer (f.eks. tabell- eller kolonnenavn)
+
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            // Aktiverer standard identity-kolonnestøtte for PostgreSQL
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            // Konfigurerer Project-entiteten med alle kolonner og mapping
             modelBuilder.Entity("PureLogicBackend.Models.Project", b =>
                 {
+                    // Primærnøkkel-kolonnen Id med auto-inkrement (Identity)
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    // Standard beskrivelse-kolonne (første versjon)
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    // Bilde-URL, nå navngitt til snake_case i databasen
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
+                    // Nøkkelord for søk/filtrering    
                     b.Property<string>("Keywords")
                         .HasColumnType("text");
 
+                    // Lang beskrivelse (detaljert tekst)
                     b.Property<string>("LongDescription")
                         .HasColumnType("text");
 
+                    // Kort beskrivelse (kort tekst)    
                     b.Property<string>("ShortDescription")
                         .HasColumnType("text");
 
+                    // Tittel på prosjektet
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+                    // Angir Id som primærnøkkel
                     b.HasKey("Id");
 
+                    // Map entiteten til tabellen "Projects"
                     b.ToTable("Projects");
 
+                    // Seed-data: innledende eksempler på to prosjekter. Disse kan slettes hvis det er ønskelig. 
                     b.HasData(
                         new
                         {

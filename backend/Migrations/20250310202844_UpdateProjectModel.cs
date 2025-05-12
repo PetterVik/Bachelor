@@ -7,17 +7,20 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace backend.Migrations
 {
-    /// <inheritdoc />
+    // Migration som legger til Projects-tabellen med kolonner og seed-data
+    // for å støtte lagring av prosjekter i databasen.
     public partial class UpdateProjectModel : Migration
     {
-        /// <inheritdoc />
+        // Kjør migreringen: opprett Projects-tabellen og legg inn standardrader.
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            // Oppretter tabellen "Projects" med kolonner for Id, Title, Description og ImageUrl
             migrationBuilder.CreateTable(
                 name: "Projects",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
+                    // Konfigurerer automatisk verdi­generering ved innsatte rader
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "text", nullable: true),
@@ -25,9 +28,10 @@ namespace backend.Migrations
                 },
                 constraints: table =>
                 {
+                    // Setter Id som primærnøkkel
                     table.PrimaryKey("PK_Projects", x => x.Id);
                 });
-
+                //Litt eldre testdata. Denne kan fjernes hvis dere ønsker. 
             migrationBuilder.InsertData(
                 table: "Projects",
                 columns: new[] { "Id", "Description", "ImageUrl", "Title" },
@@ -38,9 +42,10 @@ namespace backend.Migrations
                 });
         }
 
-        /// <inheritdoc />
+        // Reverter migreringen ved å fjerne Projects-tabellen og all tilhørende data.
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            // Sletter Projects-tabellen helt
             migrationBuilder.DropTable(
                 name: "Projects");
         }
