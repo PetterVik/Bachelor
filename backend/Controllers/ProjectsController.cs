@@ -82,7 +82,7 @@ namespace PureLogicBackend.Controllers
 
         // Oppdaterer et eksisterende prosjekt
         [HttpPut("{id}")]
-            public async Task<IActionResult> UpdateProject(int id, [FromBody] ProjectDto dto)
+            public async Task<IActionResult> UpdateProject(int id, [FromForm] ProjectDto dto)
             {
                 var project = await _context.Projects.FindAsync(id);
                 if (project == null)
