@@ -61,10 +61,11 @@
 }
 
 .team-section img {
-  width: 150px;
-  height: 150px;
+  width: 170px;
+  height: 170px;
   object-fit: cover;
   margin-bottom: 10px;
+  border-radius: 90px;
 }
 
 .team-section h3 {

@@ -15,19 +15,23 @@ const Arkiv = () => {
   const [isLoading, setIsLoading] = useState(true); // loading state
 
   useEffect(() => {
-    // Henter arkvierte prosjekter med Axios
     const getProjects = async () => {
       try {
         const response = await axios.get("http://localhost:5123/api/projects"); // Endpoint for projects
-        console.log("Full respons fra API:", response.data);
         const archivedProjects = response.data; // Filtrerer arkiverte prosjekter
         if (archivedProjects.length === 0) {
           console.log("Ingen arkiverte prosjekter funnet.");
         } else {
           console.log("Hentede arkiverte prosjekter:", archivedProjects);
         }
-        setProjects(archivedProjects); // Oppdaterer state med hentede prosjekter
-        setTotalPages(Math.ceil(archivedProjects.length / projectsPerPage)); // Beregn total antall sider
+        // Sorter prosjektene alfabetisk etter tittel
+        const sortedProjects = archivedProjects.sort((a, b) => {
+          const titleA = a.title?.toLowerCase() || "";
+          const titleB = b.title?.toLowerCase() || "";
+          return titleA.localeCompare(titleB); // Sorter alfabetisk
+        });
+        setProjects(sortedProjects); // Oppdaterer state med sorterte prosjekter
+        setTotalPages(Math.ceil(sortedProjects.length / projectsPerPage)); // Beregn total antall sider
         setIsLoading(false); // Sett loading til false når data er hentet
       } catch (error) {
         console.error("Feil ved henting av arkiverte prosjekter:", error);

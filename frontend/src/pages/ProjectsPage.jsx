@@ -26,22 +26,28 @@ const ProjectsPage = () => {
   }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
 
   // Filter projects based on visibleOnWebsite and the search term
-  const filteredProjects = projects.filter((project) => {
-    // Filter out projects where visibleOnWebsite is not true
-    if (!project.visibleOnWebsite) return false;
+  const filteredProjects = projects
+    .filter((project) => {
+      // Filter out projects where visibleOnWebsite is not true
+      if (!project.visibleOnWebsite) return false;
 
-    // Filter by title, short description, and keywords
-    const title = project.title?.toLowerCase() || "";
-    const shortDescription = project.shortDescription?.toLowerCase() || "";
-    const keywords = project.keywords?.toLowerCase() || "";
-    const term = searchTerm.toLowerCase();
+      // Filter by title, short description, and keywords
+      const title = project.title?.toLowerCase() || "";
+      const shortDescription = project.shortDescription?.toLowerCase() || "";
+      const keywords = project.keywords?.toLowerCase() || "";
+      const term = searchTerm.toLowerCase();
 
-    return (
-      title.includes(term) ||
-      shortDescription.includes(term) ||
-      keywords.includes(term)
-    );
-  });
+      return (
+        title.includes(term) ||
+        shortDescription.includes(term) ||
+        keywords.includes(term)
+      );
+    })
+    .sort((a, b) => {
+      const titleA = a.title?.toLowerCase() || "";
+      const titleB = b.title?.toLowerCase() || "";
+      return titleA.localeCompare(titleB); // Sort alphabetically by title
+    });
 
   // Pagination logic
   const indexOfLastProject = currentPage * projectsPerPage;
