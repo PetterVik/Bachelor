@@ -144,6 +144,11 @@ const EditProject = () => { //definerer EditProject komponenten
     };
 
     const handleSubmit = async (e) => { //samler all data i FormData og sender put forespørsel om å oppdatere prosjektet i databasen
+        if (!selectedProject) {
+            alert("Ingen prosjekt valgt.");
+            return;
+          }
+          
         e.preventDefault();
         try {
             const data = new FormData();
@@ -155,9 +160,10 @@ const EditProject = () => { //definerer EditProject komponenten
                 data.append('image', formData.image);
             }
             data.append('sections', JSON.stringify(formData.sections));
+            data.append('_method', 'PUT');
 
             const response = await axios.put(
-                `http://localhost:5001/api/projects/${selectedProject.id}`, data, { 
+                `http://localhost:5123/api/projects/${selectedProject.id}`, data, { 
                 headers: { 
                     'Content-Type': 'multipart/form-data', 
                 }, 
