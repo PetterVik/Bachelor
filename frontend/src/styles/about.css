@@ -1,5 +1,5 @@
 .about-container {
-  background-color: #eef6fa; /* Light blue background */
+  background-color: #2C3E50; /* Light blue background */
   text-align: center;
 }
 
@@ -10,7 +10,7 @@
 
 .about-hero h1 {
   font-size: 48px;
-  color: #2C3E50;
+  color: #eef6fa;
   margin-bottom: 20px;
   margin-top: 150px;
 }
@@ -43,7 +43,7 @@
 .about-content p {
   font-size: 20px;
   line-height: 1.6;
-  color: #2C3E50;
+  color: #eef6fa;
   margin-bottom: 30px;
 }
 
@@ -69,17 +69,17 @@
 
 .team-section h3 {
   font-size: 20px;
-  color: #2C3E50;
+  color: #eef6fa;
   margin-bottom: 5px;
 }
 
 .team-section p {
   font-size: 16px;
-  color: #777;
+  color: #eef6fa;
 }
 
 .team-section a {
-  color: #777;
+  color: #eef6fa;
   text-decoration: none;
 }
 

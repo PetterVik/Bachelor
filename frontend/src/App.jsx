@@ -6,7 +6,6 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import ProjectsPage from "./pages/ProjectsPage";  // Importer ProjectsPage
 import ProjectDetail from "./pages/ProjectDetail"; // Importer ProjectDetail
-import ScrollToTop from './components/ScrollToTop';
 import './styles/fullpage.css';
 import "./styles/styles.css"; 
 
@@ -14,7 +13,6 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

@@ -11,7 +11,7 @@ const About = () => {
 
       <section className="about-content">
         <div className="content-left">
-          <img src="/network.png" alt="Network Icon" />
+          <img src="/images/network.png" alt="Network Icon" />
           <p>
             Pure Logic har sju faste ansatte samt et bredt partnernettverk og
             ressurser vi aktiverer etter behov. Vi jobber med bærekraft først,
@@ -32,7 +32,7 @@ const About = () => {
 
       <section className="team-section">
         <div className="team-member">
-          <img src="/profil-mann.jpg" alt="Ola Normann" />
+          <img src="/images/profil-mann.jpg" alt="Ola Normann" />
           <h3>Ola Normann</h3>
           <p>
             <a href="mailto:ola@nordmann.no">ola@nordmann.no</a>
@@ -41,7 +41,7 @@ const About = () => {
         </div>
 
         <div className="team-member">
-          <img src="/profil-dame.png" alt="Kari Normann" />
+          <img src="/images/profil-dame.png" alt="Kari Normann" />
           <h3>Kari Normann</h3>
           <p>
             <a href="mailto:kari@nordmann.no">kari@nordmann.no</a>
@@ -50,7 +50,7 @@ const About = () => {
         </div>
 
         <div className="team-member">
-          <img src="/profil-mann.jpg" alt="Ola Normann" />
+          <img src="/images/profil-mann.jpg" alt="Ola Normann" />
           <h3>Ola Normann</h3>
           <p>
             <a href="mailto:ola@nordmann.no">ola@nordmann.no</a>
@@ -59,7 +59,7 @@ const About = () => {
         </div>
 
         <div className="team-member">
-          <img src="/profil-dame.png" alt="Kari Normann" />
+          <img src="/images/profil-dame.png" alt="Kari Normann" />
           <h3>Kari Normann</h3>
           <p>
             <a href="mailto:kari@nordmann.no">kari@nordmann.no</a>
