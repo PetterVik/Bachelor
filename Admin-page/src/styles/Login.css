@@ -1,0 +1,99 @@
+/* Login.css */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: #003366; /* Light blue background */
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    padding: 0 40px;
+    border: 5px solid #8cc5ff; /* Ramme rundt containeren */
+    border-radius: 10px;
+    width: 90%; /* Bredde på containeren, kan justeres */
+    max-width: 600px; /* Maksimal bredde */
+}
+
+.login-heading {
+  font-size: 2rem;
+  margin-bottom: 20px; /* Redusert margin for å plassere teksten nærmere */
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  letter-spacing: 2px;
+  text-align: center; /* Sørger for at overskriften er sentrert */
+}
+
+.login-heading::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #8cc5ff; /* Farge på linjen under overskriften */
+    margin-top: 10px; /* Avstand mellom overskrift og linje */
+}
+
+.loginContainer {
+  display: flex; /* Bruke flexbox for å sentrere innholdet */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Sørger for at containeren fyller bredden */
+}
+
+.instruction {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center; /* Sentere instruksjonen */
+  color: white;
+}
+
+.identityContainer {
+  margin-top: 1rem;
+  margin-bottom: 2.4rem;
+  text-align: center; /* Sørger for at logoen også er sentrert */
+  color: white;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 20px; /* Litt margin under logoen */
+  border-radius: 10px;
+}
+
+.google-login-button {
+    background-color: #ffffff; /* Google-blå farge */
+    color: black;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .google-login-button:hover {
+    background-color: #357ae8; /* Endre fargen på hover */
+    color: white;
+    transform: scale(1.05); /* Legge til en liten zoom-effekt på hover */
+  }
+  
+  .google-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px; /* Avstand mellom ikonet og teksten */
+  }
