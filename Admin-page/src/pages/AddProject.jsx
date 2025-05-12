@@ -178,8 +178,8 @@ const AddProject = () => {
                 </button>
             </div>
 
-
-            <div className="add-project-container">  <!-- Container for å legge til prosjekt -->
+            
+            <div className="add-project-container">  {/* Container for å legge til prosjekt */}
                 <h2>Legg til nytt prosjekt</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -271,7 +271,7 @@ const AddProject = () => {
                             >
                                 <option value="" disabled>
                                     Velg underoverskrift
-                                </option>   <!-- Rullegardinmeny for underoverskrifter -->
+                                </option>   {/* Rullegardinmeny for underoverskrifter*/}
                                 <option value="Intro">Intro</option>
                                 <option value="Oppdrag">Oppdrag</option>
                                 <option value="Løsning">Løsning</option>
