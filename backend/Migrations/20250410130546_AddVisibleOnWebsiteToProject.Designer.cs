@@ -10,54 +10,73 @@ using PureLogicBackend.Data;
 
 namespace backend.Migrations
 {
+    // Partial-klasse som EF Core bruker til å bygge den interne modellen
+    // for AppDbContext etter migrasjonen AddVisibleOnWebsiteToProject.
+
     [DbContext(typeof(AppDbContext))]
     [Migration("20250410130546_AddVisibleOnWebsiteToProject")]
     partial class AddVisibleOnWebsiteToProject
     {
-        /// <inheritdoc />
+        // Konfigurerer ModelBuilder med entiteter, kolonner, relasjoner og seed-data
+        // slik de skal se ut etter at «AddVisibleOnWebsiteToProject»-migrasjonen er kjørt.
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
+
+            // Globale annotasjoner som angir EF Core-versjon og maks lengde på database-identifikatorer
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+
+            // Aktiverer PostgreSQL sin standard Identity-strategi (IdentityByDefaultColumns)
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            // Konfigurerer Project-entiteten med alle kolonner, mapping og seed-data
             modelBuilder.Entity("PureLogicBackend.Models.Project", b =>
                 {
+                    // Primærnøkkel Id med auto-inkrement (Identity)
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
+                    // Opprinnelig beskrivelse-kolonne
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    // Bilde-URL, her navngitt til snake_case i databasen
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
+                    // Nøkkelord for søk og filtrering
                     b.Property<string>("Keywords")
                         .HasColumnType("text");
 
+                    // Lang, detaljert beskrivelse
                     b.Property<string>("LongDescription")
                         .HasColumnType("text");
 
+                    // Kort beskrivelse av prosjektet
                     b.Property<string>("ShortDescription")
                         .HasColumnType("text");
 
+                    // Tittel på prosjektet
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+                    // Angir om prosjektet skal vises på nettsiden
                     b.Property<bool>("VisibleOnWebsite")
                         .HasColumnType("boolean");
 
+                    // Setter Id som primærnøkkel
                     b.HasKey("Id");
 
+                    // Mapper entiteten til SQL-tabellen "Projects"
                     b.ToTable("Projects");
 
+                    // Seed-data: innledende eksempler på prosjekter med VisibleOnWebsite = false. Disse kan slettes. 
                     b.HasData(
                         new
                         {

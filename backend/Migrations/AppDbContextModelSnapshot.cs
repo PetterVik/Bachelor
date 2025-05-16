@@ -9,52 +9,71 @@ using PureLogicBackend.Data;
 
 namespace backend.Migrations
 {
+
+    // EF Core Model Snapshot for AppDbContext – brukes internt av migreringssystemet
+    // til å holde rede på den gjeldende modellen mellom migrasjoner.
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
+        // Bygger ModelBuilder-objektet som representerer den siste tilstanden
+        // av datamodellen slik EF Core kjenner den for AppDbContext.
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
+            // Globale metadata: EF Core-versjon og maks identifikator-lengde
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            // Aktiverer PostgreSQL sin standard Identity-strategi for auto-inkrement
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            // Definerer konfigurasjon for Project-entiteten
             modelBuilder.Entity("PureLogicBackend.Models.Project", b =>
                 {
+                    // Primærnøkkel-kolonne Id med automatisk verdiøkning
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                     // Standard beskrivelse (text)
                     b.Property<string>("Description")
                         .HasColumnType("text");
-
+                    
+                    // Bilde-URL-kolonne, navngitt til snake_case i databasen
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text")
                         .HasColumnName("image_url");
 
+                    // Kolonne for søkbare nøkkelord
                     b.Property<string>("Keywords")
                         .HasColumnType("text");
 
+                    // Kolonne for detaljert (lang) beskrivelse
                     b.Property<string>("LongDescription")
                         .HasColumnType("text");
 
+                    // Kolonne for kort beskrivelse
                     b.Property<string>("ShortDescription")
                         .HasColumnType("text");
 
+                    // Tittel på prosjektet
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
+                    // Flag for synlighet på nettside
                     b.Property<bool>("VisibleOnWebsite")
                         .HasColumnType("boolean");
 
+                    // Setter Id som primærnøkkel
                     b.HasKey("Id");
 
+                    // Mapper entiteten til tabellen "Projects"
                     b.ToTable("Projects");
 
+                    // Seed-data: eksempler på to prosjekter med VisibleOnWebsite = false
                     b.HasData(
                         new
                         {
