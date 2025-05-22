@@ -7,24 +7,24 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Kjør på Ubuntu-miljø
+    runs-on: ubuntu-latest  # Kjøres på Ubuntu-miljø
 
     steps:
-      # Steg 1: Check ut koden fra repositoriet
+      # Checker ut koden fra repositoriet
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Steg 2: Sett opp SSH-nøkler for autentisering til serveren
+      # Setter opp SSH-nøkler for autentisering til serveren
       - name: Setup SSH keys
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # Steg 3: Installer nødvendige avhengigheter (f.eks. Node.js)
+      # Installerer nødvendige avhengigheter
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Velg ønsket versjon
+          node-version: '14' 
 
       - name: Install dependencies
         run: |
